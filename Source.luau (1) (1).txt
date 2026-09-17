@@ -1,0 +1,7827 @@
+-- fixed theme switching issues. Such as theme switching
+-- ## seiyadoesreallylovesleeping
+getgenv().GG = {
+    Language = {
+        CheckboxEnabled = "Enabled",
+        CheckboxDisabled = "Disabled",
+        SliderValue = "Value",
+        DropdownSelect = "Select",
+        DropdownNone = "None",
+        DropdownSelected = "Selected",
+        ButtonClick = "Click",
+        TextboxEnter = "Enter",
+        ModuleEnabled = "Enabled",
+        ModuleDisabled = "Disabled",
+        TabGeneral = "General",
+        TabSettings = "Settings",
+        Loading = "Loading...",
+        Error = "Error",
+        Success = "Success"
+    }
+};
+
+local SelectedLanguage = GG.Language;
+
+local Themes = {
+    Midnight = {
+        Background = Color3.fromRGB(10, 11, 14),
+        ModuleBackground = Color3.fromRGB(18, 22, 32),
+        Accent = Color3.fromRGB(130, 100, 255),
+        SecondaryAccent = Color3.fromRGB(190, 170, 255),
+        Text = Color3.fromRGB(240, 240, 255),
+        TextDark = Color3.fromRGB(160, 160, 185),
+        Highlight = Color3.fromRGB(90, 60, 220),
+        Stroke = Color3.fromRGB(60, 60, 90)
+    },
+    Rose = {
+        Background = Color3.fromRGB(14, 10, 12),
+        ModuleBackground = Color3.fromRGB(28, 18, 24),
+        Accent = Color3.fromRGB(255, 100, 150),
+        SecondaryAccent = Color3.fromRGB(255, 180, 210),
+        Text = Color3.fromRGB(255, 245, 250),
+        TextDark = Color3.fromRGB(200, 170, 185),
+        Highlight = Color3.fromRGB(200, 50, 100),
+        Stroke = Color3.fromRGB(80, 40, 60)
+    },
+    Sapphire = {
+        Background = Color3.fromRGB(8, 12, 20),
+        ModuleBackground = Color3.fromRGB(14, 22, 40),
+        Accent = Color3.fromRGB(60, 140, 255),
+        SecondaryAccent = Color3.fromRGB(140, 200, 255),
+        Text = Color3.fromRGB(230, 240, 255),
+        TextDark = Color3.fromRGB(150, 175, 220),
+        Highlight = Color3.fromRGB(30, 100, 220),
+        Stroke = Color3.fromRGB(30, 55, 100)
+    },
+    Emerald = {
+        Background = Color3.fromRGB(8, 14, 12),
+        ModuleBackground = Color3.fromRGB(14, 26, 22),
+        Accent = Color3.fromRGB(50, 220, 140),
+        SecondaryAccent = Color3.fromRGB(130, 255, 200),
+        Text = Color3.fromRGB(230, 255, 245),
+        TextDark = Color3.fromRGB(140, 195, 175),
+        Highlight = Color3.fromRGB(20, 170, 100),
+        Stroke = Color3.fromRGB(25, 70, 55)
+    },
+    Obsidian = {
+        Background = Color3.fromRGB(8, 8, 10),
+        ModuleBackground = Color3.fromRGB(15, 15, 20),
+        Accent = Color3.fromRGB(200, 180, 120),
+        SecondaryAccent = Color3.fromRGB(240, 220, 160),
+        Text = Color3.fromRGB(245, 242, 235),
+        TextDark = Color3.fromRGB(180, 170, 145),
+        Highlight = Color3.fromRGB(160, 130, 70),
+        Stroke = Color3.fromRGB(50, 45, 35)
+    },
+    Glacier = {
+        Background = Color3.fromRGB(10, 14, 20),
+        ModuleBackground = Color3.fromRGB(18, 26, 38),
+        Accent = Color3.fromRGB(130, 210, 240),
+        SecondaryAccent = Color3.fromRGB(190, 235, 255),
+        Text = Color3.fromRGB(235, 248, 255),
+        TextDark = Color3.fromRGB(155, 195, 220),
+        Highlight = Color3.fromRGB(80, 175, 225),
+        Stroke = Color3.fromRGB(35, 70, 100)
+    },
+    Crimson = {
+        Background = Color3.fromRGB(12, 8, 8),
+        ModuleBackground = Color3.fromRGB(24, 14, 14),
+        Accent = Color3.fromRGB(220, 55, 75),
+        SecondaryAccent = Color3.fromRGB(255, 120, 140),
+        Text = Color3.fromRGB(255, 238, 240),
+        TextDark = Color3.fromRGB(200, 160, 165),
+        Highlight = Color3.fromRGB(170, 30, 50),
+        Stroke = Color3.fromRGB(80, 30, 35)
+    },
+    Amber = {
+        Background = Color3.fromRGB(12, 10, 6),
+        ModuleBackground = Color3.fromRGB(24, 20, 12),
+        Accent = Color3.fromRGB(255, 175, 50),
+        SecondaryAccent = Color3.fromRGB(255, 215, 120),
+        Text = Color3.fromRGB(255, 248, 230),
+        TextDark = Color3.fromRGB(210, 185, 130),
+        Highlight = Color3.fromRGB(210, 135, 20),
+        Stroke = Color3.fromRGB(80, 60, 20)
+    },
+    Cyber = {
+        Background = Color3.fromRGB(6, 6, 10),
+        ModuleBackground = Color3.fromRGB(12, 12, 20),
+        Accent = Color3.fromRGB(0, 240, 160),
+        SecondaryAccent = Color3.fromRGB(60, 255, 220),
+        Text = Color3.fromRGB(230, 255, 250),
+        TextDark = Color3.fromRGB(120, 195, 185),
+        Highlight = Color3.fromRGB(255, 50, 200),
+        Stroke = Color3.fromRGB(20, 65, 55)
+    },
+    Neon = {
+        Background = Color3.fromRGB(5, 4, 10),
+        ModuleBackground = Color3.fromRGB(12, 10, 22),
+        Accent = Color3.fromRGB(255, 30, 130),
+        SecondaryAccent = Color3.fromRGB(130, 60, 255),
+        Text = Color3.fromRGB(255, 250, 255),
+        TextDark = Color3.fromRGB(185, 165, 210),
+        Highlight = Color3.fromRGB(200, 0, 255),
+        Stroke = Color3.fromRGB(70, 30, 80)
+    },
+    Sunset = {
+        Background = Color3.fromRGB(14, 8, 10),
+        ModuleBackground = Color3.fromRGB(28, 16, 20),
+        Accent = Color3.fromRGB(255, 110, 70),
+        SecondaryAccent = Color3.fromRGB(255, 175, 80),
+        Text = Color3.fromRGB(255, 245, 235),
+        TextDark = Color3.fromRGB(215, 175, 155),
+        Highlight = Color3.fromRGB(220, 65, 30),
+        Stroke = Color3.fromRGB(90, 40, 30)
+    },
+    Sakura = {
+        Background = Color3.fromRGB(14, 10, 12),
+        ModuleBackground = Color3.fromRGB(28, 18, 24),
+        Accent = Color3.fromRGB(255, 175, 200),
+        SecondaryAccent = Color3.fromRGB(255, 215, 228),
+        Text = Color3.fromRGB(255, 245, 248),
+        TextDark = Color3.fromRGB(215, 180, 195),
+        Highlight = Color3.fromRGB(230, 110, 160),
+        Stroke = Color3.fromRGB(80, 45, 65)
+    },
+    Monochrome = {
+        Background = Color3.fromRGB(10, 10, 10),
+        ModuleBackground = Color3.fromRGB(18, 18, 18),
+        Accent = Color3.fromRGB(210, 210, 210),
+        SecondaryAccent = Color3.fromRGB(255, 255, 255),
+        Text = Color3.fromRGB(250, 250, 250),
+        TextDark = Color3.fromRGB(155, 155, 155),
+        Highlight = Color3.fromRGB(120, 120, 120),
+        Stroke = Color3.fromRGB(45, 45, 45)
+    },
+    Ash = {
+        Background = Color3.fromRGB(12, 13, 15),
+        ModuleBackground = Color3.fromRGB(22, 24, 28),
+        Accent = Color3.fromRGB(160, 200, 255),
+        SecondaryAccent = Color3.fromRGB(200, 225, 255),
+        Text = Color3.fromRGB(240, 242, 248),
+        TextDark = Color3.fromRGB(160, 168, 185),
+        Highlight = Color3.fromRGB(100, 150, 230),
+        Stroke = Color3.fromRGB(45, 50, 65)
+    },
+    Forest = {
+        Background = Color3.fromRGB(8, 12, 10),
+        ModuleBackground = Color3.fromRGB(14, 22, 18),
+        Accent = Color3.fromRGB(80, 210, 100),
+        SecondaryAccent = Color3.fromRGB(155, 245, 165),
+        Text = Color3.fromRGB(235, 255, 238),
+        TextDark = Color3.fromRGB(150, 200, 160),
+        Highlight = Color3.fromRGB(45, 160, 65),
+        Stroke = Color3.fromRGB(28, 65, 38)
+    },
+    Ocean = {
+        Background = Color3.fromRGB(6, 12, 18),
+        ModuleBackground = Color3.fromRGB(10, 22, 36),
+        Accent = Color3.fromRGB(30, 200, 255),
+        SecondaryAccent = Color3.fromRGB(120, 225, 255),
+        Text = Color3.fromRGB(225, 248, 255),
+        TextDark = Color3.fromRGB(135, 185, 215),
+        Highlight = Color3.fromRGB(10, 155, 230),
+        Stroke = Color3.fromRGB(18, 60, 95)
+    },
+    Lavender = {
+        Background = Color3.fromRGB(12, 10, 18),
+        ModuleBackground = Color3.fromRGB(22, 18, 36),
+        Accent = Color3.fromRGB(175, 155, 240),
+        SecondaryAccent = Color3.fromRGB(215, 200, 255),
+        Text = Color3.fromRGB(248, 245, 255),
+        TextDark = Color3.fromRGB(190, 180, 220),
+        Highlight = Color3.fromRGB(135, 110, 215),
+        Stroke = Color3.fromRGB(60, 48, 90)
+    },
+    Coffee = {
+        Background = Color3.fromRGB(12, 10, 8),
+        ModuleBackground = Color3.fromRGB(24, 19, 14),
+        Accent = Color3.fromRGB(205, 150, 90),
+        SecondaryAccent = Color3.fromRGB(235, 200, 150),
+        Text = Color3.fromRGB(255, 248, 238),
+        TextDark = Color3.fromRGB(200, 175, 145),
+        Highlight = Color3.fromRGB(165, 105, 50),
+        Stroke = Color3.fromRGB(65, 48, 30)
+    },
+    Mint = {
+        Background = Color3.fromRGB(8, 14, 12),
+        ModuleBackground = Color3.fromRGB(14, 26, 22),
+        Accent = Color3.fromRGB(80, 230, 195),
+        SecondaryAccent = Color3.fromRGB(155, 255, 230),
+        Text = Color3.fromRGB(230, 255, 248),
+        TextDark = Color3.fromRGB(140, 200, 185),
+        Highlight = Color3.fromRGB(35, 190, 160),
+        Stroke = Color3.fromRGB(25, 72, 60)
+    },
+    Pink = {
+        Background = Color3.fromRGB(14, 8, 12),
+        ModuleBackground = Color3.fromRGB(28, 14, 24),
+        Accent = Color3.fromRGB(255, 120, 190),
+        SecondaryAccent = Color3.fromRGB(255, 185, 220),
+        Text = Color3.fromRGB(255, 240, 248),
+        TextDark = Color3.fromRGB(215, 170, 200),
+        Highlight = Color3.fromRGB(220, 60, 150),
+        Stroke = Color3.fromRGB(90, 35, 70)
+    },
+    Purple = {
+        Background = Color3.fromRGB(10, 7, 16),
+        ModuleBackground = Color3.fromRGB(20, 14, 32),
+        Accent = Color3.fromRGB(160, 120, 240),
+        SecondaryAccent = Color3.fromRGB(205, 170, 255),
+        Text = Color3.fromRGB(245, 240, 255),
+        TextDark = Color3.fromRGB(185, 165, 225),
+        Highlight = Color3.fromRGB(120, 75, 210),
+        Stroke = Color3.fromRGB(58, 38, 95)
+    },
+    Abyss = {
+        Background = Color3.fromRGB(4, 4, 8),
+        ModuleBackground = Color3.fromRGB(8, 8, 16),
+        Accent = Color3.fromRGB(80, 180, 255),
+        SecondaryAccent = Color3.fromRGB(140, 210, 255),
+        Text = Color3.fromRGB(220, 235, 255),
+        TextDark = Color3.fromRGB(120, 150, 200),
+        Highlight = Color3.fromRGB(40, 130, 230),
+        Stroke = Color3.fromRGB(20, 35, 65)
+    },
+    Vanta = {
+        Background = Color3.fromRGB(3, 3, 3),
+        ModuleBackground = Color3.fromRGB(8, 8, 8),
+        Accent = Color3.fromRGB(255, 255, 255),
+        SecondaryAccent = Color3.fromRGB(200, 200, 200),
+        Text = Color3.fromRGB(255, 255, 255),
+        TextDark = Color3.fromRGB(130, 130, 130),
+        Highlight = Color3.fromRGB(160, 160, 160),
+        Stroke = Color3.fromRGB(28, 28, 28)
+    },
+    Coral = {
+        Background = Color3.fromRGB(14, 8, 6),
+        ModuleBackground = Color3.fromRGB(28, 14, 12),
+        Accent = Color3.fromRGB(255, 120, 95),
+        SecondaryAccent = Color3.fromRGB(255, 180, 160),
+        Text = Color3.fromRGB(255, 245, 242),
+        TextDark = Color3.fromRGB(215, 175, 165),
+        Highlight = Color3.fromRGB(220, 75, 50),
+        Stroke = Color3.fromRGB(90, 35, 28)
+    },
+    Arctic = {
+        Background = Color3.fromRGB(10, 14, 18),
+        ModuleBackground = Color3.fromRGB(18, 26, 34),
+        Accent = Color3.fromRGB(180, 230, 255),
+        SecondaryAccent = Color3.fromRGB(220, 245, 255),
+        Text = Color3.fromRGB(240, 250, 255),
+        TextDark = Color3.fromRGB(160, 195, 220),
+        Highlight = Color3.fromRGB(100, 190, 235),
+        Stroke = Color3.fromRGB(40, 75, 105)
+    },
+    Void = {
+        Background = Color3.fromRGB(5, 3, 10),
+        ModuleBackground = Color3.fromRGB(10, 6, 20),
+        Accent = Color3.fromRGB(200, 50, 255),
+        SecondaryAccent = Color3.fromRGB(230, 130, 255),
+        Text = Color3.fromRGB(248, 240, 255),
+        TextDark = Color3.fromRGB(175, 145, 210),
+        Highlight = Color3.fromRGB(155, 0, 220),
+        Stroke = Color3.fromRGB(65, 22, 90)
+    },
+    Dusk = {
+        Background = Color3.fromRGB(10, 8, 14),
+        ModuleBackground = Color3.fromRGB(20, 16, 28),
+        Accent = Color3.fromRGB(200, 140, 255),
+        SecondaryAccent = Color3.fromRGB(255, 180, 220),
+        Text = Color3.fromRGB(250, 245, 255),
+        TextDark = Color3.fromRGB(185, 165, 210),
+        Highlight = Color3.fromRGB(155, 90, 230),
+        Stroke = Color3.fromRGB(65, 45, 90)
+    },
+    Lava = {
+        Background = Color3.fromRGB(12, 5, 4),
+        ModuleBackground = Color3.fromRGB(24, 10, 8),
+        Accent = Color3.fromRGB(255, 80, 40),
+        SecondaryAccent = Color3.fromRGB(255, 155, 60),
+        Text = Color3.fromRGB(255, 242, 235),
+        TextDark = Color3.fromRGB(210, 160, 140),
+        Highlight = Color3.fromRGB(210, 40, 10),
+        Stroke = Color3.fromRGB(95, 28, 18)
+    },
+    Steel = {
+        Background = Color3.fromRGB(10, 12, 14),
+        ModuleBackground = Color3.fromRGB(20, 24, 28),
+        Accent = Color3.fromRGB(140, 175, 210),
+        SecondaryAccent = Color3.fromRGB(185, 210, 235),
+        Text = Color3.fromRGB(230, 238, 245),
+        TextDark = Color3.fromRGB(150, 168, 190),
+        Highlight = Color3.fromRGB(90, 130, 175),
+        Stroke = Color3.fromRGB(42, 55, 70)
+    },
+    Toxic = {
+        Background = Color3.fromRGB(6, 10, 5),
+        ModuleBackground = Color3.fromRGB(10, 18, 8),
+        Accent = Color3.fromRGB(130, 255, 60),
+        SecondaryAccent = Color3.fromRGB(190, 255, 120),
+        Text = Color3.fromRGB(235, 255, 228),
+        TextDark = Color3.fromRGB(140, 205, 120),
+        Highlight = Color3.fromRGB(85, 210, 20),
+        Stroke = Color3.fromRGB(28, 68, 18)
+    },
+    Blush = {
+        Background = Color3.fromRGB(14, 10, 11),
+        ModuleBackground = Color3.fromRGB(28, 18, 20),
+        Accent = Color3.fromRGB(255, 155, 170),
+        SecondaryAccent = Color3.fromRGB(255, 200, 210),
+        Text = Color3.fromRGB(255, 245, 247),
+        TextDark = Color3.fromRGB(215, 175, 182),
+        Highlight = Color3.fromRGB(230, 90, 115),
+        Stroke = Color3.fromRGB(90, 40, 50)
+    },
+    Dark = {
+        Background = Color3.fromRGB(14, 14, 16),
+        ModuleBackground = Color3.fromRGB(24, 24, 28),
+        Accent = Color3.fromRGB(100, 150, 255),
+        SecondaryAccent = Color3.fromRGB(160, 195, 255),
+        Text = Color3.fromRGB(245, 245, 252),
+        TextDark = Color3.fromRGB(150, 155, 175),
+        Highlight = Color3.fromRGB(60, 110, 230),
+        Stroke = Color3.fromRGB(50, 52, 70)
+    },
+    Light = {
+        Background = Color3.fromRGB(242, 243, 248),
+        ModuleBackground = Color3.fromRGB(255, 255, 255),
+        Accent = Color3.fromRGB(60, 120, 255),
+        SecondaryAccent = Color3.fromRGB(30, 80, 220),
+        Text = Color3.fromRGB(20, 20, 35),
+        TextDark = Color3.fromRGB(90, 95, 120),
+        Highlight = Color3.fromRGB(40, 95, 240),
+        Stroke = Color3.fromRGB(200, 205, 220)
+    },
+    Glass = {
+        Background = Color3.fromRGB(18, 20, 28),
+        ModuleBackground = Color3.fromRGB(30, 32, 44),
+        Accent = Color3.fromRGB(120, 180, 255),
+        SecondaryAccent = Color3.fromRGB(180, 215, 255),
+        Text = Color3.fromRGB(240, 244, 255),
+        TextDark = Color3.fromRGB(155, 165, 200),
+        Highlight = Color3.fromRGB(80, 145, 240),
+        Stroke = Color3.fromRGB(80, 90, 130)
+    },
+    Aurora = {
+        Background = Color3.fromRGB(7, 12, 14),
+        ModuleBackground = Color3.fromRGB(13, 22, 26),
+        Accent = Color3.fromRGB(45, 220, 180),
+        SecondaryAccent = Color3.fromRGB(130, 150, 255),
+        Text = Color3.fromRGB(230, 255, 250),
+        TextDark = Color3.fromRGB(140, 190, 180),
+        Highlight = Color3.fromRGB(20, 170, 140),
+        Stroke = Color3.fromRGB(25, 60, 60)
+    },
+    Velvet = {
+        Background = Color3.fromRGB(12, 7, 14),
+        ModuleBackground = Color3.fromRGB(24, 15, 28),
+        Accent = Color3.fromRGB(205, 70, 190),
+        SecondaryAccent = Color3.fromRGB(255, 150, 220),
+        Text = Color3.fromRGB(250, 240, 252),
+        TextDark = Color3.fromRGB(190, 160, 195),
+        Highlight = Color3.fromRGB(150, 40, 150),
+        Stroke = Color3.fromRGB(60, 30, 65)
+    },
+    Solstice = {
+        Background = Color3.fromRGB(13, 9, 6),
+        ModuleBackground = Color3.fromRGB(26, 18, 12),
+        Accent = Color3.fromRGB(255, 150, 60),
+        SecondaryAccent = Color3.fromRGB(255, 205, 110),
+        Text = Color3.fromRGB(255, 246, 232),
+        TextDark = Color3.fromRGB(205, 175, 140),
+        Highlight = Color3.fromRGB(210, 110, 30),
+        Stroke = Color3.fromRGB(70, 45, 25)
+    }
+};
+
+local ThemeMeta = {
+    Midnight = {
+        category = "Dark",
+        desc = "Deep violet dark"
+    },
+    Rose = {
+        category = "Dark",
+        desc = "Warm crimson bloom"
+    },
+    Sapphire = {
+        category = "Dark",
+        desc = "Cool electric blue"
+    },
+    Emerald = {
+        category = "Dark",
+        desc = "Rich jewel green"
+    },
+    Obsidian = {
+        category = "Premium",
+        desc = "Gold on jet black"
+    },
+    Glacier = {
+        category = "Premium",
+        desc = "Icy arctic blue"
+    },
+    Crimson = {
+        category = "Premium",
+        desc = "Dramatic deep red"
+    },
+    Amber = {
+        category = "Premium",
+        desc = "Warm amber glow"
+    },
+    Cyber = {
+        category = "Neon",
+        desc = "Terminal matrix green"
+    },
+    Neon = {
+        category = "Neon",
+        desc = "Synthwave vibes"
+    },
+    Sunset = {
+        category = "Neon",
+        desc = "Warm dusk orange"
+    },
+    Sakura = {
+        category = "Pastel",
+        desc = "Soft cherry blossom"
+    },
+    Monochrome = {
+        category = "Minimal",
+        desc = "Pure grayscale"
+    },
+    Ash = {
+        category = "Minimal",
+        desc = "Cool blue-grey"
+    },
+    Forest = {
+        category = "Nature",
+        desc = "Deep woodland green"
+    },
+    Ocean = {
+        category = "Nature",
+        desc = "Oceanic deep blue"
+    },
+    Lavender = {
+        category = "Pastel",
+        desc = "Soft lilac dream"
+    },
+    Coffee = {
+        category = "Warm",
+        desc = "Rich espresso tones"
+    },
+    Mint = {
+        category = "Pastel",
+        desc = "Cool minty fresh"
+    },
+    Pink = {
+        category = "Pastel",
+        desc = "Vibrant hot pink"
+    },
+    Purple = {
+        category = "Dark",
+        desc = "Royal amethyst"
+    },
+    Abyss = {
+        category = "Dark",
+        desc = "Bottomless deep blue"
+    },
+    Vanta = {
+        category = "Minimal",
+        desc = "Absolute black"
+    },
+    Coral = {
+        category = "Warm",
+        desc = "Vibrant coral reef"
+    },
+    Arctic = {
+        category = "Nature",
+        desc = "Frozen tundra white"
+    },
+    Void = {
+        category = "Neon",
+        desc = "Ultraviolet darkness"
+    },
+    Dusk = {
+        category = "Pastel",
+        desc = "Twilight purple haze"
+    },
+    Lava = {
+        category = "Neon",
+        desc = "Molten fire red"
+    },
+    Steel = {
+        category = "Minimal",
+        desc = "Industrial blue-grey"
+    },
+    Toxic = {
+        category = "Neon",
+        desc = "Radioactive lime"
+    },
+    Blush = {
+        category = "Pastel",
+        desc = "Warm rosy pink"
+    },
+    Dark = {
+        category = "Minimal",
+        desc = "Clean dark default"
+    },
+    Light = {
+        category = "Minimal",
+        desc = "Bright light mode"
+    },
+    Glass = {
+        category = "Premium",
+        desc = "Translucent glass panel"
+    },
+    Aurora = {
+        category = "Nature",
+        desc = "Teal aurora glow"
+    },
+    Velvet = {
+        category = "Premium",
+        desc = "Rich plum magenta"
+    },
+    Solstice = {
+        category = "Warm",
+        desc = "Golden sunrise glow"
+    }
+};
+function convertStringToTable(inputString)
+	local result = {};
+	for value in string.gmatch(inputString, "([^,]+)") do
+		local trimmedValue = value:match("^%s*(.-)%s*$");
+		table.insert(result, trimmedValue);
+	end
+	return result;
+end
+function convertTableToString(inputTable)
+	return table.concat(inputTable, ", ");
+end
+local UserInputService = cloneref(game:GetService("UserInputService"));
+local ContentProvider = cloneref(game:GetService("ContentProvider"));
+local TweenService = cloneref(game:GetService("TweenService"));
+local HttpService = cloneref(game:GetService("HttpService"));
+local TextService = cloneref(game:GetService("TextService"));
+local RunService = cloneref(game:GetService("RunService"));
+local Lighting = cloneref(game:GetService("Lighting"));
+local Players = cloneref(game:GetService("Players"));
+local CoreGui = cloneref(game:GetService("CoreGui"));
+local Debris = cloneref(game:GetService("Debris"));
+local SoundService = cloneref(game:GetService("SoundService"));
+local TeleportService = cloneref(game:GetService("TeleportService"));
+local mouse = Players.LocalPlayer:GetMouse();
+local OldGui = CoreGui:FindFirstChild("Oshiru");
+if OldGui then
+	Debris:AddItem(OldGui, 0);
+end
+if not isfolder("Oshiru") then
+	makefolder("Oshiru");
+end
+if not isfolder("Oshiru/Configs") then
+	makefolder("Oshiru/Configs");
+end
+if not isfolder("Oshiru/Themes") then
+	makefolder("Oshiru/Themes");
+end
+local Connections = setmetatable({disconnect=function(self, connection)
+	if not self[connection] then
+		return;
+	end
+	self[connection]:Disconnect();
+	self[connection] = nil;
+end,disconnect_all=function(self)
+	for _, value in self do
+		if (typeof(value) == "function") then
+			continue;
+		end
+		value:Disconnect();
+	end
+end}, Connections);
+local Util = setmetatable({map=function(self, value, in_minimum, in_maximum, out_minimum, out_maximum)
+	return (((value - in_minimum) * (out_maximum - out_minimum)) / (in_maximum - in_minimum)) + out_minimum;
+end,viewport_point_to_world=function(self, location, distance)
+	local unit_ray = workspace.CurrentCamera:ScreenPointToRay(location.X, location.Y);
+	return unit_ray.Origin + (unit_ray.Direction * distance);
+end,get_offset=function(self)
+	local viewport_size_Y = workspace.CurrentCamera.ViewportSize.Y;
+	return self:map(viewport_size_Y, 0, 2560, 8, 56);
+end}, Util);
+local Tween = {
+    smooth = TweenInfo.new(0.45, Enum.EasingStyle.Quint, Enum.EasingDirection.Out),
+    fast = TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out),
+    slow = TweenInfo.new(0.65, Enum.EasingStyle.Quint, Enum.EasingDirection.Out),
+    spring = TweenInfo.new(0.55, Enum.EasingStyle.Back, Enum.EasingDirection.Out),
+    fade = TweenInfo.new(0.35, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut),
+    snap = TweenInfo.new(0.12, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+    snap_in = TweenInfo.new(0.08, Enum.EasingStyle.Quad, Enum.EasingDirection.In),
+    slide = TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out),
+    slide_out = TweenInfo.new(0.38, Enum.EasingStyle.Quint, Enum.EasingDirection.In),
+    instant = TweenInfo.new(0.05, Enum.EasingStyle.Linear, Enum.EasingDirection.Out),
+    bounce = TweenInfo.new(0.6, Enum.EasingStyle.Bounce, Enum.EasingDirection.Out)
+};
+local AcrylicBlur = {};
+AcrylicBlur.__index = AcrylicBlur;
+AcrylicBlur.new = function(object)
+	local self = setmetatable({_object=object,_folder=nil,_frame=nil,_root=nil}, AcrylicBlur);
+	self:setup();
+	return self;
+end;
+AcrylicBlur.create_folder = function(self)
+	local old_folder = workspace.CurrentCamera:FindFirstChild("AcrylicBlur");
+	if old_folder then
+		Debris:AddItem(old_folder, 0);
+	end
+	local folder = Instance.new("Folder");
+	folder.Name = "AcrylicBlur";
+	folder.Parent = workspace.CurrentCamera;
+	self._folder = folder;
+end;
+AcrylicBlur.create_depth_of_fields = function(self)
+	local dof = Lighting:FindFirstChild("AcrylicBlur") or Instance.new("DepthOfFieldEffect");
+	dof.FarIntensity = 0;
+	dof.FocusDistance = 0.05;
+	dof.InFocusRadius = 0.1;
+	dof.NearIntensity = 1;
+	dof.Name = "AcrylicBlur";
+	dof.Parent = Lighting;
+	for _, object in Lighting:GetChildren() do
+		if not object:IsA("DepthOfFieldEffect") then
+			continue;
+		end
+		if (object == dof) then
+			continue;
+		end
+		Connections[object] = object:GetPropertyChangedSignal("FarIntensity"):Connect(function()
+			object.FarIntensity = 0;
+		end);
+		object.FarIntensity = 0;
+	end
+end;
+AcrylicBlur.create_frame = function(self)
+	local frame = Instance.new("Frame");
+	frame.Size = UDim2.new(1, 0, 1, 0);
+	frame.Position = UDim2.new(0.5, 0, 0.5, 0);
+	frame.AnchorPoint = Vector2.new(0.5, 0.5);
+	frame.BackgroundTransparency = 1;
+	frame.Parent = self._object;
+	self._frame = frame;
+end;
+AcrylicBlur.create_root = function(self)
+	local part = Instance.new("Part");
+	part.Name = "Root";
+	part.Color = Color3.new(0, 0, 0);
+	part.Material = Enum.Material.Glass;
+	part.Size = Vector3.new(1, 1, 0);
+	part.Anchored = true;
+	part.CanCollide = false;
+	part.CanQuery = false;
+	part.Locked = true;
+	part.CastShadow = false;
+	part.Transparency = 0.98;
+	part.Parent = self._folder;
+	local specialMesh = Instance.new("SpecialMesh");
+	specialMesh.MeshType = Enum.MeshType.Brick;
+	specialMesh.Offset = Vector3.new(0, 0, -0.000001);
+	specialMesh.Parent = part;
+	self._root = part;
+end;
+AcrylicBlur.setup = function(self)
+	self:create_depth_of_fields();
+	self:create_folder();
+	self:create_root();
+	self:create_frame();
+	self:render(0.001);
+	self:check_quality_level();
+end;
+AcrylicBlur.render = function(self, distance)
+	local positions = {top_left=Vector2.new(),top_right=Vector2.new(),bottom_right=Vector2.new()};
+	local function update_positions(size, position)
+		positions.top_left = position;
+		positions.top_right = position + Vector2.new(size.X, 0);
+		positions.bottom_right = position + size;
+	end
+	local function update()
+		local tl = positions.top_left;
+		local tr = positions.top_right;
+		local br = positions.bottom_right;
+		local tl3 = Util:viewport_point_to_world(tl, distance);
+		local tr3 = Util:viewport_point_to_world(tr, distance);
+		local br3 = Util:viewport_point_to_world(br, distance);
+		local w = (tr3 - tl3).Magnitude;
+		local h = (tr3 - br3).Magnitude;
+		if not self._root then
+			return;
+		end
+		self._root.CFrame = CFrame.fromMatrix((tl3 + br3) / 2, workspace.CurrentCamera.CFrame.XVector, workspace.CurrentCamera.CFrame.YVector, workspace.CurrentCamera.CFrame.ZVector);
+		self._root.Mesh.Scale = Vector3.new(w, h, 0);
+	end
+	local function on_change()
+		local offset = Util:get_offset();
+		local size = self._frame.AbsoluteSize - Vector2.new(offset, offset);
+		local position = self._frame.AbsolutePosition + Vector2.new(offset / 2, offset / 2);
+		update_positions(size, position);
+		task.spawn(update);
+	end
+	Connections['cframe_update'] = workspace.CurrentCamera:GetPropertyChangedSignal("CFrame"):Connect(update);
+	Connections['viewport_size_update'] = workspace.CurrentCamera:GetPropertyChangedSignal("ViewportSize"):Connect(update);
+	Connections['field_of_view_update'] = workspace.CurrentCamera:GetPropertyChangedSignal("FieldOfView"):Connect(update);
+	Connections['frame_absolute_position'] = self._frame:GetPropertyChangedSignal("AbsolutePosition"):Connect(on_change);
+	Connections['frame_absolute_size'] = self._frame:GetPropertyChangedSignal("AbsoluteSize"):Connect(on_change);
+	task.spawn(update);
+end;
+AcrylicBlur.check_quality_level = function(self)
+	local game_settings = UserSettings().GameSettings;
+	local quality_level = game_settings.SavedQualityLevel.Value;
+	if (quality_level < 8) then
+		self:change_visiblity(false);
+	end
+	Connections['quality_level'] = game_settings:GetPropertyChangedSignal("SavedQualityLevel"):Connect(function()
+		local ql = UserSettings().GameSettings.SavedQualityLevel.Value;
+		self:change_visiblity(ql >= 8);
+	end);
+end;
+AcrylicBlur.change_visiblity = function(self, state)
+	self._root.Transparency = (state and 0.98) or 1;
+end;
+local Config = setmetatable({save=function(self, file_name, config)
+	local ok, err = pcall(function()
+		local flags = HttpService:JSONEncode(config);
+		writefile("Oshiru/" .. file_name .. ".json", flags);
+	end);
+	if not ok then
+		warn("Failed to save config:", err);
+	end
+end,load=function(self, file_name, config)
+	local ok, result = pcall(function()
+		if not isfile("Oshiru/" .. file_name .. ".json") then
+			self:save(file_name, config);
+			return;
+		end
+		local flags = readfile("Oshiru/" .. file_name .. ".json");
+		if not flags then
+			self:save(file_name, config);
+			return;
+		end
+		return HttpService:JSONDecode(flags);
+	end);
+	if not ok then
+		warn("Failed to load config:", result);
+	end
+	if not result then
+		result = {_flags={},_keybinds={},_library={},_theme="Midnight"};
+	end
+	return result;
+end,save_named=function(self, config_name, config_data)
+	local ok, err = pcall(function()
+		local encoded = HttpService:JSONEncode(config_data);
+		writefile("Oshiru/Configs/" .. config_name .. ".json", encoded);
+	end);
+	if not ok then
+		warn("Failed to save named config:", err);
+	end
+	return ok;
+end,load_named=function(self, config_name)
+	local ok, result = pcall(function()
+		local path = "Oshiru/Configs/" .. config_name .. ".json";
+		if not isfile(path) then
+			return nil;
+		end
+		local raw = readfile(path);
+		if not raw then
+			return nil;
+		end
+		return HttpService:JSONDecode(raw);
+	end);
+	if not ok then
+		warn("Failed to load named config:", result);
+	end
+	return result;
+end,delete_named=function(self, config_name)
+	local ok, err = pcall(function()
+		local path = "Oshiru/Configs/" .. config_name .. ".json";
+		if isfile(path) then
+			delfile(path);
+		end
+	end);
+	if not ok then
+		warn("Failed to delete named config:", err);
+	end
+	return ok;
+end,list_named=function(self)
+	local configs = {};
+	local ok, err = pcall(function()
+		local files = listfiles("Oshiru/Configs");
+		for _, path in ipairs(files) do
+			local name = path:match("([^/\\]+)%.json$");
+			if name then
+				table.insert(configs, name);
+			end
+		end
+	end);
+	if not ok then
+		warn("Failed to list configs:", err);
+	end
+	return configs;
+end,save_theme=function(self, theme_name, theme_data)
+	local ok, err = pcall(function()
+		local encoded = HttpService:JSONEncode({Background={theme_data.Background.R,theme_data.Background.G,theme_data.Background.B},ModuleBackground={theme_data.ModuleBackground.R,theme_data.ModuleBackground.G,theme_data.ModuleBackground.B},Accent={theme_data.Accent.R,theme_data.Accent.G,theme_data.Accent.B},SecondaryAccent={theme_data.SecondaryAccent.R,theme_data.SecondaryAccent.G,theme_data.SecondaryAccent.B},Text={theme_data.Text.R,theme_data.Text.G,theme_data.Text.B},TextDark={theme_data.TextDark.R,theme_data.TextDark.G,theme_data.TextDark.B},Highlight={theme_data.Highlight.R,theme_data.Highlight.G,theme_data.Highlight.B},Stroke={theme_data.Stroke.R,theme_data.Stroke.G,theme_data.Stroke.B}});
+		writefile("Oshiru/Themes/" .. theme_name .. ".json", encoded);
+	end);
+	if not ok then
+		warn("Failed to save theme:", err);
+	end
+	return ok;
+end,load_theme=function(self, theme_name)
+	local ok, result = pcall(function()
+		local path = "Oshiru/Themes/" .. theme_name .. ".json";
+		if not isfile(path) then
+			return nil;
+		end
+		local raw = readfile(path);
+		if not raw then
+			return nil;
+		end
+		local data = HttpService:JSONDecode(raw);
+		local function toC3(t)
+			return Color3.fromRGB(math.floor(t[1] * 255), math.floor(t[2] * 255), math.floor(t[3] * 255));
+		end
+		return {Background=toC3(data.Background),ModuleBackground=toC3(data.ModuleBackground),Accent=toC3(data.Accent),SecondaryAccent=toC3(data.SecondaryAccent),Text=toC3(data.Text),TextDark=toC3(data.TextDark),Highlight=toC3(data.Highlight),Stroke=toC3(data.Stroke)};
+	end);
+	if not ok then
+		warn("Failed to load theme:", result);
+	end
+	return result;
+end,list_themes=function(self)
+	local themes = {};
+	local ok, err = pcall(function()
+		local files = listfiles("Oshiru/Themes");
+		for _, path in ipairs(files) do
+			local name = path:match("([^/\\]+)%.json$");
+			if name then
+				table.insert(themes, name);
+			end
+		end
+	end);
+	if not ok then
+		warn("Failed to list themes:", err);
+	end
+	return themes;
+end,delete_theme=function(self, theme_name)
+	local ok, err = pcall(function()
+		local path = "Oshiru/Themes/" .. theme_name .. ".json";
+		if isfile(path) then
+			delfile(path);
+		end
+	end);
+	if not ok then
+		warn("Failed to delete theme:", err);
+	end
+	return ok;
+end}, Config);
+local Library = {
+    _config = Config:load(game.GameId),
+    _choosing_keybind = false,
+    _device = nil,
+    _ui_open = true,
+    _ui_scale = 1,
+    _ui_loaded = false,
+    _active_instance = nil,
+    _ui = nil,
+    _notification_container = nil,
+    _dragging = false,
+    _drag_start = nil,
+    _container_position = nil,
+    _current_theme = "Midnight",
+    _themed_elements = {
+        Modules = {},
+        Strokes = {},
+        ActiveToggles = {},
+        SliderDrags = {},
+        Notifications = {},
+        AccentButtons = {},
+        DropdownHighlights = {},
+        ProgressFills = {},
+        StatusDots = {},
+        ColorSwatches = {},
+        Watermarks = {},
+        Dividers = {}
+    },
+    _search_registry = {},
+    _notification_settings = {
+        enabled = true,
+        duration = 5,
+        sound = "None"
+    },
+    _blur_enabled = true,
+    _blur_instance = nil,
+    _animation_speed = "Normal",
+    _loading_instance = nil,
+    _translate_language = "English",
+    _divider_gradient = false,
+    _loading_enabled = true
+};
+Library.__index = Library;
+local FontRegular = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+local FontSemiBold = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal);
+local FontBold = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+local FontLegacy = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+local GOTHAM_FAMILY = "rbxasset://fonts/families/GothamSSm.json";
+local UIFontFamily = GOTHAM_FAMILY;
+local UIFontScale = 1;
+local function measureFont(family)
+	local params = Instance.new("GetTextBoundsParams");
+	params.Text = "AaGgQjy 0129 Settings";
+	params.Font = Font.new(family, Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+	params.Size = 100;
+	params.Width = 10000;
+	local ok, bounds = pcall(function()
+		return TextService:GetTextBoundsAsync(params);
+	end);
+	if (ok and bounds and (bounds.X > 0) and (bounds.Y > 0)) then
+		return bounds.X, bounds.Y;
+	end
+	return nil, nil;
+end
+local function computeFontScale(family)
+	local baseW, baseH = measureFont(GOTHAM_FAMILY);
+	local newW, newH = measureFont(family);
+	if not (baseW and baseH and newW and newH) then
+		return 1;
+	end
+	local heightRatio = baseH / newH;
+	local widthRatio = baseW / newW;
+	local rawScale = math.min(heightRatio, widthRatio * 1.15);
+	local damped = 1 + ((rawScale - 1) * 0.7);
+	return math.clamp(damped, 0.8, 1.25);
+end
+Library._apply_font_style = function(root)
+	if not root then
+		return;
+	end
+	local function styleOne(obj)
+		if not (obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("TextBox")) then
+			return;
+		end
+		local base = obj:GetAttribute("OshiruBaseTextSize");
+		if not base then
+			base = obj.TextSize;
+			obj:SetAttribute("OshiruBaseTextSize", base);
+		end
+		local weight = (obj.FontFace and obj.FontFace.Weight) or Enum.FontWeight.Regular;
+		obj.FontFace = Font.new(UIFontFamily, weight, Enum.FontStyle.Normal);
+		local scaled = base * UIFontScale;
+		obj.TextSize = math.max(6, math.min(math.floor(scaled + 0.5), base + 4));
+	end
+	styleOne(root);
+	for _, obj in ipairs(root:GetDescendants()) do
+		styleOne(obj);
+	end
+end;
+Library._style_one_divider = function(entry)
+	if not (entry and entry.Frame and entry.Frame.Parent) then
+		return;
+	end
+	local theme = Themes[(Library._active_instance and Library._active_instance._current_theme) or Library._current_theme] or Themes.Midnight;
+	entry.Frame.BackgroundColor3 = theme.Stroke;
+	if entry.Gradient then
+		entry.Gradient.Rotation = entry.Vertical and 90 or 0;
+		if Library._divider_gradient then
+			entry.Gradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, theme.Stroke),ColorSequenceKeypoint.new(0.5, theme.Accent),ColorSequenceKeypoint.new(1, theme.Stroke)});
+		else
+			entry.Gradient.Color = ColorSequence.new(theme.Stroke);
+		end
+	end
+end;
+Library._register_divider = function(self, frame, gradient, isVertical)
+	local entry = {Frame=frame,Gradient=gradient,Vertical=isVertical};
+	table.insert(self._themed_elements.Dividers, entry);
+	Library._style_one_divider(entry);
+	return entry;
+end;
+Library.set_divider_gradient = function(self, enabled)
+	Library._divider_gradient = enabled;
+	Library._config._flags['DividerGradient'] = enabled;
+	Config:save(game.GameId, Library._config);
+	local activeInstance = Library._active_instance;
+	if activeInstance then
+		for _, entry in ipairs(activeInstance._themed_elements.Dividers) do
+			Library._style_one_divider(entry);
+		end
+	end
+end;
+local LanguageCodes = {
+    English = 'en',
+    Spanish = 'es',
+    Chinese = 'zh-cn',
+    ['Chinese (Traditional)'] = 'zh-tw',
+    Hindi = 'hi',
+    Russian = 'ru',
+    French = 'fr',
+    Portuguese = 'pt',
+    Vietnamese = 'vi',
+    German = 'de',
+    Arabic = 'ar',
+    Japanese = 'ja',
+    Korean = 'ko',
+    Italian = 'it',
+    Turkish = 'tr',
+    Polish = 'pl',
+    Dutch = 'nl',
+    Indonesian = 'id',
+    Thai = 'th',
+    Ukrainian = 'uk',
+    Greek = 'el',
+    Bengali = 'bn',
+    Punjabi = 'pa',
+    Urdu = 'ur',
+    Persian = 'fa',
+    Hebrew = 'iw',
+    Swedish = 'sv',
+    Norwegian = 'no',
+    Danish = 'da',
+    Finnish = 'fi',
+    Czech = 'cs',
+    Romanian = 'ro',
+    Hungarian = 'hu',
+    Bulgarian = 'bg',
+    Croatian = 'hr',
+    Serbian = 'sr',
+    Slovak = 'sk',
+    Filipino = 'fil',
+    Malay = 'ms',
+    Tamil = 'ta',
+    Telugu = 'te',
+    Marathi = 'mr',
+    Swahili = 'sw',
+    Afrikaans = 'af',
+    Icelandic = 'is',
+    Lithuanian = 'lt',
+    Latvian = 'lv',
+    Estonian = 'et',
+    Slovenian = 'sl',
+    Georgian = 'ka',
+    Armenian = 'hy',
+    Catalan = 'ca'
+};
+local LanguageOrder = {
+    'English',
+    'Spanish',
+    'Chinese',
+    'Chinese (Traditional)',
+    'Hindi',
+    'Russian',
+    'French',
+    'Portuguese',
+    'Vietnamese',
+    'German',
+    'Arabic',
+    'Japanese',
+    'Korean',
+    'Italian',
+    'Turkish',
+    'Polish',
+    'Dutch',
+    'Indonesian',
+    'Thai',
+    'Ukrainian',
+    'Greek',
+    'Bengali',
+    'Punjabi',
+    'Urdu',
+    'Persian',
+    'Hebrew',
+    'Swedish',
+    'Norwegian',
+    'Danish',
+    'Finnish',
+    'Czech',
+    'Romanian',
+    'Hungarian',
+    'Bulgarian',
+    'Croatian',
+    'Serbian',
+    'Slovak',
+    'Filipino',
+    'Malay',
+    'Tamil',
+    'Telugu',
+    'Marathi',
+    'Swahili',
+    'Afrikaans',
+    'Icelandic',
+    'Lithuanian',
+    'Latvian',
+    'Estonian',
+    'Slovenian',
+    'Georgian',
+    'Armenian',
+    'Catalan'
+};
+local function httpRequest(options)
+	local signal = (syn and syn.request) or (http and http.request) or http_request or request;
+	if signal then
+		local ok, result = pcall(signal, options);
+		if ok then
+			return result;
+		end
+		warn("Failed to send HTTP request:", result);
+		return nil;
+	end
+	local ok, result = pcall(function()
+		return HttpService:RequestAsync(options);
+	end);
+	if ok then
+		return result;
+	end
+	warn("Failed to send HTTP request:", result);
+	return nil;
+end
+local function translateViaMyMemory(text, targetCode, sourceCode)
+	sourceCode = sourceCode or 'en';
+	local url = 'https://api.mymemory.translated.net/get?q=' .. HttpService:UrlEncode(text:sub(1, 500)) .. '&langpair=' .. sourceCode .. '|' .. targetCode;
+	local response = httpRequest({Url=url,Method='GET',Headers={["User-Agent"]="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}});
+	if not response then
+		return nil;
+	end
+	if (response.StatusCode == 429) then
+		return nil, true;
+	end
+	if ((response.StatusCode and (response.StatusCode ~= 200)) or (response.Success == false)) then
+		warn("Translation request failed with status:", (response.StatusCode or response.Status or "unknown"));
+		return nil;
+	end
+	local body = response.Body or response.body;
+	if not body then
+		warn("Translation request returned an empty body");
+		return nil;
+	end
+	local ok, decoded = pcall(function()
+		return HttpService:JSONDecode(body);
+	end);
+	if (not ok or not decoded) then
+		warn("Failed to decode translation response:", decoded);
+		return nil;
+	end
+	local status = tostring(decoded.responseStatus);
+	if ((status == "429") or (status == "403")) then
+		return nil, true;
+	end
+	if (status ~= "200") then
+		warn("Translation request failed:", (decoded.responseDetails or status));
+		return nil;
+	end
+	local translated = decoded.responseData and decoded.responseData.translatedText;
+	if (translated and (translated ~= '')) then
+		return translated;
+	end
+	return nil;
+end
+local OshiruCodeChars = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
+local OshiruCodeLength = 6;
+local MantleBaseUrl = "https://mantledb.sh/v2/oshiru-ui-server-codes/";
+local function generateServerCode()
+	local chars = {};
+	for i = 1, OshiruCodeLength do
+		local idx = math.random(1, #OshiruCodeChars);
+		table.insert(chars, OshiruCodeChars:sub(idx, idx));
+	end
+	return "OSHIRU-" .. table.concat(chars);
+end
+Library.create_server_code = function(self, callback)
+	if ((game.JobId == nil) or (game.JobId == "")) then
+		Library.SendNotification({title="Servers",text="No active server to share right now.",duration=3,type="error"});
+		if callback then
+			callback(nil);
+		end
+		return;
+	end
+	local code = generateServerCode();
+	task.spawn(function()
+		local payload = HttpService:JSONEncode({jobId=game.JobId,placeId=game.PlaceId,created=os.time()});
+		local response = httpRequest({Url=(MantleBaseUrl .. code),Method="POST",Headers={["Content-Type"]="application/json"},Body=payload});
+		local body = response and (response.Body or response.body);
+		local ok, decoded = pcall(function()
+			return HttpService:JSONDecode(body);
+		end);
+		local success = (body and ok and decoded and (decoded.success == true));
+		if success then
+			pcall(function()
+				if setclipboard then
+					setclipboard(code);
+				end
+			end);
+			Library.SendNotification({title="Server Code Created",text=(code .. " — copied if supported"),duration=5,type="success"});
+			if callback then
+				callback(code);
+			end
+		else
+			Library.SendNotification({title="Servers",text="Failed to create a code. Check your connection and try again.",duration=3,type="error"});
+			if callback then
+				callback(nil);
+			end
+		end
+	end);
+end;
+Library.join_server_code = function(self, rawCode)
+	local code = (rawCode or ""):gsub("%s+", ""):upper();
+	if (code == "") then
+		Library.SendNotification({title="Servers",text="Enter a code first.",duration=2.5,type="warning"});
+		return;
+	end
+	if not code:match("^OSHIRU%-") then
+		Library.SendNotification({title="Servers",text="That doesn't look like a Oshiru code.",duration=2.5,type="warning"});
+		return;
+	end
+	task.spawn(function()
+		local response = httpRequest({Url=(MantleBaseUrl .. code),Method="GET"});
+		local body = response and (response.Body or response.body);
+		local ok, decoded = pcall(function()
+			return HttpService:JSONDecode(body);
+		end);
+		if (not (body and ok and decoded and decoded.jobId and decoded.placeId)) then
+			Library.SendNotification({title="Servers",text="Code not found or expired.",duration=3,type="error"});
+			return;
+		end
+		Library.SendNotification({title="Servers",text="Joining server...",duration=2,type="info"});
+		local teleportOk = pcall(function()
+			TeleportService:TeleportToPlaceInstance(decoded.placeId, decoded.jobId, Players.LocalPlayer);
+		end);
+		if not teleportOk then
+			Library.SendNotification({title="Servers",text="Teleport failed.",duration=3,type="error"});
+		end
+	end);
+end;
+local BuiltinTranslations = {
+    ["Save"] = {
+        Spanish = "Guardar",
+        Chinese = "保存",
+        Hindi = "सहेजें",
+        Russian = "Сохранить",
+        French = "Enregistrer",
+        Portuguese = "Salvar",
+        Vietnamese = "Lưu",
+        German = "Speichern",
+        Arabic = "حفظ",
+        Japanese = "保存",
+        Korean = "저장",
+        Italian = "Salva",
+        Turkish = "Kaydet",
+        Polish = "Zapisz",
+        Dutch = "Opslaan",
+        Indonesian = "Simpan"
+    },
+    ["Load"] = {
+        Spanish = "Cargar",
+        Chinese = "加载",
+        Hindi = "लोड करें",
+        Russian = "Загрузить",
+        French = "Charger",
+        Portuguese = "Carregar",
+        Vietnamese = "Tải",
+        German = "Laden",
+        Arabic = "تحميل",
+        Japanese = "読み込む",
+        Korean = "불러오기",
+        Italian = "Carica",
+        Turkish = "Yükle",
+        Polish = "Wczytaj",
+        Dutch = "Laden",
+        Indonesian = "Muat"
+    },
+    ["Delete"] = {
+        Spanish = "Eliminar",
+        Chinese = "删除",
+        Hindi = "हटाएं",
+        Russian = "Удалить",
+        French = "Supprimer",
+        Portuguese = "Excluir",
+        Vietnamese = "Xóa",
+        German = "Löschen",
+        Arabic = "حذف",
+        Japanese = "削除",
+        Korean = "삭제",
+        Italian = "Elimina",
+        Turkish = "Sil",
+        Polish = "Usuń",
+        Dutch = "Verwijderen",
+        Indonesian = "Hapus"
+    },
+    ["Duplicate"] = {
+        Spanish = "Duplicar",
+        Chinese = "复制",
+        Hindi = "डुप्लिकेट करें",
+        Russian = "Дублировать",
+        French = "Dupliquer",
+        Portuguese = "Duplicar",
+        Vietnamese = "Nhân bản",
+        German = "Duplizieren",
+        Arabic = "تكرار",
+        Japanese = "複製",
+        Korean = "복제",
+        Italian = "Duplica",
+        Turkish = "Çoğalt",
+        Polish = "Duplikuj",
+        Dutch = "Dupliceren",
+        Indonesian = "Duplikat"
+    },
+    ["Join"] = {
+        Spanish = "Unirse",
+        Chinese = "加入",
+        Hindi = "जुड़ें",
+        Russian = "Присоединиться",
+        French = "Rejoindre",
+        Portuguese = "Entrar",
+        Vietnamese = "Tham gia",
+        German = "Beitreten",
+        Arabic = "انضمام",
+        Japanese = "参加",
+        Korean = "참가",
+        Italian = "Unisciti",
+        Turkish = "Katıl",
+        Polish = "Dołącz",
+        Dutch = "Deelnemen",
+        Indonesian = "Gabung"
+    },
+    ["Create"] = {
+        Spanish = "Crear",
+        Chinese = "创建",
+        Hindi = "बनाएं",
+        Russian = "Создать",
+        French = "Créer",
+        Portuguese = "Criar",
+        Vietnamese = "Tạo",
+        German = "Erstellen",
+        Arabic = "إنشاء",
+        Japanese = "作成",
+        Korean = "생성",
+        Italian = "Crea",
+        Turkish = "Oluştur",
+        Polish = "Utwórz",
+        Dutch = "Aanmaken",
+        Indonesian = "Buat"
+    },
+    ["Test"] = {
+        Spanish = "Prueba",
+        Chinese = "测试",
+        Hindi = "परीक्षण",
+        Russian = "Тест",
+        French = "Test",
+        Portuguese = "Teste",
+        Vietnamese = "Kiểm tra",
+        German = "Test",
+        Arabic = "اختبار",
+        Japanese = "テスト",
+        Korean = "테스트",
+        Italian = "Prova",
+        Turkish = "Test",
+        Polish = "Test",
+        Dutch = "Test",
+        Indonesian = "Uji"
+    },
+    ["Copy"] = {
+        Spanish = "Copiar",
+        Chinese = "复制",
+        Hindi = "कॉपी करें",
+        Russian = "Копировать",
+        French = "Copier",
+        Portuguese = "Copiar",
+        Vietnamese = "Sao chép",
+        German = "Kopieren",
+        Arabic = "نسخ",
+        Japanese = "コピー",
+        Korean = "복사",
+        Italian = "Copia",
+        Turkish = "Kopyala",
+        Polish = "Kopiuj",
+        Dutch = "Kopiëren",
+        Indonesian = "Salin"
+    },
+    ["Enabled"] = {
+        Spanish = "Activado",
+        Chinese = "已启用",
+        Hindi = "सक्षम",
+        Russian = "Включено",
+        French = "Activé",
+        Portuguese = "Ativado",
+        Vietnamese = "Đã bật",
+        German = "Aktiviert",
+        Arabic = "مفعّل",
+        Japanese = "有効",
+        Korean = "활성화됨",
+        Italian = "Attivo",
+        Turkish = "Etkin",
+        Polish = "Włączone",
+        Dutch = "Ingeschakeld",
+        Indonesian = "Aktif"
+    },
+    ["Disabled"] = {
+        Spanish = "Desactivado",
+        Chinese = "已禁用",
+        Hindi = "अक्षम",
+        Russian = "Отключено",
+        French = "Désactivé",
+        Portuguese = "Desativado",
+        Vietnamese = "Đã tắt",
+        German = "Deaktiviert",
+        Arabic = "معطّل",
+        Japanese = "無効",
+        Korean = "비활성화됨",
+        Italian = "Disattivo",
+        Turkish = "Devre Dışı",
+        Polish = "Wyłączone",
+        Dutch = "Uitgeschakeld",
+        Indonesian = "Nonaktif"
+    },
+    ["None"] = {
+        Spanish = "Ninguno",
+        Chinese = "无",
+        Hindi = "कोई नहीं",
+        Russian = "Нет",
+        French = "Aucun",
+        Portuguese = "Nenhum",
+        Vietnamese = "Không có",
+        German = "Keine",
+        Arabic = "لا شيء",
+        Japanese = "なし",
+        Korean = "없음",
+        Italian = "Nessuno",
+        Turkish = "Yok",
+        Polish = "Brak",
+        Dutch = "Geen",
+        Indonesian = "Tidak ada"
+    },
+    ["Warning"] = {
+        Spanish = "Advertencia",
+        Chinese = "警告",
+        Hindi = "चेतावनी",
+        Russian = "Предупреждение",
+        French = "Avertissement",
+        Portuguese = "Aviso",
+        Vietnamese = "Cảnh báo",
+        German = "Warnung",
+        Arabic = "تحذير",
+        Japanese = "警告",
+        Korean = "경고",
+        Italian = "Avviso",
+        Turkish = "Uyarı",
+        Polish = "Ostrzeżenie",
+        Dutch = "Waarschuwing",
+        Indonesian = "Peringatan"
+    },
+    ["Error"] = {
+        Spanish = "Error",
+        Chinese = "错误",
+        Hindi = "त्रुटि",
+        Russian = "Ошибка",
+        French = "Erreur",
+        Portuguese = "Erro",
+        Vietnamese = "Lỗi",
+        German = "Fehler",
+        Arabic = "خطأ",
+        Japanese = "エラー",
+        Korean = "오류",
+        Italian = "Errore",
+        Turkish = "Hata",
+        Polish = "Błąd",
+        Dutch = "Fout",
+        Indonesian = "Kesalahan"
+    },
+    ["Success"] = {
+        Spanish = "Éxito",
+        Chinese = "成功",
+        Hindi = "सफलता",
+        Russian = "Успех",
+        French = "Succès",
+        Portuguese = "Sucesso",
+        Vietnamese = "Thành công",
+        German = "Erfolg",
+        Arabic = "نجاح",
+        Japanese = "成功",
+        Korean = "성공",
+        Italian = "Successo",
+        Turkish = "Başarılı",
+        Polish = "Sukces",
+        Dutch = "Succes",
+        Indonesian = "Berhasil"
+    },
+    ["Loading"] = {
+        Spanish = "Cargando",
+        Chinese = "加载中",
+        Hindi = "लोड हो रहा है",
+        Russian = "Загрузка",
+        French = "Chargement",
+        Portuguese = "Carregando",
+        Vietnamese = "Đang tải",
+        German = "Wird geladen",
+        Arabic = "جارٍ التحميل",
+        Japanese = "読み込み中",
+        Korean = "로딩 중",
+        Italian = "Caricamento",
+        Turkish = "Yükleniyor",
+        Polish = "Ładowanie",
+        Dutch = "Laden",
+        Indonesian = "Memuat"
+    },
+    ["Search"] = {
+        Spanish = "Buscar",
+        Chinese = "搜索",
+        Hindi = "खोजें",
+        Russian = "Поиск",
+        French = "Rechercher",
+        Portuguese = "Pesquisar",
+        Vietnamese = "Tìm kiếm",
+        German = "Suchen",
+        Arabic = "بحث",
+        Japanese = "検索",
+        Korean = "검색",
+        Italian = "Cerca",
+        Turkish = "Ara",
+        Polish = "Szukaj",
+        Dutch = "Zoeken",
+        Indonesian = "Cari"
+    },
+    ["Settings"] = {
+        Spanish = "Configuración",
+        Chinese = "设置",
+        Hindi = "सेटिंग्स",
+        Russian = "Настройки",
+        French = "Paramètres",
+        Portuguese = "Configurações",
+        Vietnamese = "Cài đặt",
+        German = "Einstellungen",
+        Arabic = "الإعدادات",
+        Japanese = "設定",
+        Korean = "설정",
+        Italian = "Impostazioni",
+        Turkish = "Ayarlar",
+        Polish = "Ustawienia",
+        Dutch = "Instellingen",
+        Indonesian = "Pengaturan"
+    },
+    ["Themes"] = {
+        Spanish = "Temas",
+        Chinese = "主题",
+        Hindi = "थीम",
+        Russian = "Темы",
+        French = "Thèmes",
+        Portuguese = "Temas",
+        Vietnamese = "Chủ đề",
+        German = "Designs",
+        Arabic = "السمات",
+        Japanese = "テーマ",
+        Korean = "테마",
+        Italian = "Temi",
+        Turkish = "Temalar",
+        Polish = "Motywy",
+        Dutch = "Thema's",
+        Indonesian = "Tema"
+    },
+    ["Interface"] = {
+        Spanish = "Interfaz",
+        Chinese = "界面",
+        Hindi = "इंटरफेस",
+        Russian = "Интерфейс",
+        French = "Interface",
+        Portuguese = "Interface",
+        Vietnamese = "Giao diện",
+        German = "Oberfläche",
+        Arabic = "الواجهة",
+        Japanese = "インターフェース",
+        Korean = "인터페이스",
+        Italian = "Interfaccia",
+        Turkish = "Arayüz",
+        Polish = "Interfejs",
+        Dutch = "Interface",
+        Indonesian = "Antarmuka"
+    },
+    ["Watermark"] = {
+        Spanish = "Marca de agua",
+        Chinese = "水印",
+        Hindi = "वॉटरमार्क",
+        Russian = "Водяной знак",
+        French = "Filigrane",
+        Portuguese = "Marca d'água",
+        Vietnamese = "Watermark",
+        German = "Wasserzeichen",
+        Arabic = "العلامة المائية",
+        Japanese = "ウォーターマーク",
+        Korean = "워터마크",
+        Italian = "Filigrana",
+        Turkish = "Filigran",
+        Polish = "Znak wodny",
+        Dutch = "Watermerk",
+        Indonesian = "Tanda air"
+    },
+    ["Config"] = {
+        Spanish = "Configuración",
+        Chinese = "配置",
+        Hindi = "कॉन्फ़िग",
+        Russian = "Конфигурация",
+        French = "Configuration",
+        Portuguese = "Configuração",
+        Vietnamese = "Cấu hình",
+        German = "Konfiguration",
+        Arabic = "الإعدادات",
+        Japanese = "設定ファイル",
+        Korean = "구성",
+        Italian = "Configurazione",
+        Turkish = "Yapılandırma",
+        Polish = "Konfiguracja",
+        Dutch = "Configuratie",
+        Indonesian = "Konfigurasi"
+    },
+    ["Servers"] = {
+        Spanish = "Servidores",
+        Chinese = "服务器",
+        Hindi = "सर्वर",
+        Russian = "Серверы",
+        French = "Serveurs",
+        Portuguese = "Servidores",
+        Vietnamese = "Máy chủ",
+        German = "Server",
+        Arabic = "الخوادم",
+        Japanese = "サーバー",
+        Korean = "서버",
+        Italian = "Server",
+        Turkish = "Sunucular",
+        Polish = "Serwery",
+        Dutch = "Servers",
+        Indonesian = "Server"
+    },
+    ["Notifications"] = {
+        Spanish = "Notificaciones",
+        Chinese = "通知",
+        Hindi = "सूचनाएं",
+        Russian = "Уведомления",
+        French = "Notifications",
+        Portuguese = "Notificações",
+        Vietnamese = "Thông báo",
+        German = "Benachrichtigungen",
+        Arabic = "الإشعارات",
+        Japanese = "通知",
+        Korean = "알림",
+        Italian = "Notifiche",
+        Turkish = "Bildirimler",
+        Polish = "Powiadomienia",
+        Dutch = "Meldingen",
+        Indonesian = "Notifikasi"
+    },
+    ["Language"] = {
+        Spanish = "Idioma",
+        Chinese = "语言",
+        Hindi = "भाषा",
+        Russian = "Язык",
+        French = "Langue",
+        Portuguese = "Idioma",
+        Vietnamese = "Ngôn ngữ",
+        German = "Sprache",
+        Arabic = "اللغة",
+        Japanese = "言語",
+        Korean = "언어",
+        Italian = "Lingua",
+        Turkish = "Dil",
+        Polish = "Język",
+        Dutch = "Taal",
+        Indonesian = "Bahasa"
+    },
+    ["Position"] = {
+        Spanish = "Posición",
+        Chinese = "位置",
+        Hindi = "स्थिति",
+        Russian = "Позиция",
+        French = "Position",
+        Portuguese = "Posição",
+        Vietnamese = "Vị trí",
+        German = "Position",
+        Arabic = "الموضع",
+        Japanese = "位置",
+        Korean = "위치",
+        Italian = "Posizione",
+        Turkish = "Konum",
+        Polish = "Pozycja",
+        Dutch = "Positie",
+        Indonesian = "Posisi"
+    },
+    ["Sound"] = {
+        Spanish = "Sonido",
+        Chinese = "声音",
+        Hindi = "ध्वनि",
+        Russian = "Звук",
+        French = "Son",
+        Portuguese = "Som",
+        Vietnamese = "Âm thanh",
+        German = "Ton",
+        Arabic = "الصوت",
+        Japanese = "サウンド",
+        Korean = "소리",
+        Italian = "Suono",
+        Turkish = "Ses",
+        Polish = "Dźwięk",
+        Dutch = "Geluid",
+        Indonesian = "Suara"
+    },
+    ["Note"] = {
+        Spanish = "Nota",
+        Chinese = "注意",
+        Hindi = "नोट",
+        Russian = "Примечание",
+        French = "Remarque",
+        Portuguese = "Nota",
+        Vietnamese = "Ghi chú",
+        German = "Hinweis",
+        Arabic = "ملاحظة",
+        Japanese = "注記",
+        Korean = "참고",
+        Italian = "Nota",
+        Turkish = "Not",
+        Polish = "Uwaga",
+        Dutch = "Opmerking",
+        Indonesian = "Catatan"
+    },
+    ["Theme Preset"] = {
+        Spanish = "Tema Predefinido",
+        Chinese = "主题预设",
+        Hindi = "थीम प्रीसेट",
+        Russian = "Пресет темы",
+        French = "Thème prédéfini",
+        Portuguese = "Tema Predefinido",
+        Vietnamese = "Chủ đề có sẵn",
+        German = "Design-Vorlage",
+        Arabic = "قالب السمة",
+        Japanese = "テーマプリセット",
+        Korean = "테마 프리셋",
+        Italian = "Preset Tema",
+        Turkish = "Tema Ön Ayarı",
+        Polish = "Motyw predefiniowany",
+        Dutch = "Themavoorinstelling",
+        Indonesian = "Preset Tema"
+    },
+    ["UI Font"] = {
+        Spanish = "Fuente de la Interfaz",
+        Chinese = "界面字体",
+        Hindi = "यूआई फ़ॉन्ट",
+        Russian = "Шрифт интерфейса",
+        French = "Police de l'interface",
+        Portuguese = "Fonte da Interface",
+        Vietnamese = "Phông chữ giao diện",
+        German = "UI-Schriftart",
+        Arabic = "خط الواجهة",
+        Japanese = "UIフォント",
+        Korean = "UI 글꼴",
+        Italian = "Carattere Interfaccia",
+        Turkish = "Arayüz Yazı Tipi",
+        Polish = "Czcionka interfejsu",
+        Dutch = "UI-lettertype",
+        Indonesian = "Font Antarmuka"
+    },
+    ["Server Code"] = {
+        Spanish = "Código del Servidor",
+        Chinese = "服务器代码",
+        Hindi = "सर्वर कोड",
+        Russian = "Код сервера",
+        French = "Code du serveur",
+        Portuguese = "Código do Servidor",
+        Vietnamese = "Mã máy chủ",
+        German = "Servercode",
+        Arabic = "رمز الخادم",
+        Japanese = "サーバーコード",
+        Korean = "서버 코드",
+        Italian = "Codice Server",
+        Turkish = "Sunucu Kodu",
+        Polish = "Kod serwera",
+        Dutch = "Servercode",
+        Indonesian = "Kode Server"
+    },
+    ["Config Name"] = {
+        Spanish = "Nombre de Configuración",
+        Chinese = "配置名称",
+        Hindi = "कॉन्फ़िग नाम",
+        Russian = "Имя конфигурации",
+        French = "Nom de configuration",
+        Portuguese = "Nome da Configuração",
+        Vietnamese = "Tên cấu hình",
+        German = "Konfigurationsname",
+        Arabic = "اسم الإعداد",
+        Japanese = "設定名",
+        Korean = "구성 이름",
+        Italian = "Nome Configurazione",
+        Turkish = "Yapılandırma Adı",
+        Polish = "Nazwa konfiguracji",
+        Dutch = "Configuratienaam",
+        Indonesian = "Nama Konfigurasi"
+    },
+    ["Saved Configs"] = {
+        Spanish = "Configuraciones Guardadas",
+        Chinese = "已保存的配置",
+        Hindi = "सहेजे गए कॉन्फ़िग",
+        Russian = "Сохранённые конфигурации",
+        French = "Configurations enregistrées",
+        Portuguese = "Configurações Salvas",
+        Vietnamese = "Cấu hình đã lưu",
+        German = "Gespeicherte Konfigurationen",
+        Arabic = "الإعدادات المحفوظة",
+        Japanese = "保存済み設定",
+        Korean = "저장된 구성",
+        Italian = "Configurazioni Salvate",
+        Turkish = "Kayıtlı Yapılandırmalar",
+        Polish = "Zapisane konfiguracje",
+        Dutch = "Opgeslagen configuraties",
+        Indonesian = "Konfigurasi Tersimpan"
+    }
+};
+local function loadTranslationCache()
+	local ok, result = pcall(function()
+		if not isfile("Oshiru/TranslationCache.json") then
+			return {};
+		end
+		local raw = readfile("Oshiru/TranslationCache.json");
+		if not raw then
+			return {};
+		end
+		return HttpService:JSONDecode(raw);
+	end);
+	if not ok then
+		warn("Failed to load translation cache:", result);
+		return {};
+	end
+	return result or {};
+end
+local function saveTranslationCache(cache)
+	local ok, err = pcall(function()
+		writefile("Oshiru/TranslationCache.json", HttpService:JSONEncode(cache));
+	end);
+	if not ok then
+		warn("Failed to save translation cache:", err);
+	end
+end
+local TranslationCache = loadTranslationCache();
+local TranslationCacheDirty = false;
+local TranslationPending = {};
+local TranslationQueue = {};
+local TranslationWorkers = 0;
+local MAX_TRANSLATION_WORKERS = 3;
+local TranslationCooldownUntil = 0;
+local TRANSLATION_RATE_LIMIT_COOLDOWN = 5;
+local MAX_TRANSLATION_ATTEMPTS = 5;
+local function resolveTranslationJob(cacheKey, text, targetCode, attempts)
+	local translated, rateLimited = translateViaMyMemory(text, targetCode, 'en');
+	if (rateLimited and ((attempts or 1) < MAX_TRANSLATION_ATTEMPTS)) then
+		TranslationCooldownUntil = math.max(TranslationCooldownUntil, (os.clock() + TRANSLATION_RATE_LIMIT_COOLDOWN));
+		warn("Translation rate limited, pausing translation queue for", TRANSLATION_RATE_LIMIT_COOLDOWN, "seconds");
+		table.insert(TranslationQueue, 1, {CacheKey=cacheKey,Text=text,Code=targetCode,Attempts=(attempts or 1)+1});
+		return;
+	end
+	if translated then
+		TranslationCache[cacheKey] = translated;
+		TranslationCacheDirty = true;
+	end
+	local waiters = TranslationPending[cacheKey];
+	TranslationPending[cacheKey] = nil;
+	if waiters then
+		for _, applyFn in ipairs(waiters) do
+			pcall(applyFn, translated or text);
+		end
+	end
+end
+local function pumpTranslationQueue()
+	if (TranslationWorkers >= MAX_TRANSLATION_WORKERS) then
+		return;
+	end
+	if (#TranslationQueue == 0) then
+		return;
+	end
+	TranslationWorkers = TranslationWorkers + 1;
+	task.spawn(function()
+		while (#TranslationQueue > 0) do
+			local now = os.clock();
+			if (now < TranslationCooldownUntil) then
+				task.wait(TranslationCooldownUntil - now);
+			end
+			local job = table.remove(TranslationQueue, 1);
+			if job then
+				resolveTranslationJob(job.CacheKey, job.Text, job.Code, job.Attempts);
+				task.wait(0.15);
+			end
+		end
+		TranslationWorkers = TranslationWorkers - 1;
+		if (TranslationWorkers == 0) then
+			if TranslationCacheDirty then
+				saveTranslationCache(TranslationCache);
+				TranslationCacheDirty = false;
+			end
+		end
+	end);
+end
+local function enqueueTranslation(applyFn, text)
+	local targetLanguage = Library._translate_language or 'English';
+	local code = LanguageCodes[targetLanguage];
+	if not code then
+		return;
+	end
+	local cacheKey = targetLanguage .. '|' .. text;
+	local cached = TranslationCache[cacheKey];
+	if cached then
+		pcall(applyFn, cached);
+		return;
+	end
+	local waiters = TranslationPending[cacheKey];
+	if waiters then
+		table.insert(waiters, applyFn);
+		return;
+	end
+	TranslationPending[cacheKey] = {applyFn};
+	table.insert(TranslationQueue, {CacheKey=cacheKey,Text=text,Code=code});
+	pumpTranslationQueue();
+	pumpTranslationQueue();
+	pumpTranslationQueue();
+end
+Library._apply_translation = function(root)
+	if not root then
+		return;
+	end
+	if not (Library._translate_language and (Library._translate_language ~= 'English')) then
+		return;
+	end
+	local function styleOne(obj)
+		if obj:GetAttribute("OshiruNoTranslate") then
+			return;
+		end
+		if obj:IsA("TextBox") then
+			local original = obj:GetAttribute("OshiruOriginalPlaceholder");
+			if not original then
+				original = obj.PlaceholderText;
+				obj:SetAttribute("OshiruOriginalPlaceholder", original);
+			end
+			if (original and (original ~= "")) then
+				local builtin = BuiltinTranslations[original];
+				local builtinText = builtin and builtin[Library._translate_language];
+				if builtinText then
+					obj.PlaceholderText = builtinText;
+				else
+					enqueueTranslation(function(v)
+						if obj.Parent then
+							obj.PlaceholderText = v;
+						end
+					end, original);
+				end
+			end
+			return;
+		end
+		if not (obj:IsA("TextLabel") or obj:IsA("TextButton")) then
+			return;
+		end
+		local original = obj:GetAttribute("OshiruOriginalText");
+		if not original then
+			original = obj.Text;
+			obj:SetAttribute("OshiruOriginalText", original);
+		end
+		if (original and (original ~= "")) then
+			local builtin = BuiltinTranslations[original];
+			local builtinText = builtin and builtin[Library._translate_language];
+			if builtinText then
+				obj.Text = builtinText;
+			else
+				enqueueTranslation(function(v)
+					if obj.Parent then
+						obj.Text = v;
+					end
+				end, original);
+			end
+		end
+	end
+	styleOne(root);
+	for _, obj in ipairs(root:GetDescendants()) do
+		styleOne(obj);
+	end
+end;
+Library._revert_translation = function(root)
+	if not root then
+		return;
+	end
+	local function revertOne(obj)
+		if obj:IsA("TextBox") then
+			local original = obj:GetAttribute("OshiruOriginalPlaceholder");
+			if original then
+				obj.PlaceholderText = original;
+			end
+			return;
+		end
+		if not (obj:IsA("TextLabel") or obj:IsA("TextButton")) then
+			return;
+		end
+		local original = obj:GetAttribute("OshiruOriginalText");
+		if original then
+			obj.Text = original;
+		end
+	end
+	revertOne(root);
+	for _, obj in ipairs(root:GetDescendants()) do
+		revertOne(obj);
+	end
+end;
+Library.set_translation = function(self, language)
+	Library._translate_language = language or 'English';
+	Library._config._flags['TranslateLanguage'] = Library._translate_language;
+	Config:save(game.GameId, Library._config);
+	local shouldTranslate = (Library._translate_language ~= 'English');
+	local activeInstance = Library._active_instance;
+	if (activeInstance and activeInstance._ui) then
+		if shouldTranslate then
+			Library._apply_translation(activeInstance._ui);
+		else
+			Library._revert_translation(activeInstance._ui);
+		end
+	end
+	if Library._notification_container then
+		if shouldTranslate then
+			Library._apply_translation(Library._notification_container);
+		else
+			Library._revert_translation(Library._notification_container);
+		end
+	end
+	for _, wm in ipairs(Library._themed_elements.Watermarks) do
+		if (wm.Frame and wm.Frame.Parent) then
+			if shouldTranslate then
+				Library._apply_translation(wm.Frame);
+			else
+				Library._revert_translation(wm.Frame);
+			end
+		end
+	end
+end;
+local NotifPositionMap = {
+    ['Down-Right'] = {
+        Anchor = Vector2.new(1, 1),
+        Position = UDim2.new(1, -16, 1, -16),
+        Vertical = Enum.VerticalAlignment.Bottom
+    },
+    ['Down-Left'] = {
+        Anchor = Vector2.new(0, 1),
+        Position = UDim2.new(0, 16, 1, -16),
+        Vertical = Enum.VerticalAlignment.Bottom
+    },
+    ['Up-Right'] = {
+        Anchor = Vector2.new(1, 0),
+        Position = UDim2.new(1, -16, 0, 16),
+        Vertical = Enum.VerticalAlignment.Top
+    },
+    ['Up-Left'] = {
+        Anchor = Vector2.new(0, 0),
+        Position = UDim2.new(0, 16, 0, 16),
+        Vertical = Enum.VerticalAlignment.Top
+    },
+    ['Down-Center'] = {
+        Anchor = Vector2.new(0.5, 1),
+        Position = UDim2.new(0.5, 0, 1, -16),
+        Vertical = Enum.VerticalAlignment.Bottom
+    },
+    ['Up-Center'] = {
+        Anchor = Vector2.new(0.5, 0),
+        Position = UDim2.new(0.5, 0, 0, 16),
+        Vertical = Enum.VerticalAlignment.Top
+    },
+    ['Mid-Left'] = {
+        Anchor = Vector2.new(0, 0.5),
+        Position = UDim2.new(0, 16, 0.5, 0),
+        Vertical = Enum.VerticalAlignment.Center
+    },
+    ['Mid-Right'] = {
+        Anchor = Vector2.new(1, 0.5),
+        Position = UDim2.new(1, -16, 0.5, 0),
+        Vertical = Enum.VerticalAlignment.Center
+    }
+};
+
+local NotifPositionOrder = {
+    'Down-Right',
+    'Down-Left',
+    'Up-Right',
+    'Up-Left',
+    'Down-Center',
+    'Up-Center',
+    'Mid-Left',
+    'Mid-Right'
+};
+
+local NotifSoundIds = {
+    ['MGS5'] = 'rbxassetid://654933978',
+    ['Meow'] = 'rbxassetid://134699420140804',
+    ['Soft Ping'] = 'rbxassetid://133118130342644',
+    ['Windows 8'] = 'rbxassetid://1862045322',
+    ['Old Discord'] = 'rbxassetid://91271439961236'
+};
+
+local NotifSoundOrder = {
+    'None',
+    'MGS5',
+    'Meow',
+    'Soft Ping',
+    'Windows 8',
+    'Old Discord'
+};
+local CurrentNotifyPosition = 'Down-Right';
+local NotifOrderCounter = 0;
+local ActiveNotifySound = nil;
+local function getNotifySlideOffset()
+	local posData = NotifPositionMap[CurrentNotifyPosition] or NotifPositionMap['Down-Left'];
+	if (posData.Anchor.X >= 1) then
+		return UDim2.new(1, 20, 0, 0);
+	elseif (posData.Anchor.X <= 0) then
+		return UDim2.new(-1, -20, 0, 0);
+	elseif (posData.Vertical == Enum.VerticalAlignment.Top) then
+		return UDim2.new(0, 0, -1, -20);
+	end
+	return UDim2.new(0, 0, 1, 20);
+end
+local NotificationContainer = Instance.new("Frame");
+NotificationContainer.Name = "NotificationContainer";
+NotificationContainer.Size = UDim2.new(0, 320, 0, 0);
+NotificationContainer.Position = NotifPositionMap[CurrentNotifyPosition].Position;
+NotificationContainer.AnchorPoint = NotifPositionMap[CurrentNotifyPosition].Anchor;
+NotificationContainer.BackgroundTransparency = 1;
+NotificationContainer.ClipsDescendants = false;
+NotificationContainer.ZIndex = 100;
+NotificationContainer.AutomaticSize = Enum.AutomaticSize.Y;
+NotificationContainer.Parent = CoreGui:FindFirstChild("RobloxGui") or CoreGui;
+Library._notification_container = NotificationContainer;
+local NotificationListLayout = Instance.new("UIListLayout");
+NotificationListLayout.FillDirection = Enum.FillDirection.Vertical;
+NotificationListLayout.SortOrder = Enum.SortOrder.LayoutOrder;
+NotificationListLayout.Padding = UDim.new(0, 10);
+NotificationListLayout.VerticalAlignment = NotifPositionMap[CurrentNotifyPosition].Vertical;
+NotificationListLayout.Parent = NotificationContainer;
+local function UpdateNotificationContainer()
+	local vp = workspace.CurrentCamera.ViewportSize;
+	local isMobile = UserInputService.TouchEnabled and not UserInputService.KeyboardEnabled;
+	local posData = NotifPositionMap[CurrentNotifyPosition] or NotifPositionMap['Down-Left'];
+	local basePos = posData.Position;
+	local yOffset = basePos.Y.Offset;
+	local extra = isMobile and 60 or 0;
+	if (posData.Vertical == Enum.VerticalAlignment.Bottom) then
+		yOffset = yOffset - extra;
+	elseif (posData.Vertical == Enum.VerticalAlignment.Top) then
+		yOffset = yOffset + extra;
+	end
+	NotificationContainer.AnchorPoint = posData.Anchor;
+	NotificationContainer.Position = UDim2.new(basePos.X.Scale, basePos.X.Offset, basePos.Y.Scale, yOffset);
+	if isMobile then
+		NotificationContainer.Size = UDim2.new(0, math.min(260, vp.X * 0.65), 0, 0);
+	else
+		NotificationContainer.Size = UDim2.new(0, math.min(320, vp.X * 0.22), 0, 0);
+	end
+end
+UpdateNotificationContainer();
+Connections['notification_viewport'] = workspace.CurrentCamera:GetPropertyChangedSignal("ViewportSize"):Connect(UpdateNotificationContainer);
+Library.set_notification_position = function(self, name)
+	if not NotifPositionMap[name] then
+		return;
+	end
+	CurrentNotifyPosition = name;
+	Library._config._flags['NotifyPosition'] = name;
+	Config:save(game.GameId, Library._config);
+	NotificationListLayout.VerticalAlignment = NotifPositionMap[name].Vertical;
+	UpdateNotificationContainer();
+end;
+Library.set_notification_sound = function(self, name)
+	if not (name == 'None' or NotifSoundIds[name]) then
+		return;
+	end
+	Library._notification_settings.sound = name;
+	Library._config._flags['NotifySound'] = name;
+	Config:save(game.GameId, Library._config);
+end;
+local ActiveNotifications = {};
+local function DismissNotification(entry)
+	if entry._dismissed then
+		return;
+	end
+	entry._dismissed = true;
+	TweenService:Create(entry.InnerFrame, Tween.slide_out, {Position=entry.SlideOffset,BackgroundTransparency=1}):Play();
+	TweenService:Create(entry.UIStroke, Tween.fade, {Transparency=1}):Play();
+	TweenService:Create(entry.Title, Tween.fade, {TextTransparency=1}):Play();
+	TweenService:Create(entry.Body, Tween.fade, {TextTransparency=1}):Play();
+	TweenService:Create(entry.AccentBar, Tween.fade, {BackgroundTransparency=1}):Play();
+	task.delay(0.4, function()
+		local _nlist2 = (Library._active_instance and Library._active_instance._themed_elements.Notifications) or Library._themed_elements.Notifications;
+		for i, v in ipairs(_nlist2) do
+			if (v.Frame == entry.InnerFrame) then
+				table.remove(_nlist2, i);
+				break;
+			end
+		end
+		for i, v in ipairs(ActiveNotifications) do
+			if (v == entry) then
+				table.remove(ActiveNotifications, i);
+				break;
+			end
+		end
+		entry.Root:Destroy();
+	end);
+end
+local LucideIcons = {
+    ["accessibility"] = "rbxassetid://10709751939",
+    ["activity"] = "rbxassetid://10709752035",
+    ["air-vent"] = "rbxassetid://10709752131",
+    ["airplay"] = "rbxassetid://10709752254",
+    ["alarm-check"] = "rbxassetid://10709752405",
+    ["alarm-clock"] = "rbxassetid://10709752630",
+    ["alarm-clock-off"] = "rbxassetid://10709752508",
+    ["alarm-minus"] = "rbxassetid://10709752732",
+    ["alarm-plus"] = "rbxassetid://10709752825",
+    ["album"] = "rbxassetid://10709752906",
+    ["alert-circle"] = "rbxassetid://10709752996",
+    ["alert-octagon"] = "rbxassetid://10709753064",
+    ["alert-triangle"] = "rbxassetid://10709753149",
+    ["anchor"] = "rbxassetid://10709761530",
+    ["angry"] = "rbxassetid://10709761629",
+    ["annoyed"] = "rbxassetid://10709761722",
+    ["aperture"] = "rbxassetid://10709761813",
+    ["apple"] = "rbxassetid://10709761889",
+    ["archive"] = "rbxassetid://10709762233",
+    ["archive-restore"] = "rbxassetid://10709762058",
+    ["armchair"] = "rbxassetid://10709762327",
+    ["arrow-big-down"] = "rbxassetid://10747796644",
+    ["arrow-big-left"] = "rbxassetid://10709762574",
+    ["arrow-big-right"] = "rbxassetid://10709762727",
+    ["arrow-big-up"] = "rbxassetid://10709762879",
+    ["arrow-down"] = "rbxassetid://10709767827",
+    ["arrow-down-circle"] = "rbxassetid://10709763034",
+    ["arrow-down-left"] = "rbxassetid://10709767656",
+    ["arrow-down-right"] = "rbxassetid://10709767750",
+    ["arrow-left"] = "rbxassetid://10709768114",
+    ["arrow-left-circle"] = "rbxassetid://10709767936",
+    ["arrow-left-right"] = "rbxassetid://10709768019",
+    ["arrow-right"] = "rbxassetid://10709768347",
+    ["arrow-right-circle"] = "rbxassetid://10709768226",
+    ["arrow-up"] = "rbxassetid://10709768939",
+    ["arrow-up-circle"] = "rbxassetid://10709768432",
+    ["arrow-up-down"] = "rbxassetid://10709768538",
+    ["arrow-up-left"] = "rbxassetid://10709768661",
+    ["arrow-up-right"] = "rbxassetid://10709768787",
+    ["asterisk"] = "rbxassetid://10709769095",
+    ["at-sign"] = "rbxassetid://10709769286",
+    ["award"] = "rbxassetid://10709769406",
+    ["axe"] = "rbxassetid://10709769508",
+    ["baby"] = "rbxassetid://10709769732",
+    ["backpack"] = "rbxassetid://10709769841",
+    ["banana"] = "rbxassetid://10709770005",
+    ["banknote"] = "rbxassetid://10709770178",
+    ["bar-chart"] = "rbxassetid://10709773755",
+    ["baseline"] = "rbxassetid://10709773863",
+    ["bath"] = "rbxassetid://10709773963",
+    ["battery"] = "rbxassetid://10709774640",
+    ["battery-charging"] = "rbxassetid://10709774068",
+    ["battery-full"] = "rbxassetid://10709774206",
+    ["battery-low"] = "rbxassetid://10709774370",
+    ["battery-medium"] = "rbxassetid://10709774513",
+    ["beaker"] = "rbxassetid://10709774756",
+    ["bed"] = "rbxassetid://10709775036",
+    ["beer"] = "rbxassetid://10709775167",
+    ["bell"] = "rbxassetid://10709775704",
+    ["bell-minus"] = "rbxassetid://10709775241",
+    ["bell-off"] = "rbxassetid://10709775320",
+    ["bell-plus"] = "rbxassetid://10709775448",
+    ["bell-ring"] = "rbxassetid://10709775560",
+    ["bike"] = "rbxassetid://10709775894",
+    ["binary"] = "rbxassetid://10709776050",
+    ["bitcoin"] = "rbxassetid://10709776126",
+    ["bluetooth"] = "rbxassetid://10709776655",
+    ["bold"] = "rbxassetid://10747813908",
+    ["bomb"] = "rbxassetid://10709781460",
+    ["bone"] = "rbxassetid://10709781605",
+    ["book"] = "rbxassetid://10709781824",
+    ["book-open"] = "rbxassetid://10709781717",
+    ["bookmark"] = "rbxassetid://10709782154",
+    ["bot"] = "rbxassetid://10709782230",
+    ["box"] = "rbxassetid://10709782497",
+    ["boxes"] = "rbxassetid://10709782582",
+    ["briefcase"] = "rbxassetid://10709782662",
+    ["brush"] = "rbxassetid://10709782758",
+    ["bug"] = "rbxassetid://10709782845",
+    ["building"] = "rbxassetid://10709783051",
+    ["building-2"] = "rbxassetid://10709782939",
+    ["bus"] = "rbxassetid://10709783137",
+    ["cake"] = "rbxassetid://10709783217",
+    ["calculator"] = "rbxassetid://10709783311",
+    ["calendar"] = "rbxassetid://10709789505",
+    ["camera"] = "rbxassetid://10709789686",
+    ["car"] = "rbxassetid://10709789810",
+    ["carrot"] = "rbxassetid://10709789960",
+    ["cast"] = "rbxassetid://10709790097",
+    ["check"] = "rbxassetid://10709790644",
+    ["check-circle"] = "rbxassetid://10709790387",
+    ["check-circle-2"] = "rbxassetid://10709790298",
+    ["check-square"] = "rbxassetid://10709790537",
+    ["chef-hat"] = "rbxassetid://10709790757",
+    ["cherry"] = "rbxassetid://10709790875",
+    ["chevron-down"] = "rbxassetid://10709790948",
+    ["chevron-left"] = "rbxassetid://10709791281",
+    ["chevron-right"] = "rbxassetid://10709791437",
+    ["chevron-up"] = "rbxassetid://10709791523",
+    ["chrome"] = "rbxassetid://10709797725",
+    ["circle"] = "rbxassetid://10709798174",
+    ["circle-dot"] = "rbxassetid://10709797837",
+    ["clapperboard"] = "rbxassetid://10709798350",
+    ["clipboard"] = "rbxassetid://10709799288",
+    ["clipboard-check"] = "rbxassetid://10709798443",
+    ["clipboard-copy"] = "rbxassetid://10709798574",
+    ["clipboard-list"] = "rbxassetid://10709798792",
+    ["clock"] = "rbxassetid://10709805144",
+    ["cloud"] = "rbxassetid://10709806740",
+    ["cloud-drizzle"] = "rbxassetid://10709805371",
+    ["cloud-fog"] = "rbxassetid://10709805477",
+    ["cloud-lightning"] = "rbxassetid://10709805727",
+    ["cloud-moon"] = "rbxassetid://10709805942",
+    ["cloud-off"] = "rbxassetid://10709806060",
+    ["cloud-rain"] = "rbxassetid://10709806277",
+    ["cloud-snow"] = "rbxassetid://10709806374",
+    ["cloud-sun"] = "rbxassetid://10709806631",
+    ["cloudy"] = "rbxassetid://10709806859",
+    ["clover"] = "rbxassetid://10709806995",
+    ["code"] = "rbxassetid://10709810463",
+    ["coffee"] = "rbxassetid://10709810814",
+    ["cog"] = "rbxassetid://10709810948",
+    ["coins"] = "rbxassetid://10709811110",
+    ["command"] = "rbxassetid://10709811365",
+    ["compass"] = "rbxassetid://10709811445",
+    ["component"] = "rbxassetid://10709811595",
+    ["contact"] = "rbxassetid://10709811834",
+    ["cookie"] = "rbxassetid://10709812067",
+    ["copy"] = "rbxassetid://10709812159",
+    ["copyright"] = "rbxassetid://10709812311",
+    ["cpu"] = "rbxassetid://10709813383",
+    ["croissant"] = "rbxassetid://10709818125",
+    ["crop"] = "rbxassetid://10709818245",
+    ["cross"] = "rbxassetid://10709818399",
+    ["crosshair"] = "rbxassetid://10709818534",
+    ["crown"] = "rbxassetid://10709818626",
+    ["database"] = "rbxassetid://10709818996",
+    ["delete"] = "rbxassetid://10709819059",
+    ["diamond"] = "rbxassetid://10709819149",
+    ["dices"] = "rbxassetid://10723343321",
+    ["disc"] = "rbxassetid://10723343537",
+    ["dollar-sign"] = "rbxassetid://10723343958",
+    ["download"] = "rbxassetid://10723344270",
+    ["download-cloud"] = "rbxassetid://10723344088",
+    ["droplet"] = "rbxassetid://10723344432",
+    ["droplets"] = "rbxassetid://10734883356",
+    ["edit"] = "rbxassetid://10734883598",
+    ["egg"] = "rbxassetid://10723345518",
+    ["equal"] = "rbxassetid://10723345990",
+    ["eraser"] = "rbxassetid://10723346158",
+    ["euro"] = "rbxassetid://10723346372",
+    ["expand"] = "rbxassetid://10723346553",
+    ["external-link"] = "rbxassetid://10723346684",
+    ["eye"] = "rbxassetid://10723346959",
+    ["eye-off"] = "rbxassetid://10723346871",
+    ["factory"] = "rbxassetid://10723347051",
+    ["fan"] = "rbxassetid://10723354359",
+    ["feather"] = "rbxassetid://10723354671",
+    ["figma"] = "rbxassetid://10723354801",
+    ["file"] = "rbxassetid://10723374641",
+    ["file-text"] = "rbxassetid://10723367380",
+    ["files"] = "rbxassetid://10723374759",
+    ["film"] = "rbxassetid://10723374981",
+    ["filter"] = "rbxassetid://10723375128",
+    ["fingerprint"] = "rbxassetid://10723375250",
+    ["flag"] = "rbxassetid://10723375890",
+    ["flame"] = "rbxassetid://10723376114",
+    ["flashlight"] = "rbxassetid://10723376471",
+    ["flask-conical"] = "rbxassetid://10734883986",
+    ["flower-2"] = "rbxassetid://10723377305",
+    ["focus"] = "rbxassetid://10723377537",
+    ["folder"] = "rbxassetid://10723387563",
+    ["folder-open"] = "rbxassetid://10723386277",
+    ["folders"] = "rbxassetid://10723387721",
+    ["forward"] = "rbxassetid://10723388016",
+    ["frown"] = "rbxassetid://10723394681",
+    ["fuel"] = "rbxassetid://10723394846",
+    ["gamepad"] = "rbxassetid://10723395457",
+    ["gamepad-2"] = "rbxassetid://10723395215",
+    ["gauge"] = "rbxassetid://10723395708",
+    ["gavel"] = "rbxassetid://10723395896",
+    ["gem"] = "rbxassetid://10723396000",
+    ["ghost"] = "rbxassetid://10723396107",
+    ["gift"] = "rbxassetid://10723396402",
+    ["git-branch"] = "rbxassetid://10723396676",
+    ["git-commit"] = "rbxassetid://10723396812",
+    ["git-merge"] = "rbxassetid://10723397165",
+    ["git-pull-request"] = "rbxassetid://10723397431",
+    ["glasses"] = "rbxassetid://10723397895",
+    ["globe"] = "rbxassetid://10723404337",
+    ["graduation-cap"] = "rbxassetid://10723404691",
+    ["grape"] = "rbxassetid://10723404822",
+    ["grip-horizontal"] = "rbxassetid://10723405089",
+    ["grip-vertical"] = "rbxassetid://10723405236",
+    ["hammer"] = "rbxassetid://10723405360",
+    ["hand"] = "rbxassetid://10723405649",
+    ["hard-drive"] = "rbxassetid://10723405749",
+    ["hard-hat"] = "rbxassetid://10723405859",
+    ["hash"] = "rbxassetid://10723405975",
+    ["headphones"] = "rbxassetid://10723406165",
+    ["heart"] = "rbxassetid://10723406885",
+    ["heart-crack"] = "rbxassetid://10723406299",
+    ["heart-pulse"] = "rbxassetid://10723406795",
+    ["help-circle"] = "rbxassetid://10723406988",
+    ["hexagon"] = "rbxassetid://10723407092",
+    ["history"] = "rbxassetid://10723407335",
+    ["home"] = "rbxassetid://10723407389",
+    ["hourglass"] = "rbxassetid://10723407498",
+    ["image"] = "rbxassetid://10723415040",
+    ["inbox"] = "rbxassetid://10723415335",
+    ["infinity"] = "rbxassetid://10723415766",
+    ["info"] = "rbxassetid://10723415903",
+    ["italic"] = "rbxassetid://10723416195",
+    ["joystick"] = "rbxassetid://10723416527",
+    ["key"] = "rbxassetid://10723416652",
+    ["keyboard"] = "rbxassetid://10723416765",
+    ["landmark"] = "rbxassetid://10723417608",
+    ["languages"] = "rbxassetid://10723417703",
+    ["laptop"] = "rbxassetid://10723423881",
+    ["laugh"] = "rbxassetid://10723424372",
+    ["layers"] = "rbxassetid://10723424505",
+    ["layout"] = "rbxassetid://10723425376",
+    ["layout-dashboard"] = "rbxassetid://10723424646",
+    ["layout-grid"] = "rbxassetid://10723424838",
+    ["layout-list"] = "rbxassetid://10723424963",
+    ["leaf"] = "rbxassetid://10723425539",
+    ["library"] = "rbxassetid://10723425615",
+    ["life-buoy"] = "rbxassetid://10723425685",
+    ["lightbulb"] = "rbxassetid://10723425852",
+    ["link"] = "rbxassetid://10723426722",
+    ["list"] = "rbxassetid://10723433811",
+    ["list-checks"] = "rbxassetid://10734884548",
+    ["loader"] = "rbxassetid://10723434070",
+    ["loader-2"] = "rbxassetid://10723433935",
+    ["lock"] = "rbxassetid://10723434711",
+    ["log-in"] = "rbxassetid://10723434830",
+    ["log-out"] = "rbxassetid://10723434906",
+    ["magnet"] = "rbxassetid://10723435069",
+    ["mail"] = "rbxassetid://10734885430",
+    ["map"] = "rbxassetid://10734886202",
+    ["map-pin"] = "rbxassetid://10734886004",
+    ["maximize"] = "rbxassetid://10734886735",
+    ["medal"] = "rbxassetid://10734887072",
+    ["megaphone"] = "rbxassetid://10734887454",
+    ["meh"] = "rbxassetid://10734887603",
+    ["menu"] = "rbxassetid://10734887784",
+    ["message-circle"] = "rbxassetid://10734888000",
+    ["message-square"] = "rbxassetid://10734888228",
+    ["mic"] = "rbxassetid://10734888864",
+    ["mic-off"] = "rbxassetid://10734888646",
+    ["microscope"] = "rbxassetid://10734889106",
+    ["minimize"] = "rbxassetid://10734895698",
+    ["minus"] = "rbxassetid://10734896206",
+    ["monitor"] = "rbxassetid://10734896881",
+    ["moon"] = "rbxassetid://10734897102",
+    ["more-horizontal"] = "rbxassetid://10734897250",
+    ["more-vertical"] = "rbxassetid://10734897387",
+    ["mountain"] = "rbxassetid://10734897956",
+    ["mouse-pointer"] = "rbxassetid://10734898476",
+    ["move"] = "rbxassetid://10734900011",
+    ["music"] = "rbxassetid://10734905958",
+    ["navigation"] = "rbxassetid://10734906744",
+    ["network"] = "rbxassetid://10734906975",
+    ["newspaper"] = "rbxassetid://10734907168",
+    ["octagon"] = "rbxassetid://10734907361",
+    ["package"] = "rbxassetid://10734909540",
+    ["paint-bucket"] = "rbxassetid://10734909847",
+    ["paintbrush"] = "rbxassetid://10734910187",
+    ["palette"] = "rbxassetid://10734910430",
+    ["palmtree"] = "rbxassetid://10734910680",
+    ["paperclip"] = "rbxassetid://10734910927",
+    ["party-popper"] = "rbxassetid://10734918735",
+    ["pause"] = "rbxassetid://10734919336",
+    ["pen-tool"] = "rbxassetid://10734919503",
+    ["pencil"] = "rbxassetid://10734919691",
+    ["percent"] = "rbxassetid://10734919919",
+    ["phone"] = "rbxassetid://10734921524",
+    ["pie-chart"] = "rbxassetid://10734921727",
+    ["piggy-bank"] = "rbxassetid://10734921935",
+    ["pin"] = "rbxassetid://10734922324",
+    ["pizza"] = "rbxassetid://10734922774",
+    ["plane"] = "rbxassetid://10734922971",
+    ["play"] = "rbxassetid://10734923549",
+    ["plus"] = "rbxassetid://10734924532",
+    ["plus-circle"] = "rbxassetid://10734923868",
+    ["pointer"] = "rbxassetid://10734929723",
+    ["power"] = "rbxassetid://10734930466",
+    ["printer"] = "rbxassetid://10734930632",
+    ["puzzle"] = "rbxassetid://10734930886",
+    ["quote"] = "rbxassetid://10734931234",
+    ["radio"] = "rbxassetid://10734931596",
+    ["recycle"] = "rbxassetid://10734932295",
+    ["redo"] = "rbxassetid://10734932822",
+    ["refresh-ccw"] = "rbxassetid://10734933056",
+    ["refresh-cw"] = "rbxassetid://10734933222",
+    ["repeat"] = "rbxassetid://10734933966",
+    ["reply"] = "rbxassetid://10734934252",
+    ["rewind"] = "rbxassetid://10734934347",
+    ["rocket"] = "rbxassetid://10734934585",
+    ["rotate-ccw"] = "rbxassetid://10734940376",
+    ["rotate-cw"] = "rbxassetid://10734940654",
+    ["rss"] = "rbxassetid://10734940825",
+    ["ruler"] = "rbxassetid://10734941018",
+    ["sailboat"] = "rbxassetid://10734941354",
+    ["save"] = "rbxassetid://10734941499",
+    ["scale"] = "rbxassetid://10734941912",
+    ["scan"] = "rbxassetid://10734942565",
+    ["scissors"] = "rbxassetid://10734942778",
+    ["scroll"] = "rbxassetid://10734943448",
+    ["search"] = "rbxassetid://10734943674",
+    ["send"] = "rbxassetid://10734943902",
+    ["server"] = "rbxassetid://10734949856",
+    ["settings"] = "rbxassetid://10734950309",
+    ["share"] = "rbxassetid://10734950813",
+    ["share-2"] = "rbxassetid://10734950553",
+    ["shield"] = "rbxassetid://10734951847",
+    ["shield-alert"] = "rbxassetid://10734951173",
+    ["shield-check"] = "rbxassetid://10734951367",
+    ["shield-off"] = "rbxassetid://10734951684",
+    ["shirt"] = "rbxassetid://10734952036",
+    ["shopping-bag"] = "rbxassetid://10734952273",
+    ["shopping-cart"] = "rbxassetid://10734952479",
+    ["shovel"] = "rbxassetid://10734952773",
+    ["shuffle"] = "rbxassetid://10734953451",
+    ["sidebar"] = "rbxassetid://10734954301",
+    ["signal"] = "rbxassetid://10734961133",
+    ["siren"] = "rbxassetid://10734961284",
+    ["skip-back"] = "rbxassetid://10734961526",
+    ["skip-forward"] = "rbxassetid://10734961809",
+    ["skull"] = "rbxassetid://10734962068",
+    ["slash"] = "rbxassetid://10734962600",
+    ["sliders"] = "rbxassetid://10734963400",
+    ["smartphone"] = "rbxassetid://10734963940",
+    ["smile"] = "rbxassetid://10734964441",
+    ["snowflake"] = "rbxassetid://10734964600",
+    ["sofa"] = "rbxassetid://10734964852",
+    ["speaker"] = "rbxassetid://10734965419",
+    ["sprout"] = "rbxassetid://10734965572",
+    ["square"] = "rbxassetid://10734965702",
+    ["star"] = "rbxassetid://10734966248",
+    ["stethoscope"] = "rbxassetid://10734966384",
+    ["sticker"] = "rbxassetid://10734972234",
+    ["sun"] = "rbxassetid://10734974297",
+    ["sunrise"] = "rbxassetid://10734974522",
+    ["sunset"] = "rbxassetid://10734974689",
+    ["sword"] = "rbxassetid://10734975486",
+    ["swords"] = "rbxassetid://10734975692",
+    ["syringe"] = "rbxassetid://10734975932",
+    ["table"] = "rbxassetid://10734976230",
+    ["tablet"] = "rbxassetid://10734976394",
+    ["tag"] = "rbxassetid://10734976528",
+    ["target"] = "rbxassetid://10734977012",
+    ["tent"] = "rbxassetid://10734981750",
+    ["terminal"] = "rbxassetid://10734982144",
+    ["thermometer"] = "rbxassetid://10734983134",
+    ["thumbs-down"] = "rbxassetid://10734983359",
+    ["thumbs-up"] = "rbxassetid://10734983629",
+    ["ticket"] = "rbxassetid://10734983868",
+    ["timer"] = "rbxassetid://10734984606",
+    ["toggle-left"] = "rbxassetid://10734984834",
+    ["toggle-right"] = "rbxassetid://10734985040",
+    ["tornado"] = "rbxassetid://10734985247",
+    ["train"] = "rbxassetid://10747362105",
+    ["trash"] = "rbxassetid://10747362393",
+    ["trash-2"] = "rbxassetid://10747362241",
+    ["tree-pine"] = "rbxassetid://10747362748",
+    ["trees"] = "rbxassetid://10747363016",
+    ["trending-down"] = "rbxassetid://10747363205",
+    ["trending-up"] = "rbxassetid://10747363465",
+    ["triangle"] = "rbxassetid://10747363621",
+    ["trophy"] = "rbxassetid://10747363809",
+    ["truck"] = "rbxassetid://10747364031",
+    ["tv"] = "rbxassetid://10747364593",
+    ["umbrella"] = "rbxassetid://10747364971",
+    ["undo"] = "rbxassetid://10747365484",
+    ["unlock"] = "rbxassetid://10747366027",
+    ["upload"] = "rbxassetid://10747366434",
+    ["user"] = "rbxassetid://10747373176",
+    ["user-check"] = "rbxassetid://10747371901",
+    ["user-minus"] = "rbxassetid://10747372346",
+    ["user-plus"] = "rbxassetid://10747372702",
+    ["user-x"] = "rbxassetid://10747372992",
+    ["users"] = "rbxassetid://10747373426",
+    ["utensils"] = "rbxassetid://10747373821",
+    ["video"] = "rbxassetid://10747374938",
+    ["volume"] = "rbxassetid://10747376008",
+    ["volume-1"] = "rbxassetid://10747375450",
+    ["volume-2"] = "rbxassetid://10747375679",
+    ["volume-x"] = "rbxassetid://10747375880",
+    ["wallet"] = "rbxassetid://10747376205",
+    ["wand"] = "rbxassetid://10747376565",
+    ["wand-2"] = "rbxassetid://10747376349",
+    ["watch"] = "rbxassetid://10747376722",
+    ["waves"] = "rbxassetid://10747376931",
+    ["wifi"] = "rbxassetid://10747382504",
+    ["wifi-off"] = "rbxassetid://10747382268",
+    ["wind"] = "rbxassetid://10747382750",
+    ["wrench"] = "rbxassetid://10747383470",
+    ["x"] = "rbxassetid://10747384394",
+    ["x-circle"] = "rbxassetid://10747383819",
+    ["x-octagon"] = "rbxassetid://10747384037",
+    ["zoom-in"] = "rbxassetid://10747384552",
+    ["zoom-out"] = "rbxassetid://10747384679"
+};
+local function resolveIcon(icon)
+	if ((not icon) or (icon == "")) then
+		return "";
+	end
+	if (icon:sub(1, 11) == "rbxassetid:") then
+		return icon;
+	end
+	if (icon:sub(1, 8) == "rbxasset") then
+		return icon;
+	end
+	local lucideName = icon;
+	if (lucideName:sub(1, 7) == "lucide-") then
+		lucideName = lucideName:sub(8);
+	end
+	return LucideIcons[lucideName] or icon;
+end
+local NotifIcons = {success=resolveIcon("check-circle"),error=resolveIcon("x-circle"),warning=resolveIcon("alert-triangle"),info=resolveIcon("info"),loading=resolveIcon("loader-2"),default=resolveIcon("bell")};
+local NotifAccentColors = {success=Color3.fromRGB(60, 210, 120),error=Color3.fromRGB(230, 65, 75),warning=Color3.fromRGB(255, 185, 45),info=nil,loading=nil,default=nil};
+Library.set_ui_font = function(self, fontEnum)
+	local ok, sample = pcall(function()
+		return Font.fromEnum(fontEnum);
+	end);
+	if (not ok or not sample) then
+		return;
+	end
+	local family = sample.Family;
+	UIFontScale = computeFontScale(family);
+	UIFontFamily = family;
+	FontRegular = Font.new(family, Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+	FontSemiBold = Font.new(family, Enum.FontWeight.SemiBold, Enum.FontStyle.Normal);
+	FontBold = Font.new(family, Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+	FontLegacy = Font.new(family, Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+	Library._current_font = fontEnum.Name;
+	Library._config._flags['UIFont'] = fontEnum.Name;
+	Config:save(game.GameId, Library._config);
+	local roots = {};
+	local activeInstance = Library._active_instance;
+	if (activeInstance and activeInstance._ui) then
+		table.insert(roots, activeInstance._ui);
+	end
+	table.insert(roots, NotificationContainer);
+	for _, wm in ipairs(Library._themed_elements.Watermarks) do
+		if (wm.Frame and wm.Frame.Parent) then
+			table.insert(roots, wm.Frame);
+		end
+	end
+	for _, root in ipairs(roots) do
+		Library._apply_font_style(root);
+	end
+end;
+Library.SendNotification = function(settings)
+	if not Library._notification_settings.enabled then
+		return;
+	end
+	local theme = Themes[(Library._active_instance and Library._active_instance._current_theme) or Library._current_theme] or Themes.Midnight;
+	local isMobile = UserInputService.TouchEnabled and not UserInputService.KeyboardEnabled;
+	local notifType = (settings.type or "default"):lower();
+	local fixedAccent = NotifAccentColors[notifType];
+	local accentColor = fixedAccent or theme.Accent;
+	local isThemedAccent = (fixedAccent == nil);
+	while #ActiveNotifications >= 3 do
+		DismissNotification(ActiveNotifications[1]);
+		table.remove(ActiveNotifications, 1);
+	end
+	local Notification = Instance.new("Frame");
+	Notification.Size = UDim2.new(1, 0, 0, 0);
+	Notification.BackgroundTransparency = 1;
+	Notification.BorderSizePixel = 0;
+	Notification.Name = "Notification";
+	Notification.AutomaticSize = Enum.AutomaticSize.Y;
+	Notification.Parent = NotificationContainer;
+	NotifOrderCounter = NotifOrderCounter + 1;
+	local activePosData = NotifPositionMap[CurrentNotifyPosition] or NotifPositionMap['Down-Left'];
+	Notification.LayoutOrder = (activePosData.Vertical == Enum.VerticalAlignment.Top) and -NotifOrderCounter or NotifOrderCounter;
+	local InnerFrame = Instance.new("Frame");
+	InnerFrame.Size = UDim2.new(1, 0, 0, 0);
+	InnerFrame.BackgroundColor3 = theme.ModuleBackground;
+	InnerFrame.BackgroundTransparency = 0.06;
+	InnerFrame.BorderSizePixel = 0;
+	InnerFrame.Name = "InnerFrame";
+	InnerFrame.AutomaticSize = Enum.AutomaticSize.Y;
+	InnerFrame.ClipsDescendants = true;
+	InnerFrame.ZIndex = 101;
+	InnerFrame.Parent = Notification;
+	local InnerCorner = Instance.new("UICorner");
+	InnerCorner.CornerRadius = UDim.new(0, 10);
+	InnerCorner.Parent = InnerFrame;
+	local UIStroke = Instance.new("UIStroke");
+	UIStroke.Color = theme.Stroke;
+	UIStroke.Transparency = 0.2;
+	UIStroke.Thickness = 1;
+	UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border;
+	UIStroke.Parent = InnerFrame;
+	local AccentBar = Instance.new("Frame");
+	AccentBar.Name = "AccentBar";
+	AccentBar.Size = UDim2.new(0, 3, 1, -16);
+	AccentBar.Position = UDim2.new(0, 8, 0, 8);
+	AccentBar.BackgroundColor3 = accentColor;
+	AccentBar.BorderSizePixel = 0;
+	AccentBar.ZIndex = 102;
+	AccentBar.Parent = InnerFrame;
+	local ABCorner = Instance.new("UICorner");
+	ABCorner.CornerRadius = UDim.new(1, 0);
+	ABCorner.Parent = AccentBar;
+	local NotifIconImg = Instance.new("ImageLabel");
+	NotifIconImg.Name = "NotifIcon";
+	NotifIconImg.Image = NotifIcons[notifType] or NotifIcons.default;
+	NotifIconImg.ImageColor3 = accentColor;
+	NotifIconImg.ImageTransparency = 1;
+	NotifIconImg.BackgroundTransparency = 1;
+	NotifIconImg.Size = UDim2.new(0, 16, 0, 16);
+	NotifIconImg.AnchorPoint = Vector2.new(0, 0.5);
+	NotifIconImg.Position = UDim2.new(0, 20, 0.5, 0);
+	NotifIconImg.ScaleType = Enum.ScaleType.Fit;
+	NotifIconImg.ZIndex = 102;
+	NotifIconImg.Parent = InnerFrame;
+	local ContentFrame = Instance.new("Frame");
+	ContentFrame.Name = "ContentFrame";
+	ContentFrame.Size = UDim2.new(1, -54, 0, 0);
+	ContentFrame.Position = UDim2.new(0, 46, 0, 0);
+	ContentFrame.BackgroundTransparency = 1;
+	ContentFrame.AutomaticSize = Enum.AutomaticSize.Y;
+	ContentFrame.ZIndex = 102;
+	ContentFrame.Parent = InnerFrame;
+	local CPad = Instance.new("UIPadding");
+	CPad.PaddingTop = UDim.new(0, 12);
+	CPad.PaddingBottom = UDim.new(0, 12);
+	CPad.PaddingRight = UDim.new(0, 10);
+	CPad.Parent = ContentFrame;
+	local CLayout = Instance.new("UIListLayout");
+	CLayout.Padding = UDim.new(0, 3);
+	CLayout.SortOrder = Enum.SortOrder.LayoutOrder;
+	CLayout.Parent = ContentFrame;
+	local Title = Instance.new("TextLabel");
+	Title.Name = "Title";
+	Title.Text = settings.title or "Notification";
+	Title.TextColor3 = theme.Text;
+	Title.FontFace = FontBold;
+	Title.TextSize = (isMobile and 12) or 13;
+	Title.Size = UDim2.new(1, 0, 0, 0);
+	Title.AutomaticSize = Enum.AutomaticSize.Y;
+	Title.BackgroundTransparency = 1;
+	Title.TextXAlignment = Enum.TextXAlignment.Left;
+	Title.TextWrapped = true;
+	Title.LayoutOrder = 1;
+	Title.TextTransparency = 1;
+	Title.ZIndex = 103;
+	Title.Parent = ContentFrame;
+	local Body = Instance.new("TextLabel");
+	Body.Name = "Body";
+	Body.Text = settings.text or "";
+	Body.TextColor3 = theme.TextDark;
+	Body.FontFace = FontRegular;
+	Body.TextSize = (isMobile and 10) or 11;
+	Body.Size = UDim2.new(1, 0, 0, 0);
+	Body.AutomaticSize = Enum.AutomaticSize.Y;
+	Body.BackgroundTransparency = 1;
+	Body.TextXAlignment = Enum.TextXAlignment.Left;
+	Body.TextWrapped = true;
+	Body.LayoutOrder = 2;
+	Body.TextTransparency = 1;
+	Body.ZIndex = 103;
+	Body.Parent = ContentFrame;
+	local ProgressClip = Instance.new("Frame");
+	ProgressClip.Size = UDim2.new(1, -20, 0, 2);
+	ProgressClip.AnchorPoint = Vector2.new(0, 1);
+	ProgressClip.Position = UDim2.new(0, 10, 1, 0);
+	ProgressClip.BackgroundTransparency = 1;
+	ProgressClip.ClipsDescendants = true;
+	ProgressClip.BorderSizePixel = 0;
+	ProgressClip.ZIndex = 102;
+	ProgressClip.Parent = InnerFrame;
+	local ProgressBarFill = Instance.new("Frame");
+	ProgressBarFill.Name = "ProgressBar";
+	ProgressBarFill.Size = UDim2.new(1, 0, 1, 0);
+	ProgressBarFill.BackgroundColor3 = accentColor;
+	ProgressBarFill.BackgroundTransparency = 0.15;
+	ProgressBarFill.BorderSizePixel = 0;
+	ProgressBarFill.ZIndex = 102;
+	ProgressBarFill.Parent = ProgressClip;
+	local PBCorner = Instance.new("UICorner");
+	PBCorner.CornerRadius = UDim.new(1, 0);
+	PBCorner.Parent = ProgressBarFill;
+	local _notif_list = (Library._active_instance and Library._active_instance._themed_elements.Notifications) or Library._themed_elements.Notifications;
+	table.insert(_notif_list, {Frame=InnerFrame,Stroke=UIStroke,Accent=AccentBar,ProgressFill=ProgressBarFill,Icon=NotifIconImg,Title=Title,Body=Body,Themed=isThemedAccent});
+	local entry = {Root=Notification,InnerFrame=InnerFrame,UIStroke=UIStroke,AccentBar=AccentBar,Title=Title,Body=Body,_dismissed=false,SlideOffset=getNotifySlideOffset()};
+	table.insert(ActiveNotifications, entry);
+	Library._apply_font_style(InnerFrame);
+	Library._apply_translation(InnerFrame);
+	InnerFrame.Position = entry.SlideOffset;
+	InnerFrame.BackgroundTransparency = 0.6;
+	AccentBar.BackgroundTransparency = 1;
+	TweenService:Create(InnerFrame, Tween.slide, {Position=UDim2.new(0, 0, 0, 0),BackgroundTransparency=0.06}):Play();
+	task.delay(0.08, function()
+		TweenService:Create(AccentBar, Tween.smooth, {BackgroundTransparency=0}):Play();
+		TweenService:Create(NotifIconImg, Tween.smooth, {ImageTransparency=0}):Play();
+		TweenService:Create(Title, Tween.smooth, {TextTransparency=0}):Play();
+	end);
+	if (notifType == "loading") then
+		TweenService:Create(NotifIconImg, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out, -1, false), {Rotation=360}):Play();
+	end
+	task.delay(0.16, function()
+		TweenService:Create(Body, Tween.smooth, {TextTransparency=0}):Play();
+	end);
+	local soundName = Library._notification_settings.sound;
+	if (soundName and (soundName ~= "None") and NotifSoundIds[soundName]) then
+		pcall(function()
+			if ActiveNotifySound then
+				pcall(function()
+					ActiveNotifySound:Stop();
+					ActiveNotifySound:Destroy();
+				end);
+				ActiveNotifySound = nil;
+			end
+			local s = Instance.new("Sound");
+			s.SoundId = NotifSoundIds[soundName];
+			s.Volume = 0.5;
+			s.Parent = SoundService;
+			s:Play();
+			ActiveNotifySound = s;
+			Debris:AddItem(s, 5);
+		end);
+	end
+	local duration = settings.duration or Library._notification_settings.duration or 5;
+	TweenService:Create(ProgressClip, TweenInfo.new(duration, Enum.EasingStyle.Linear), {Size=UDim2.new(0, 0, 0, 2)}):Play();
+	task.delay(duration, function()
+		if entry._dismissed then
+			return;
+		end
+		DismissNotification(entry);
+	end);
+end;
+Library.ShowDialog = function(settings)
+	settings = settings or {};
+	local activeInstance = Library._active_instance;
+	if not (activeInstance and activeInstance._ui) then
+		return nil;
+	end
+	local theme = Themes[activeInstance._current_theme] or Themes.Midnight;
+	local Overlay = Instance.new("Frame");
+	Overlay.Name = "DialogOverlay";
+	Overlay.Size = UDim2.new(1, 0, 1, 0);
+	Overlay.BackgroundColor3 = Color3.fromRGB(0, 0, 0);
+	Overlay.BackgroundTransparency = 1;
+	Overlay.BorderSizePixel = 0;
+	Overlay.ZIndex = 200;
+	Overlay.Parent = activeInstance._ui;
+	TweenService:Create(Overlay, Tween.fast, {BackgroundTransparency=0.45}):Play();
+	local Box = Instance.new("Frame");
+	Box.Name = "DialogBox";
+	Box.AnchorPoint = Vector2.new(0.5, 0.5);
+	Box.Position = UDim2.new(0.5, 0, 0.45, 0);
+	Box.Size = UDim2.new(0, 280, 0, 0);
+	Box.AutomaticSize = Enum.AutomaticSize.Y;
+	Box.BackgroundColor3 = theme.ModuleBackground;
+	Box.BackgroundTransparency = 0.02;
+	Box.BorderSizePixel = 0;
+	Box.ZIndex = 201;
+	Box.Parent = Overlay;
+	local BoxCorner = Instance.new("UICorner");
+	BoxCorner.CornerRadius = UDim.new(0, 10);
+	BoxCorner.Parent = Box;
+	local BoxStroke = Instance.new("UIStroke");
+	BoxStroke.Color = theme.Stroke;
+	BoxStroke.Transparency = 0.2;
+	BoxStroke.Thickness = 1;
+	BoxStroke.Parent = Box;
+	local BoxPad = Instance.new("UIPadding");
+	BoxPad.PaddingTop = UDim.new(0, 16);
+	BoxPad.PaddingBottom = UDim.new(0, 16);
+	BoxPad.PaddingLeft = UDim.new(0, 16);
+	BoxPad.PaddingRight = UDim.new(0, 16);
+	BoxPad.Parent = Box;
+	local BoxLayout = Instance.new("UIListLayout");
+	BoxLayout.Padding = UDim.new(0, 10);
+	BoxLayout.SortOrder = Enum.SortOrder.LayoutOrder;
+	BoxLayout.Parent = Box;
+	local Title = Instance.new("TextLabel");
+	Title.Name = "Title";
+	Title.Text = settings.title or "Confirm";
+	Title.TextColor3 = theme.Text;
+	Title.FontFace = FontBold;
+	Title.TextSize = 14;
+	Title.Size = UDim2.new(1, 0, 0, 0);
+	Title.AutomaticSize = Enum.AutomaticSize.Y;
+	Title.BackgroundTransparency = 1;
+	Title.TextXAlignment = Enum.TextXAlignment.Left;
+	Title.TextWrapped = true;
+	Title.LayoutOrder = 1;
+	Title.ZIndex = 202;
+	Title.Parent = Box;
+	local Message = Instance.new("TextLabel");
+	Message.Name = "Message";
+	Message.Text = settings.text or "";
+	Message.TextColor3 = theme.TextDark;
+	Message.FontFace = FontRegular;
+	Message.TextSize = 12;
+	Message.Size = UDim2.new(1, 0, 0, 0);
+	Message.AutomaticSize = Enum.AutomaticSize.Y;
+	Message.BackgroundTransparency = 1;
+	Message.TextXAlignment = Enum.TextXAlignment.Left;
+	Message.TextWrapped = true;
+	Message.Visible = ((settings.text or "") ~= "");
+	Message.LayoutOrder = 2;
+	Message.ZIndex = 202;
+	Message.Parent = Box;
+	local ButtonRow = Instance.new("Frame");
+	ButtonRow.Name = "ButtonRow";
+	ButtonRow.Size = UDim2.new(1, 0, 0, 28);
+	ButtonRow.BackgroundTransparency = 1;
+	ButtonRow.LayoutOrder = 3;
+	ButtonRow.ZIndex = 202;
+	ButtonRow.Parent = Box;
+	local RowLayout = Instance.new("UIListLayout");
+	RowLayout.FillDirection = Enum.FillDirection.Horizontal;
+	RowLayout.HorizontalAlignment = Enum.HorizontalAlignment.Right;
+	RowLayout.Padding = UDim.new(0, 8);
+	RowLayout.SortOrder = Enum.SortOrder.LayoutOrder;
+	RowLayout.Parent = ButtonRow;
+	local resolved = false;
+	local function close(result)
+		if resolved then
+			return;
+		end
+		resolved = true;
+		TweenService:Create(Overlay, Tween.fast, {BackgroundTransparency=1}):Play();
+		task.delay(Tween.fast.Time, function()
+			Overlay:Destroy();
+		end);
+		if settings.callback then
+			settings.callback(result);
+		end
+	end
+	local function makeButton(text, isPrimary, result, layoutOrder)
+		local Btn = Instance.new("TextButton");
+		Btn.Name = "Button";
+		Btn.Text = text;
+		Btn.AutoButtonColor = false;
+		Btn.FontFace = FontSemiBold;
+		Btn.TextSize = 12;
+		Btn.TextColor3 = (isPrimary and Color3.fromRGB(255, 255, 255)) or theme.Text;
+		Btn.Size = UDim2.new(0, 84, 1, 0);
+		Btn.BackgroundColor3 = (isPrimary and theme.Accent) or theme.ModuleBackground;
+		Btn.BackgroundTransparency = (isPrimary and 0) or 0.4;
+		Btn.BorderSizePixel = 0;
+		Btn.LayoutOrder = layoutOrder;
+		Btn.ZIndex = 203;
+		Btn.Parent = ButtonRow;
+		local BtnCorner = Instance.new("UICorner");
+		BtnCorner.CornerRadius = UDim.new(0, 6);
+		BtnCorner.Parent = Btn;
+		Btn.MouseButton1Click:Connect(function()
+			close(result);
+		end);
+		return Btn;
+	end
+	makeButton((settings.cancel_text or "Cancel"), false, false, 1);
+	makeButton((settings.confirm_text or "Confirm"), true, true, 2);
+	Library._apply_font_style(Box);
+	Library._apply_translation(Box);
+	return {Close=function()
+		close(nil);
+	end};
+end;
+Library.apply_theme = function(self, theme_name)
+	if not Themes[theme_name] then
+		return;
+	end
+	local theme = Themes[theme_name];
+	self._current_theme = theme_name;
+	Library._current_theme = theme_name;
+	Library._config._theme = theme_name;
+	Config:save(game.GameId, Library._config);
+	local elements = self._themed_elements;
+	local ti = Tween.smooth;
+	if elements.Container then
+		TweenService:Create(elements.Container, ti, {BackgroundColor3=theme.Background}):Play();
+	end
+	if elements.ContainerGlowStroke then
+		TweenService:Create(elements.ContainerGlowStroke, ti, {Color=theme.Accent}):Play();
+	end
+	if elements.ContainerStroke then
+		TweenService:Create(elements.ContainerStroke, ti, {Color=theme.Stroke}):Play();
+	end
+	if (elements.SearchBarFrame and elements.SearchBarFrame.Parent) then
+		local sbStroke = elements.SearchBarFrame:FindFirstChildWhichIsA("UIStroke");
+		if sbStroke then
+			TweenService:Create(sbStroke, ti, {Color=theme.Text}):Play();
+		end
+		local sb = elements.SearchBarFrame:FindFirstChildWhichIsA("TextBox");
+		if sb then
+			sb.PlaceholderColor3 = theme.TextDark;
+		end
+	end
+	for _, module in ipairs(elements.Modules) do
+		if (module and module.Parent) then
+			TweenService:Create(module, ti, {BackgroundColor3=theme.ModuleBackground}):Play();
+		end
+	end
+	if elements.Pin then
+		TweenService:Create(elements.Pin, ti, {BackgroundColor3=theme.Accent}):Play();
+	end
+	for _, stroke in ipairs(elements.Strokes) do
+		if (stroke and stroke.Parent) then
+			TweenService:Create(stroke, ti, {Color=theme.Stroke}):Play();
+		end
+	end
+	for _, toggle_data in ipairs(elements.ActiveToggles) do
+		if (toggle_data.Toggle and toggle_data.Toggle.Parent) then
+			TweenService:Create(toggle_data.Toggle, ti, {BackgroundColor3=theme.Accent}):Play();
+		end
+		if (toggle_data.Circle and toggle_data.Circle.Parent) then
+			TweenService:Create(toggle_data.Circle, ti, {BackgroundColor3=theme.SecondaryAccent}):Play();
+		end
+	end
+	for _, drag in ipairs(elements.SliderDrags) do
+		if (drag and drag.Parent) then
+			TweenService:Create(drag, ti, {BackgroundColor3=theme.Accent}):Play();
+		end
+	end
+	for _, btn in ipairs(elements.AccentButtons) do
+		if (btn and btn.Parent) then
+			TweenService:Create(btn, ti, {BackgroundColor3=theme.Accent}):Play();
+		end
+	end
+	for _, dh in ipairs(elements.DropdownHighlights) do
+		if (dh.Highlight and dh.Highlight.Parent) then
+			dh.Highlight.BackgroundColor3 = theme.Accent;
+		end
+		if (dh.Dot and dh.Dot.Parent) then
+			dh.Dot.BackgroundColor3 = theme.Accent;
+		end
+	end
+	for _, notif_data in ipairs(elements.Notifications) do
+		if (notif_data.Frame and notif_data.Frame.Parent) then
+			TweenService:Create(notif_data.Frame, ti, {BackgroundColor3=theme.ModuleBackground}):Play();
+		end
+		if (notif_data.Stroke and notif_data.Stroke.Parent) then
+			TweenService:Create(notif_data.Stroke, ti, {Color=theme.Stroke}):Play();
+		end
+		if (notif_data.Themed and notif_data.Accent and notif_data.Accent.Parent) then
+			TweenService:Create(notif_data.Accent, ti, {BackgroundColor3=theme.Accent}):Play();
+		end
+		if (notif_data.Themed and notif_data.ProgressFill and notif_data.ProgressFill.Parent) then
+			TweenService:Create(notif_data.ProgressFill, ti, {BackgroundColor3=theme.Accent}):Play();
+		end
+		if (notif_data.Themed and notif_data.Icon and notif_data.Icon.Parent) then
+			TweenService:Create(notif_data.Icon, ti, {ImageColor3=theme.Accent}):Play();
+		end
+		if (notif_data.Title and notif_data.Title.Parent) then
+			TweenService:Create(notif_data.Title, ti, {TextColor3=theme.Text}):Play();
+		end
+		if (notif_data.Body and notif_data.Body.Parent) then
+			TweenService:Create(notif_data.Body, ti, {TextColor3=theme.TextDark}):Play();
+		end
+	end
+	for _, pf in ipairs(elements.ProgressFills) do
+		if (pf and pf.Parent) then
+			TweenService:Create(pf, ti, {BackgroundColor3=theme.Accent}):Play();
+		end
+	end
+	for _, sd in ipairs(elements.StatusDots) do
+		if (sd and sd.Parent) then
+			TweenService:Create(sd, ti, {BackgroundColor3=theme.Accent}):Play();
+		end
+	end
+	for _, wm in ipairs(elements.Watermarks) do
+		if (wm.Frame and wm.Frame.Parent) then
+			TweenService:Create(wm.Frame, ti, {BackgroundColor3=theme.Background}):Play();
+		end
+		if (wm.Stroke and wm.Stroke.Parent) then
+			TweenService:Create(wm.Stroke, ti, {Color=theme.Stroke}):Play();
+		end
+		if (wm.Dot and wm.Dot.Parent) then
+			TweenService:Create(wm.Dot, ti, {BackgroundColor3=theme.Accent}):Play();
+		end
+		if (wm.Text and wm.Text.Parent) then
+			TweenService:Create(wm.Text, ti, {TextColor3=theme.Text}):Play();
+		end
+	end
+	for _, entry in ipairs(elements.Dividers) do
+		Library._style_one_divider(entry);
+	end
+	if (elements.SearchResults and elements.SearchResults.Parent) then
+		TweenService:Create(elements.SearchResults, ti, {BackgroundColor3=theme.Background}):Play();
+	end
+	if (elements.SearchResultStroke and elements.SearchResultStroke.Parent) then
+		TweenService:Create(elements.SearchResultStroke, ti, {Color=theme.Accent}):Play();
+	end
+end;
+Library.new = function(title)
+	local self = setmetatable({_loaded=false,_tab=0,_title=(title or "Oshiru"),_themed_elements={Modules={},Strokes={},ActiveToggles={},SliderDrags={},Notifications={},AccentButtons={},DropdownHighlights={},ProgressFills={},StatusDots={},ColorSwatches={},Watermarks={},Dividers={}},_search_registry={}}, Library);
+	if (Library._config._theme and Themes[Library._config._theme]) then
+		Library._current_theme = Library._config._theme;
+	end
+	if (Library._config._flags and Library._config._flags['UIFont']) then
+		local ok, savedFont = pcall(function()
+			return Enum.Font[Library._config._flags['UIFont']];
+		end);
+		if (ok and savedFont) then
+			self:set_ui_font(savedFont);
+		end
+	end
+	if (Library._config._flags and Library._config._flags['NotifyPosition']) then
+		self:set_notification_position(Library._config._flags['NotifyPosition']);
+	end
+	if (Library._config._flags and Library._config._flags['NotifySound']) then
+		self:set_notification_sound(Library._config._flags['NotifySound']);
+	end
+	if (Library._config._flags and Library._config._flags['TranslateLanguage']) then
+		self:set_translation(Library._config._flags['TranslateLanguage']);
+	end
+	if (Library._config._flags and (Library._config._flags['LoadingScreenEnabled'] ~= nil)) then
+		Library._loading_enabled = Library._config._flags['LoadingScreenEnabled'];
+	end
+	if (Library._config._flags and (Library._config._flags['DividerGradient'] ~= nil)) then
+		Library._divider_gradient = Library._config._flags['DividerGradient'];
+	end
+	self:create_loading_screen();
+	self:begin_loading_resolution();
+	self:create_ui();
+	Library._active_instance = self;
+	return self;
+end;
+Library.begin_loading_resolution = function(self)
+	local cfg = Library._loading_config or {mode="modules"};
+	self._load_called = false;
+	self._duration_elapsed = (cfg.mode ~= "duration");
+	self._loading_tasks_total = 0;
+	self._loading_tasks_done = 0;
+	local function updateProgressText()
+		if (cfg.mode ~= "tasks") then
+			return;
+		end
+		local overrides = Library._loading_overrides or {};
+		if (overrides.subtitle or (self._loading_tasks_total == 0)) then
+			return;
+		end
+		if self._loading_instance then
+			self._loading_instance.Subtitle.Text = ("Loading interface... (" .. self._loading_tasks_done .. "/" .. self._loading_tasks_total .. ")");
+		end
+	end
+	self._try_dismiss_loading = function()
+		if not self._load_called then
+			return;
+		end
+		if not self._duration_elapsed then
+			return;
+		end
+		if (self._loading_tasks_done < self._loading_tasks_total) then
+			return;
+		end
+		self:dismiss_loading_screen();
+	end;
+	if (cfg.mode == "duration") then
+		task.delay(cfg.duration or 2, function()
+			self._duration_elapsed = true;
+			self._try_dismiss_loading();
+		end);
+	elseif (cfg.mode == "tasks") then
+		local tasks = cfg.tasks or {};
+		self._loading_tasks_total = #tasks;
+		updateProgressText();
+		for _, fn in ipairs(tasks) do
+			task.spawn(function()
+				local ok, err = pcall(fn);
+				if not ok then
+					warn("Oshiru loading task failed:", err);
+				end
+				self._loading_tasks_done = self._loading_tasks_done + 1;
+				updateProgressText();
+				self._try_dismiss_loading();
+			end);
+		end
+	end
+end;
+Library.get_screen_scale = function(self)
+	local vp_x = workspace.CurrentCamera.ViewportSize.X;
+	self._ui_scale = vp_x / 1400;
+end;
+Library.get_device = function(self)
+	local device = "Unknown";
+	if (not UserInputService.TouchEnabled and UserInputService.KeyboardEnabled and UserInputService.MouseEnabled) then
+		device = "PC";
+	elseif UserInputService.TouchEnabled then
+		device = "Mobile";
+	elseif UserInputService.GamepadEnabled then
+		device = "Console";
+	end
+	self._device = device;
+end;
+Library.removed = function(self, action)
+	self._ui.AncestryChanged:Once(action);
+end;
+Library.flag_type = function(self, flag, flag_type)
+	if not Library._config._flags[flag] then
+		return;
+	end
+	return typeof(Library._config._flags[flag]) == flag_type;
+end;
+Library.remove_table_value = function(self, __table, table_value)
+	for index, value in __table do
+		if (value ~= table_value) then
+			continue;
+		end
+		table.remove(__table, index);
+	end
+end;
+Library.arm_confirm_button = function(self, buttonGroup, index, action)
+	local armed = false;
+	local resetThread = nil;
+	local originalText = (buttonGroup._buttons[index] and buttonGroup._buttons[index].Text) or "Delete";
+	buttonGroup:SetButtonCallback(index, function()
+		if armed then
+			armed = false;
+			if resetThread then
+				task.cancel(resetThread);
+				resetThread = nil;
+			end
+			buttonGroup:SetButtonText(index, originalText);
+			buttonGroup:SetButtonColor(index, Themes[Library._current_theme].Accent);
+			action();
+			return;
+		end
+		armed = true;
+		buttonGroup:SetButtonText(index, "Confirm?");
+		buttonGroup:SetButtonColor(index, Color3.fromRGB(230, 65, 75));
+		resetThread = task.delay(3, function()
+			armed = false;
+			resetThread = nil;
+			buttonGroup:SetButtonText(index, originalText);
+			buttonGroup:SetButtonColor(index, Themes[Library._current_theme].Accent);
+		end);
+	end);
+end;
+Library.register_element = function(self, entry)
+	table.insert(self._search_registry, entry);
+	if entry.get_frame_fn then
+		local ok, frame = pcall(entry.get_frame_fn);
+		if (ok and frame) then
+			Library._apply_font_style(frame);
+			Library._apply_translation(frame);
+		end
+	end
+end;
+Library.search_elements = function(self, query)
+	if (not query or (query == "")) then
+		return {};
+	end
+	local q = query:lower();
+	local results = {};
+	for _, entry in ipairs(self._search_registry) do
+		local title = (entry.element_title or ""):lower();
+		local mod = (entry.module_name or ""):lower();
+		local tab = (entry.tab_name or ""):lower();
+		local etype = (entry.element_type or ""):lower();
+		if (title:find(q, 1, true) or mod:find(q, 1, true) or tab:find(q, 1, true) or etype:find(q, 1, true)) then
+			table.insert(results, entry);
+		end
+	end
+	return results;
+end;
+Library.create_loading_screen = function(self)
+	if not Library._loading_enabled then
+		if self then
+			self._loading_instance = nil;
+		end
+		Library._loading_instance = nil;
+		return nil;
+	end
+	local theme = Themes[Library._current_theme] or Themes.Midnight;
+	local overrides = Library._loading_overrides or {};
+	local LoadingGui = Instance.new("ScreenGui");
+	LoadingGui.Name = "OshiruLoading";
+	LoadingGui.ResetOnSpawn = false;
+	LoadingGui.DisplayOrder = 50;
+	LoadingGui.IgnoreGuiInset = true;
+	LoadingGui.Parent = CoreGui;
+	local Backdrop = Instance.new("Frame");
+	Backdrop.Name = "Backdrop";
+	Backdrop.Size = UDim2.new(1, 0, 1, 0);
+	Backdrop.BackgroundColor3 = theme.Background;
+	Backdrop.BackgroundTransparency = 0;
+	Backdrop.BorderSizePixel = 0;
+	Backdrop.Parent = LoadingGui;
+	local Ring = Instance.new("Frame");
+	Ring.Name = "Ring";
+	Ring.Size = UDim2.fromOffset(46, 46);
+	Ring.AnchorPoint = Vector2.new(0.5, 0.5);
+	Ring.Position = UDim2.new(0.5, 0, 0.5, -18);
+	Ring.BackgroundTransparency = 1;
+	Ring.ClipsDescendants = false;
+	Ring.Parent = Backdrop;
+	local dots = {};
+	local dot_count = 8;
+	for i = 1, dot_count do
+		local angle = (i / dot_count) * math.pi * 2;
+		local dot = Instance.new("Frame");
+		dot.Name = "Dot" .. i;
+		dot.Size = UDim2.fromOffset(6, 6);
+		dot.AnchorPoint = Vector2.new(0.5, 0.5);
+		dot.Position = UDim2.new(0.5, math.cos(angle) * 20, 0.5, math.sin(angle) * 20);
+		dot.BackgroundColor3 = theme.Accent;
+		dot.BackgroundTransparency = 0.15;
+		dot.BorderSizePixel = 0;
+		dot.Parent = Ring;
+		local dc = Instance.new("UICorner");
+		dc.CornerRadius = UDim.new(1, 0);
+		dc.Parent = dot;
+		table.insert(dots, dot);
+	end
+	local TitleLabel = Instance.new("TextLabel");
+	TitleLabel.Name = "Title";
+	TitleLabel.FontFace = FontBold;
+	TitleLabel.Text = overrides.title or (self and self._title) or "Oshiru";
+	TitleLabel.TextColor3 = theme.Text;
+	TitleLabel.TextTransparency = 0.05;
+	TitleLabel.TextSize = 16;
+	TitleLabel.Size = UDim2.new(0, 300, 0, 20);
+	TitleLabel.AnchorPoint = Vector2.new(0.5, 0.5);
+	TitleLabel.Position = UDim2.new(0.5, 0, 0.5, 30);
+	TitleLabel.BackgroundTransparency = 1;
+	TitleLabel.TextXAlignment = Enum.TextXAlignment.Center;
+	TitleLabel.Parent = Backdrop;
+	local SubtitleLabel = Instance.new("TextLabel");
+	SubtitleLabel.Name = "Subtitle";
+	SubtitleLabel.FontFace = FontRegular;
+	SubtitleLabel.Text = overrides.subtitle or "Loading interface...";
+	SubtitleLabel.TextColor3 = theme.TextDark;
+	SubtitleLabel.TextTransparency = 0.2;
+	SubtitleLabel.TextSize = 11;
+	SubtitleLabel.Size = UDim2.new(0, 300, 0, 14);
+	SubtitleLabel.AnchorPoint = Vector2.new(0.5, 0.5);
+	SubtitleLabel.Position = UDim2.new(0.5, 0, 0.5, 52);
+	SubtitleLabel.BackgroundTransparency = 1;
+	SubtitleLabel.TextXAlignment = Enum.TextXAlignment.Center;
+	SubtitleLabel.Parent = Backdrop;
+	local spinning = true;
+	task.spawn(function()
+		local t = 0;
+		while spinning do
+			t = t + task.wait(1 / 30);
+			Ring.Rotation = (t * 90) % 360;
+			for i, dot in ipairs(dots) do
+				local phase = (t * 1.6) - (i * 0.16);
+				local pulse = 0.15 + (math.abs(math.sin(phase)) * 0.75);
+				dot.BackgroundTransparency = 1 - pulse;
+			end
+		end
+	end);
+	local instance = {Gui=LoadingGui,Backdrop=Backdrop,Ring=Ring,Title=TitleLabel,Subtitle=SubtitleLabel,_stop=function()
+		spinning = false;
+	end};
+	if self then
+		self._loading_instance = instance;
+	end
+	Library._loading_instance = instance;
+	return instance;
+end;
+Library.dismiss_loading_screen = function(self)
+	local instance = self and self._loading_instance or Library._loading_instance;
+	if not instance then
+		return;
+	end
+	instance._stop();
+	TweenService:Create(instance.Backdrop, Tween.fade, {BackgroundTransparency=1}):Play();
+	TweenService:Create(instance.Title, Tween.fade, {TextTransparency=1}):Play();
+	TweenService:Create(instance.Subtitle, Tween.fade, {TextTransparency=1}):Play();
+	for _, dot in ipairs(instance.Ring:GetChildren()) do
+		if dot:IsA("Frame") then
+			TweenService:Create(dot, Tween.fade, {BackgroundTransparency=1}):Play();
+		end
+	end
+	task.delay(0.4, function()
+		instance.Gui:Destroy();
+	end);
+	if self then
+		self._loading_instance = nil;
+	end
+	Library._loading_instance = nil;
+end;
+Library.set_loading_enabled = function(self, enabled)
+	Library._loading_enabled = enabled;
+	Library._config._flags['LoadingScreenEnabled'] = enabled;
+	Config:save(game.GameId, Library._config);
+end;
+Library.create_ui = function(self)
+	local OldGui = CoreGui:FindFirstChild("Oshiru");
+	if OldGui then
+		Debris:AddItem(OldGui, 0);
+	end
+	local OshiruGui = Instance.new("ScreenGui");
+	OshiruGui.ResetOnSpawn = false;
+	OshiruGui.Name = "Oshiru";
+	OshiruGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling;
+	OshiruGui.Parent = CoreGui;
+	local Container = Instance.new("Frame");
+	Container.ClipsDescendants = true;
+	Container.BorderColor3 = Color3.fromRGB(0, 0, 0);
+	Container.AnchorPoint = Vector2.new(0.5, 0.5);
+	Container.Name = "Container";
+	Container.BackgroundTransparency = 0.04;
+	Container.BackgroundColor3 = Themes[Library._current_theme].Background;
+	Container.Position = UDim2.new(0.5, 0, 0.5, 0);
+	Container.Size = UDim2.new(0, 0, 0, 0);
+	Container.Active = true;
+	Container.BorderSizePixel = 0;
+	Container.Parent = OshiruGui;
+	self._themed_elements.Container = Container;
+	local UICorner = Instance.new("UICorner");
+	UICorner.CornerRadius = UDim.new(0, 12);
+	UICorner.Parent = Container;
+	local UIStroke = Instance.new("UIStroke");
+	UIStroke.Color = Themes[Library._current_theme].Stroke;
+	UIStroke.Transparency = 0.35;
+	UIStroke.Thickness = 1;
+	UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border;
+	UIStroke.Parent = Container;
+	self._themed_elements.ContainerStroke = UIStroke;
+	table.insert(self._themed_elements.Strokes, UIStroke);
+	local ContainerGlow = Instance.new("Frame");
+	ContainerGlow.Name = "ContainerGlow";
+	ContainerGlow.AnchorPoint = Vector2.new(0.5, 0.5);
+	ContainerGlow.Position = Container.Position;
+	ContainerGlow.Size = Container.Size;
+	ContainerGlow.BackgroundTransparency = 1;
+	ContainerGlow.BorderSizePixel = 0;
+	ContainerGlow.ZIndex = -1;
+	ContainerGlow.Parent = OshiruGui;
+	local GlowCorner = Instance.new("UICorner");
+	GlowCorner.CornerRadius = UDim.new(0, 12);
+	GlowCorner.Parent = ContainerGlow;
+	local GlowStroke = Instance.new("UIStroke");
+	GlowStroke.Color = Themes[Library._current_theme].Accent;
+	GlowStroke.Transparency = 0.5;
+	GlowStroke.Thickness = 1.5;
+	GlowStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border;
+	GlowStroke.Parent = ContainerGlow;
+	self._themed_elements.ContainerGlow = ContainerGlow;
+	self._themed_elements.ContainerGlowStroke = GlowStroke;
+	self._glow_pulse_t = 0;
+	local GLOW_PADDING = 0;
+	local function syncGlow()
+		local size = Container.AbsoluteSize;
+		local pos = Container.AbsolutePosition;
+		ContainerGlow.Size = UDim2.fromOffset(size.X + (GLOW_PADDING * 2), size.Y + (GLOW_PADDING * 2));
+		ContainerGlow.Position = UDim2.fromOffset(pos.X + (size.X * 0.5), pos.Y + (size.Y * 0.5));
+	end
+	syncGlow();
+	Connections['container_glow_pulse'] = RunService.Heartbeat:Connect(function(dt)
+		self._glow_pulse_t = self._glow_pulse_t + dt;
+		local wave = math.sin(self._glow_pulse_t * 2.2);
+		GlowStroke.Transparency = 0.5 + (wave * 0.22);
+		GlowStroke.Thickness = 1.5 + (wave * 0.5);
+	end);
+	Connections['container_glow_resize'] = Container:GetPropertyChangedSignal("AbsoluteSize"):Connect(syncGlow);
+	Connections['container_glow_reposition'] = Container:GetPropertyChangedSignal("AbsolutePosition"):Connect(syncGlow);
+	local Handler = Instance.new("Frame");
+	Handler.BackgroundTransparency = 1;
+	Handler.Name = "Handler";
+	Handler.BorderColor3 = Color3.fromRGB(0, 0, 0);
+	Handler.Size = UDim2.new(0, 698, 0, 479);
+	Handler.BorderSizePixel = 0;
+	Handler.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+	Handler.Parent = Container;
+	local Tabs = Instance.new("ScrollingFrame");
+	Tabs.ScrollBarImageTransparency = 1;
+	Tabs.ScrollBarThickness = 0;
+	Tabs.Name = "Tabs";
+	Tabs.Size = UDim2.new(0, 129, 0, 401);
+	Tabs.Selectable = false;
+	Tabs.AutomaticCanvasSize = Enum.AutomaticSize.XY;
+	Tabs.BackgroundTransparency = 1;
+	Tabs.Position = UDim2.new(0.026097271591424942, 0, 0.1111111119389534, 0);
+	Tabs.BorderColor3 = Color3.fromRGB(0, 0, 0);
+	Tabs.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+	Tabs.BorderSizePixel = 0;
+	Tabs.CanvasSize = UDim2.new(0, 0, 0.5, 0);
+	Tabs.Parent = Handler;
+	local TabListLayout = Instance.new("UIListLayout");
+	TabListLayout.Padding = UDim.new(0, 4);
+	TabListLayout.SortOrder = Enum.SortOrder.LayoutOrder;
+	TabListLayout.Parent = Tabs;
+	local ClientName = Instance.new("TextLabel");
+	ClientName.FontFace = FontBold;
+	ClientName.TextColor3 = Color3.fromRGB(255, 255, 255);
+	ClientName.TextTransparency = 0.15;
+	ClientName.Text = self._title;
+	ClientName.Name = "ClientName";
+	ClientName.Size = UDim2.new(0, 40, 0, 13);
+	ClientName.AnchorPoint = Vector2.new(0, 0.5);
+	ClientName.Position = UDim2.new(0.056, 0, 0.055, 0);
+	ClientName.BackgroundTransparency = 1;
+	ClientName.TextXAlignment = Enum.TextXAlignment.Left;
+	ClientName.BorderSizePixel = 0;
+	ClientName.TextSize = 13;
+	ClientName.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+	ClientName.Parent = Handler;
+	local TitleGradient = Instance.new("UIGradient");
+	TitleGradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(200, 200, 200)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))});
+	TitleGradient.Parent = ClientName;
+	local Pin = Instance.new("Frame");
+	Pin.Name = "Pin";
+	Pin.Position = UDim2.new(0.026, 0, 0.136, 0);
+	Pin.BorderColor3 = Themes[Library._current_theme].Accent;
+	Pin.Size = UDim2.new(0, 2, 0, 16);
+	Pin.BorderSizePixel = 0;
+	Pin.BackgroundColor3 = Themes[Library._current_theme].Accent;
+	Pin.Parent = Handler;
+	self._themed_elements.Pin = Pin;
+	local PinCorner = Instance.new("UICorner");
+	PinCorner.CornerRadius = UDim.new(1, 0);
+	PinCorner.Parent = Pin;
+	local PinGlow = Instance.new("Frame");
+	PinGlow.Name = "Glow";
+	PinGlow.Size = UDim2.new(3, 0, 1, 0);
+	PinGlow.AnchorPoint = Vector2.new(0.5, 0.5);
+	PinGlow.Position = UDim2.new(0.5, 0, 0.5, 0);
+	PinGlow.BackgroundColor3 = Themes[Library._current_theme].Accent;
+	PinGlow.BackgroundTransparency = 0.85;
+	PinGlow.BorderSizePixel = 0;
+	PinGlow.ZIndex = 0;
+	PinGlow.Parent = Pin;
+	local PGCorner = Instance.new("UICorner");
+	PGCorner.CornerRadius = UDim.new(1, 0);
+	PGCorner.Parent = PinGlow;
+	local Icon = Instance.new("ImageLabel");
+	Icon.ImageColor3 = Color3.fromRGB(255, 255, 255);
+	Icon.ScaleType = Enum.ScaleType.Fit;
+	Icon.BorderColor3 = Color3.fromRGB(0, 0, 0);
+	Icon.AnchorPoint = Vector2.new(0, 0.5);
+	Icon.Image = "rbxassetid://107819132007001";
+	Icon.BackgroundTransparency = 1;
+	Icon.Position = UDim2.new(0.025, 0, 0.055, 0);
+	Icon.Name = "Icon";
+	Icon.Size = UDim2.new(0, 18, 0, 18);
+	Icon.BorderSizePixel = 0;
+	Icon.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+	Icon.Parent = Handler;
+	local SearchBarFrame = Instance.new("Frame");
+	SearchBarFrame.Name = "SearchBarFrame";
+	SearchBarFrame.Size = UDim2.new(0, 22, 0, 22);
+	SearchBarFrame.AnchorPoint = Vector2.new(1, 0.5);
+	SearchBarFrame.Position = UDim2.new(1, -40, 0, 26);
+	SearchBarFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+	SearchBarFrame.BackgroundTransparency = 0.85;
+	SearchBarFrame.BorderSizePixel = 0;
+	SearchBarFrame.ClipsDescendants = true;
+	SearchBarFrame.ZIndex = 5;
+	SearchBarFrame.Parent = Handler;
+	local SBFCorner = Instance.new("UICorner");
+	SBFCorner.CornerRadius = UDim.new(1, 0);
+	SBFCorner.Parent = SearchBarFrame;
+	local SBFStroke = Instance.new("UIStroke");
+	SBFStroke.Color = Color3.fromRGB(255, 255, 255);
+	SBFStroke.Transparency = 0.75;
+	SBFStroke.Thickness = 1;
+	SBFStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border;
+	SBFStroke.Parent = SearchBarFrame;
+	local SBIcon = Instance.new("ImageLabel");
+	SBIcon.Image = "rbxassetid://79095934438045";
+	SBIcon.ImageColor3 = Color3.fromRGB(160, 165, 195);
+	SBIcon.ImageTransparency = 0.3;
+	SBIcon.Size = UDim2.new(0, 11, 0, 11);
+	SBIcon.AnchorPoint = Vector2.new(0, 0.5);
+	SBIcon.Position = UDim2.new(0, 7, 0.5, 0);
+	SBIcon.BackgroundTransparency = 1;
+	SBIcon.ScaleType = Enum.ScaleType.Fit;
+	SBIcon.ZIndex = 6;
+	SBIcon.Parent = SearchBarFrame;
+	local SearchBox = Instance.new("TextBox");
+	SearchBox.Name = "SearchBox";
+	SearchBox.FontFace = FontRegular;
+	SearchBox.TextColor3 = Color3.fromRGB(230, 235, 255);
+	SearchBox.PlaceholderColor3 = Color3.fromRGB(110, 115, 148);
+	SearchBox.PlaceholderText = "Search...";
+	SearchBox.Text = "";
+	SearchBox.TextSize = 11;
+	SearchBox.Size = UDim2.new(0, 226, 1, 0);
+	SearchBox.Position = UDim2.new(0, 22, 0, 0);
+	SearchBox.BackgroundTransparency = 1;
+	SearchBox.BorderSizePixel = 0;
+	SearchBox.TextXAlignment = Enum.TextXAlignment.Left;
+	SearchBox.ClearTextOnFocus = false;
+	SearchBox.Visible = false;
+	SearchBox.ZIndex = 6;
+	SearchBox.Parent = SearchBarFrame;
+	local SBClear = Instance.new("TextButton");
+	SBClear.Text = "×";
+	SBClear.TextColor3 = Color3.fromRGB(160, 165, 195);
+	SBClear.TextSize = 13;
+	SBClear.FontFace = FontBold;
+	SBClear.Size = UDim2.new(0, 18, 1, 0);
+	SBClear.AnchorPoint = Vector2.new(1, 0.5);
+	SBClear.Position = UDim2.new(1, -2, 0.5, 0);
+	SBClear.BackgroundTransparency = 1;
+	SBClear.AutoButtonColor = false;
+	SBClear.Visible = false;
+	SBClear.ZIndex = 7;
+	SBClear.Parent = SearchBarFrame;
+	local SearchToggle = Instance.new("TextButton");
+	SearchToggle.Name = "SearchToggle";
+	SearchToggle.Text = "";
+	SearchToggle.AutoButtonColor = false;
+	SearchToggle.BackgroundTransparency = 1;
+	SearchToggle.Size = UDim2.new(1, 0, 1, 0);
+	SearchToggle.ZIndex = 8;
+	SearchToggle.Parent = SearchBarFrame;
+	local SearchResults = Instance.new("Frame");
+	SearchResults.Name = "SearchResults";
+	SearchResults.Size = UDim2.new(0, 290, 0, 0);
+	SearchResults.AnchorPoint = Vector2.new(1, 0);
+	SearchResults.Position = UDim2.new(1, -4, 0, 52);
+	SearchResults.BackgroundColor3 = Themes[Library._current_theme].Background;
+	SearchResults.BackgroundTransparency = 0.04;
+	SearchResults.BorderSizePixel = 0;
+	SearchResults.ClipsDescendants = true;
+	SearchResults.Visible = false;
+	SearchResults.ZIndex = 30;
+	SearchResults.AutomaticSize = Enum.AutomaticSize.None;
+	SearchResults.Parent = Container;
+	local SRCorner = Instance.new("UICorner");
+	SRCorner.CornerRadius = UDim.new(0, 8);
+	SRCorner.Parent = SearchResults;
+	local SRStroke = Instance.new("UIStroke");
+	SRStroke.Color = Themes[Library._current_theme].Accent;
+	SRStroke.Transparency = 0.55;
+	SRStroke.Thickness = 1;
+	SRStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border;
+	SRStroke.Parent = SearchResults;
+	local SRScroll = Instance.new("ScrollingFrame");
+	SRScroll.Name = "Scroll";
+	SRScroll.Size = UDim2.new(1, 0, 1, 0);
+	SRScroll.BackgroundTransparency = 1;
+	SRScroll.ScrollBarThickness = 2;
+	SRScroll.ScrollBarImageColor3 = Themes[Library._current_theme].Accent;
+	SRScroll.ScrollBarImageTransparency = 0.4;
+	SRScroll.AutomaticCanvasSize = Enum.AutomaticSize.Y;
+	SRScroll.CanvasSize = UDim2.new(0, 0, 0, 0);
+	SRScroll.BorderSizePixel = 0;
+	SRScroll.ZIndex = 31;
+	SRScroll.Parent = SearchResults;
+	local SRLayout = Instance.new("UIListLayout");
+	SRLayout.Padding = UDim.new(0, 3);
+	SRLayout.SortOrder = Enum.SortOrder.LayoutOrder;
+	SRLayout.Parent = SRScroll;
+	local SRPad = Instance.new("UIPadding");
+	SRPad.PaddingTop = UDim.new(0, 6);
+	SRPad.PaddingBottom = UDim.new(0, 6);
+	SRPad.PaddingLeft = UDim.new(0, 6);
+	SRPad.PaddingRight = UDim.new(0, 6);
+	SRPad.Parent = SRScroll;
+	local SRHint = Instance.new("TextLabel");
+	SRHint.Name = "Hint";
+	SRHint.Text = "No results";
+	SRHint.TextColor3 = Color3.fromRGB(110, 115, 148);
+	SRHint.TextSize = 10;
+	SRHint.FontFace = FontRegular;
+	SRHint.Size = UDim2.new(1, 0, 0, 28);
+	SRHint.BackgroundTransparency = 1;
+	SRHint.TextXAlignment = Enum.TextXAlignment.Center;
+	SRHint.Visible = false;
+	SRHint.ZIndex = 32;
+	SRHint.Parent = SRScroll;
+	self._themed_elements.SearchResults = SearchResults;
+	self._themed_elements.SearchResultStroke = SRStroke;
+	self._themed_elements.SearchBarFrame = SearchBarFrame;
+	local _lastQuery = "";
+	local _resultRows = {};
+	local function clearResults()
+		for _, r in ipairs(_resultRows) do
+			if (r and r.Parent) then
+				r:Destroy();
+			end
+		end
+		_resultRows = {};
+		SRHint.Visible = false;
+	end
+	local searchExpanded = false;
+	local function expandSearch()
+		if searchExpanded then
+			return;
+		end
+		searchExpanded = true;
+		SearchToggle.Visible = false;
+		SearchBox.Visible = true;
+		TweenService:Create(SearchBarFrame, Tween.snap, {Size=UDim2.fromOffset(248, 22)}):Play();
+		TweenService:Create(SBFCorner, Tween.snap, {CornerRadius=UDim.new(0, 5)}):Play();
+		TweenService:Create(SearchBarFrame, Tween.snap, {BackgroundTransparency=0.82}):Play();
+		TweenService:Create(SBFStroke, Tween.snap, {Transparency=0.55}):Play();
+		task.delay(0.1, function()
+			if searchExpanded then
+				SearchBox:CaptureFocus();
+			end
+		end);
+	end
+	local function collapseSearch()
+		if not searchExpanded then
+			return;
+		end
+		searchExpanded = false;
+		SBClear.Visible = false;
+		SearchResults.Visible = false;
+		clearResults();
+		SearchBox.Text = "";
+		_lastQuery = "";
+		TweenService:Create(SearchBarFrame, Tween.snap, {Size=UDim2.fromOffset(22, 22),BackgroundTransparency=0.85}):Play();
+		TweenService:Create(SBFCorner, Tween.snap, {CornerRadius=UDim.new(1, 0)}):Play();
+		TweenService:Create(SBFStroke, Tween.snap, {Transparency=0.75}):Play();
+		task.delay(0.14, function()
+			if not searchExpanded then
+				SearchBox.Visible = false;
+				SearchToggle.Visible = true;
+			end
+		end);
+	end
+	SearchToggle.MouseButton1Click:Connect(function()
+		expandSearch();
+	end);
+	SearchToggle.MouseEnter:Connect(function()
+		if not searchExpanded then
+			TweenService:Create(SearchBarFrame, Tween.snap, {BackgroundTransparency=0.65}):Play();
+		end
+	end);
+	SearchToggle.MouseLeave:Connect(function()
+		if not searchExpanded then
+			TweenService:Create(SearchBarFrame, Tween.snap, {BackgroundTransparency=0.85}):Play();
+		end
+	end);
+	self.expand_search = expandSearch;
+	self.collapse_search = collapseSearch;
+	local function highlightElement(entry)
+		local ok, frame = pcall(function()
+			return entry.get_frame_fn();
+		end);
+		if (not ok or not frame or not frame.Parent) then
+			return;
+		end
+		local pulse = Instance.new("UIStroke");
+		pulse.Color = Themes[Library._current_theme].Accent;
+		pulse.Transparency = 0;
+		pulse.Thickness = 2;
+		pulse.ApplyStrokeMode = Enum.ApplyStrokeMode.Border;
+		pulse.Parent = frame;
+		TweenService:Create(pulse, TweenInfo.new(0.4, Enum.EasingStyle.Sine), {Transparency=0}):Play();
+		task.delay(0.6, function()
+			TweenService:Create(pulse, TweenInfo.new(0.5, Enum.EasingStyle.Sine), {Transparency=1}):Play();
+			task.delay(0.55, function()
+				if pulse.Parent then
+					pulse:Destroy();
+				end
+			end);
+		end);
+	end
+	local function jumpToEntry(entry)
+		if entry.switch_tab_fn then
+			pcall(entry.switch_tab_fn);
+		end
+		if entry.open_module_fn then
+			pcall(entry.open_module_fn);
+		end
+		local ok, frame = pcall(function()
+			return entry.get_frame_fn();
+		end);
+		if (ok and frame and frame.Parent) then
+			task.delay(0.12, function()
+				local cur = frame.Parent;
+				while cur and not cur:IsA("ScrollingFrame") do
+					cur = cur.Parent;
+				end
+				if (cur and cur:IsA("ScrollingFrame")) then
+					local relPos = (frame.AbsolutePosition.Y - cur.AbsolutePosition.Y) + cur.CanvasPosition.Y;
+					TweenService:Create(cur, Tween.fast, {CanvasPosition=Vector2.new(0, math.max(0, relPos - 20))}):Play();
+				end
+			end);
+		end
+		task.delay(0.2, function()
+			highlightElement(entry);
+		end);
+	end
+	local function buildResults(query)
+		clearResults();
+		if (query == "") then
+			SearchResults.Visible = false;
+			return;
+		end
+		local results = self:search_elements(query);
+		if (#results == 0) then
+			SRHint.Text = 'No results for "' .. query .. '"';
+			SRHint.Visible = true;
+			local targetH = 40;
+			TweenService:Create(SearchResults, Tween.fast, {Size=UDim2.new(0, 290, 0, targetH)}):Play();
+			SearchResults.Visible = true;
+			return;
+		end
+		local theme = Themes[(Library._active_instance and Library._active_instance._current_theme) or Library._current_theme] or Themes['Midnight'];
+		for idx, entry in ipairs(results) do
+			local Row = Instance.new("TextButton");
+			Row.Name = "R_" .. idx;
+			Row.Size = UDim2.new(1, 0, 0, 44);
+			Row.BackgroundColor3 = theme.ModuleBackground;
+			Row.BackgroundTransparency = 0.3;
+			Row.BorderSizePixel = 0;
+			Row.Text = "";
+			Row.AutoButtonColor = false;
+			Row.LayoutOrder = idx;
+			Row.ZIndex = 32;
+			Row.Parent = SRScroll;
+			table.insert(_resultRows, Row);
+			local RCorner = Instance.new("UICorner");
+			RCorner.CornerRadius = UDim.new(0, 5);
+			RCorner.Parent = Row;
+			local Badge = Instance.new("TextLabel");
+			Badge.Text = (entry.element_type or ""):upper();
+			Badge.TextSize = 8;
+			Badge.FontFace = FontBold;
+			Badge.TextColor3 = theme.Accent;
+			Badge.BackgroundColor3 = theme.Accent;
+			Badge.BackgroundTransparency = 0.85;
+			Badge.Size = UDim2.new(0, 0, 0, 11);
+			Badge.AutomaticSize = Enum.AutomaticSize.X;
+			Badge.Position = UDim2.new(0, 8, 0, 4);
+			Badge.TextXAlignment = Enum.TextXAlignment.Center;
+			Badge.ZIndex = 33;
+			Badge.Parent = Row;
+			local BadgeCorner = Instance.new("UICorner");
+			BadgeCorner.CornerRadius = UDim.new(0, 3);
+			BadgeCorner.Parent = Badge;
+			local BadgePad = Instance.new("UIPadding");
+			BadgePad.PaddingLeft = UDim.new(0, 4);
+			BadgePad.PaddingRight = UDim.new(0, 4);
+			BadgePad.Parent = Badge;
+			local RTitle = Instance.new("TextLabel");
+			RTitle.Text = entry.element_title or "(untitled)";
+			RTitle.TextSize = 12;
+			RTitle.FontFace = FontSemiBold;
+			RTitle.TextColor3 = Color3.fromRGB(238, 242, 255);
+			RTitle.TextTransparency = 0;
+			RTitle.BackgroundTransparency = 1;
+			RTitle.Size = UDim2.new(1, -36, 0, 13);
+			RTitle.Position = UDim2.new(0, 8, 0, 16);
+			RTitle.TextXAlignment = Enum.TextXAlignment.Left;
+			RTitle.TextTruncate = Enum.TextTruncate.AtEnd;
+			RTitle.ZIndex = 33;
+			RTitle.Parent = Row;
+			local Crumb = Instance.new("TextLabel");
+			Crumb.Text = (entry.tab_name or "?") .. "  ›  " .. (entry.module_name or "?");
+			Crumb.TextSize = 9;
+			Crumb.FontFace = FontRegular;
+			Crumb.TextColor3 = Color3.fromRGB(110, 115, 148);
+			Crumb.BackgroundTransparency = 1;
+			Crumb.Size = UDim2.new(1, -36, 0, 10);
+			Crumb.Position = UDim2.new(0, 8, 0, 30);
+			Crumb.TextXAlignment = Enum.TextXAlignment.Left;
+			Crumb.TextTruncate = Enum.TextTruncate.AtEnd;
+			Crumb.ZIndex = 33;
+			Crumb.Parent = Row;
+			local Arrow = Instance.new("TextLabel");
+			Arrow.Text = "→";
+			Arrow.TextSize = 14;
+			Arrow.FontFace = FontBold;
+			Arrow.TextColor3 = theme.Accent;
+			Arrow.TextTransparency = 0.5;
+			Arrow.BackgroundTransparency = 1;
+			Arrow.Size = UDim2.new(0, 22, 1, 0);
+			Arrow.AnchorPoint = Vector2.new(1, 0.5);
+			Arrow.Position = UDim2.new(1, -6, 0.5, 0);
+			Arrow.ZIndex = 33;
+			Arrow.Parent = Row;
+			Row.MouseEnter:Connect(function()
+				TweenService:Create(Row, Tween.snap, {BackgroundTransparency=0.05}):Play();
+				TweenService:Create(Arrow, Tween.snap, {TextTransparency=0}):Play();
+			end);
+			Row.MouseLeave:Connect(function()
+				TweenService:Create(Row, Tween.snap, {BackgroundTransparency=0.3}):Play();
+				TweenService:Create(Arrow, Tween.snap, {TextTransparency=0.5}):Play();
+			end);
+			Row.MouseButton1Click:Connect(function()
+				collapseSearch();
+				task.spawn(function()
+					jumpToEntry(entry);
+				end);
+			end);
+		end
+		local rowH = (math.min(#results, 7) * 47) + 12;
+		TweenService:Create(SearchResults, Tween.fast, {Size=UDim2.new(0, 290, 0, rowH)}):Play();
+		SearchResults.Visible = true;
+	end
+	SearchBox:GetPropertyChangedSignal("Text"):Connect(function()
+		local q = SearchBox.Text;
+		SBClear.Visible = q ~= "";
+		if (q == _lastQuery) then
+			return;
+		end
+		_lastQuery = q;
+		buildResults(q);
+		if (q ~= "") then
+			TweenService:Create(SearchBarFrame, Tween.snap, {BackgroundTransparency=0.8}):Play();
+			TweenService:Create(SBFStroke, Tween.snap, {Transparency=0.55}):Play();
+		else
+			TweenService:Create(SearchBarFrame, Tween.snap, {BackgroundTransparency=0.91}):Play();
+			TweenService:Create(SBFStroke, Tween.snap, {Transparency=0.82}):Play();
+		end
+	end);
+	SearchBox.Focused:Connect(function()
+		TweenService:Create(SearchBarFrame, Tween.snap, {BackgroundTransparency=0.82}):Play();
+		TweenService:Create(SBFStroke, Tween.snap, {Transparency=0.45}):Play();
+		if (SearchBox.Text ~= "") then
+			buildResults(SearchBox.Text);
+		end
+	end);
+	SearchBox.FocusLost:Connect(function()
+		if (SearchBox.Text == "") then
+			task.delay(0.05, function()
+				if not SearchBox:IsFocused() then
+					collapseSearch();
+				end
+			end);
+			return;
+		end
+		TweenService:Create(SearchBarFrame, Tween.snap, {BackgroundTransparency=0.88}):Play();
+		TweenService:Create(SBFStroke, Tween.snap, {Transparency=0.7}):Play();
+		task.delay(0.18, function()
+			if not SearchBox:IsFocused() then
+				SearchResults.Visible = false;
+			end
+		end);
+	end);
+	SBClear.MouseButton1Click:Connect(function()
+		SearchBox.Text = "";
+		_lastQuery = "";
+		SBClear.Visible = false;
+		clearResults();
+		SearchResults.Visible = false;
+		SearchBox:CaptureFocus();
+	end);
+	Connections['search_shortcut'] = UserInputService.InputBegan:Connect(function(input, process)
+		if process then
+			return;
+		end
+		if ((input.KeyCode == Enum.KeyCode.F) and UserInputService:IsKeyDown(Enum.KeyCode.LeftControl)) then
+			expandSearch();
+		end
+		if (input.KeyCode == Enum.KeyCode.Escape) then
+			if (SearchBox:IsFocused() or SearchResults.Visible or searchExpanded) then
+				collapseSearch();
+			end
+		end
+	end);
+	local UIScale = Instance.new("UIScale");
+	UIScale.Parent = Container;
+	self._ui = OshiruGui;
+	local function on_drag(input, process)
+		if ((input.UserInputType == Enum.UserInputType.MouseButton1) or (input.UserInputType == Enum.UserInputType.Touch)) then
+			self._dragging = true;
+			self._drag_start = input.Position;
+			self._container_position = Container.Position;
+			Connections['container_input_ended'] = input.Changed:Connect(function()
+				if (input.UserInputState ~= Enum.UserInputState.End) then
+					return;
+				end
+				Connections:disconnect("container_input_ended");
+				self._dragging = false;
+			end);
+		end
+	end
+	local function update_drag(input)
+		local delta = input.Position - self._drag_start;
+		local position = UDim2.new(self._container_position.X.Scale, self._container_position.X.Offset + delta.X, self._container_position.Y.Scale, self._container_position.Y.Offset + delta.Y);
+		TweenService:Create(Container, TweenInfo.new(0.15, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Position=position}):Play();
+	end
+	local function drag(input, process)
+		if not self._dragging then
+			return;
+		end
+		if ((input.UserInputType == Enum.UserInputType.MouseMovement) or (input.UserInputType == Enum.UserInputType.Touch)) then
+			update_drag(input);
+		end
+	end
+	Connections['container_input_began'] = Container.InputBegan:Connect(on_drag);
+	Connections['input_changed'] = UserInputService.InputChanged:Connect(drag);
+	self:removed(function()
+		self._ui = nil;
+		Connections:disconnect_all();
+	end);
+	self.Update1Run = function(self, a)
+		if (a == "nil") then
+			Container.BackgroundTransparency = 0.04;
+		else
+			pcall(function()
+				Container.BackgroundTransparency = tonumber(a);
+			end);
+		end
+	end;
+	self.UIVisiblity = function(self)
+		OshiruGui.Enabled = not OshiruGui.Enabled;
+	end;
+	self.change_visiblity = function(self, state)
+		local Is_Mobile = UserInputService.TouchEnabled;
+		if not Is_Mobile then
+			Container.Visible = state;
+		end
+		local _divider = self._internal and self._internal.Divider;
+		if state then
+			if _divider then
+				_divider.Visible = true;
+			end
+			Pin.Visible = true;
+			Tabs.Visible = true;
+			SearchBarFrame.Visible = true;
+			if self._active_left_section then
+				self._active_left_section.Visible = true;
+			end
+			if self._active_right_section then
+				self._active_right_section.Visible = true;
+			end
+			TweenService:Create(Container, Tween.slow, {Size=UDim2.fromOffset(698, 479)}):Play();
+		else
+			if _divider then
+				_divider.Visible = false;
+			end
+			Pin.Visible = false;
+			Tabs.Visible = false;
+			SearchBarFrame.Visible = false;
+			if SearchResults then
+				SearchResults.Visible = false;
+			end
+			if SearchBox then
+				SearchBox.Text = "";
+			end
+			if self._active_left_section then
+				self._active_left_section.Visible = false;
+			end
+			if self._active_right_section then
+				self._active_right_section.Visible = false;
+			end
+			local titleParams = Instance.new("GetTextBoundsParams");
+			titleParams.Text = self._title;
+			titleParams.Font = FontBold;
+			titleParams.Size = 13;
+			titleParams.Width = 10000;
+			local titleBounds = TextService:GetTextBoundsAsync(titleParams);
+			local minWidth = math.max(104.5, 18 + 14 + 6 + titleBounds.X + 14 + 24 + 10);
+			TweenService:Create(Container, Tween.slow, {Size=UDim2.fromOffset(minWidth, 52)}):Play();
+		end
+	end;
+	self.load = function(self)
+		local content = {};
+		for _, object in OshiruGui:GetDescendants() do
+			if not object:IsA("ImageLabel") then
+				continue;
+			end
+			table.insert(content, object);
+		end
+		ContentProvider:PreloadAsync(content);
+		self:get_device();
+		if ((self._device == "Mobile") or (self._device == "Unknown")) then
+			self:get_screen_scale();
+			UIScale.Scale = self._ui_scale;
+			Connections['ui_scale'] = workspace.CurrentCamera:GetPropertyChangedSignal("ViewportSize"):Connect(function()
+				self:get_screen_scale();
+				UIScale.Scale = self._ui_scale;
+			end);
+		end
+		TweenService:Create(Container, Tween.slow, {Size=UDim2.fromOffset(698, 479)}):Play();
+		self:create_settings_tab();
+		local blurInst = AcrylicBlur.new(Container);
+		self._blur_instance = blurInst;
+		self._ui_loaded = true;
+		if (Library._config._theme and Themes[Library._config._theme]) then
+			self:apply_theme(Library._config._theme);
+		end
+		self._load_called = true;
+		if self._try_dismiss_loading then
+			self._try_dismiss_loading();
+		end
+	end;
+	self.update_tabs = function(self, tab)
+		for index, object in Tabs:GetChildren() do
+			if (object.Name ~= "Tab") then
+				continue;
+			end
+			if (object == tab) then
+				if (object.BackgroundTransparency ~= 0.5) then
+					local offset = object.LayoutOrder * (0.113 / 1.3);
+					TweenService:Create(Pin, Tween.spring, {Position=UDim2.fromScale(0.026, 0.135 + offset)}):Play();
+					TweenService:Create(object, Tween.smooth, {BackgroundTransparency=0.5}):Play();
+					TweenService:Create(object.TextLabel, Tween.smooth, {TextTransparency=0.1,TextColor3=Color3.fromRGB(255, 255, 255)}):Play();
+					TweenService:Create(object.TextLabel.UIGradient, Tween.smooth, {Offset=Vector2.new(1, 0)}):Play();
+					TweenService:Create(object.Icon, Tween.smooth, {ImageTransparency=0.1,ImageColor3=Color3.fromRGB(255, 255, 255)}):Play();
+				end
+				continue;
+			end
+			if (object.BackgroundTransparency ~= 1) then
+				TweenService:Create(object, Tween.smooth, {BackgroundTransparency=1}):Play();
+				TweenService:Create(object.TextLabel, Tween.smooth, {TextTransparency=0.65,TextColor3=Color3.fromRGB(255, 255, 255)}):Play();
+				TweenService:Create(object.TextLabel.UIGradient, Tween.smooth, {Offset=Vector2.new(0, 0)}):Play();
+				TweenService:Create(object.Icon, Tween.smooth, {ImageTransparency=0.75,ImageColor3=Color3.fromRGB(255, 255, 255)}):Play();
+			end
+		end
+	end;
+	self.update_sections = function(self, left_section, right_section)
+		local _sects = self._internal and self._internal.Sections;
+		if not _sects then
+			return;
+		end
+		for _, object in _sects:GetChildren() do
+			if ((object == left_section) or (object == right_section)) then
+				object.Visible = true;
+				continue;
+			end
+			object.Visible = false;
+		end
+		self._active_left_section = left_section;
+		self._active_right_section = right_section;
+	end;
+	self.create_theme_dropdown = function(self, parent_module)
+		local theme_names = {};
+		for name, _ in pairs(Themes) do
+			table.insert(theme_names, name);
+		end
+		table.sort(theme_names);
+		parent_module:create_dropdown({title="UI Theme",flag="SelectedTheme",options=theme_names,multi_dropdown=false,maximum_options=#theme_names,callback=function(selected_theme)
+			self:apply_theme(selected_theme);
+			local meta = ThemeMeta[selected_theme];
+			local desc = (meta and meta.desc) or selected_theme;
+			Library.SendNotification({title=("Theme · " .. selected_theme),text=desc,duration=2.5});
+		end});
+	end;
+	Connections['library_visiblity'] = UserInputService.InputBegan:Connect(function(input, process)
+		if (input.KeyCode ~= Enum.KeyCode.RightShift) then
+			return;
+		end
+		self._ui_open = not self._ui_open;
+		self:change_visiblity(self._ui_open);
+	end);
+	local Divider = Instance.new("Frame");
+	Divider.Name = "Divider";
+	Divider.BackgroundTransparency = 0.7;
+	Divider.Position = UDim2.new(0.235, 0, 0, 0);
+	Divider.BorderColor3 = Color3.fromRGB(0, 0, 0);
+	Divider.Size = UDim2.new(0, 1, 0, 479);
+	Divider.BorderSizePixel = 0;
+	Divider.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+	Divider.Parent = Handler;
+	local DividerGrad = Instance.new("UIGradient");
+	DividerGrad.Parent = Divider;
+	self:_register_divider(Divider, DividerGrad, true);
+	local Sections = Instance.new("Folder");
+	Sections.Name = "Sections";
+	Sections.Parent = Handler;
+	local Minimize = Instance.new("TextButton");
+	Minimize.FontFace = FontLegacy;
+	Minimize.TextColor3 = Color3.fromRGB(0, 0, 0);
+	Minimize.BorderColor3 = Color3.fromRGB(0, 0, 0);
+	Minimize.Text = "";
+	Minimize.AutoButtonColor = false;
+	Minimize.Name = "Minimize";
+	Minimize.BackgroundTransparency = 1;
+	Minimize.Position = UDim2.new(0.020057305693626404, 0, 0.02922755666077137, 0);
+	Minimize.Size = UDim2.new(0, 24, 0, 24);
+	Minimize.BorderSizePixel = 0;
+	Minimize.TextSize = 14;
+	Minimize.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+	Minimize.Parent = Handler;
+	Minimize.MouseButton1Click:Connect(function()
+		self._ui_open = not self._ui_open;
+		self:change_visiblity(self._ui_open);
+	end);
+	self._internal = {Container=Container,Sections=Sections,Tabs=Tabs,Divider=Divider};
+end;
+Library.create_tab = function(self, title, icon)
+	local lib = self;
+	local TabManager = {};
+	local LayoutOrderModule = 0;
+	local font_params = Instance.new("GetTextBoundsParams");
+	font_params.Text = title;
+	font_params.Font = FontSemiBold;
+	font_params.Size = 13;
+	font_params.Width = 10000;
+	local font_size = TextService:GetTextBoundsAsync(font_params);
+	local Sections = self._internal.Sections;
+	local Tabs = self._internal.Tabs;
+	local first_tab = not Tabs:FindFirstChild("Tab");
+	local Pin = self._internal.Pin;
+	local Tab = Instance.new("TextButton");
+	Tab.FontFace = FontLegacy;
+	Tab.TextColor3 = Color3.fromRGB(0, 0, 0);
+	Tab.BorderColor3 = Color3.fromRGB(0, 0, 0);
+	Tab.Text = "";
+	Tab.AutoButtonColor = false;
+	Tab.BackgroundTransparency = 1;
+	Tab.Name = "Tab";
+	Tab.Size = UDim2.new(0, 129, 0, 38);
+	Tab.BorderSizePixel = 0;
+	Tab.TextSize = 14;
+	Tab.BackgroundColor3 = Color3.fromRGB(22, 28, 38);
+	Tab.Parent = Tabs;
+	Tab.LayoutOrder = self._tab;
+	local TabCorner = Instance.new("UICorner");
+	TabCorner.CornerRadius = UDim.new(0, 7);
+	TabCorner.Parent = Tab;
+	local TextLabel = Instance.new("TextLabel");
+	TextLabel.FontFace = FontSemiBold;
+	TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255);
+	TextLabel.TextTransparency = 0.65;
+	TextLabel.Text = title;
+	TextLabel.Size = UDim2.new(0, font_size.X, 0, 16);
+	TextLabel.AnchorPoint = Vector2.new(0, 0.5);
+	TextLabel.Position = UDim2.new(0.24, 0, 0.5, 0);
+	TextLabel.BackgroundTransparency = 1;
+	TextLabel.TextXAlignment = Enum.TextXAlignment.Left;
+	TextLabel.BorderSizePixel = 0;
+	TextLabel.TextSize = 13;
+	TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+	TextLabel.Parent = Tab;
+	local TabGrad = Instance.new("UIGradient");
+	TabGrad.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),ColorSequenceKeypoint.new(0.7, Color3.fromRGB(155, 155, 155)),ColorSequenceKeypoint.new(1, Color3.fromRGB(58, 58, 58))});
+	TabGrad.Parent = TextLabel;
+	local TabIcon = Instance.new("ImageLabel");
+	TabIcon.ScaleType = Enum.ScaleType.Fit;
+	TabIcon.ImageTransparency = 0.75;
+	TabIcon.BorderColor3 = Color3.fromRGB(0, 0, 0);
+	TabIcon.AnchorPoint = Vector2.new(0, 0.5);
+	TabIcon.BackgroundTransparency = 1;
+	TabIcon.Position = UDim2.new(0.1, 0, 0.5, 0);
+	TabIcon.Name = "Icon";
+	TabIcon.Image = resolveIcon(icon);
+	TabIcon.Size = UDim2.new(0, 12, 0, 12);
+	TabIcon.BorderSizePixel = 0;
+	TabIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+	TabIcon.Parent = Tab;
+	Tab.MouseEnter:Connect(function()
+		if (Tab.BackgroundTransparency ~= 0.5) then
+			TweenService:Create(Tab, Tween.fast, {BackgroundTransparency=0.85}):Play();
+		end
+	end);
+	Tab.MouseLeave:Connect(function()
+		if (Tab.BackgroundTransparency ~= 0.5) then
+			TweenService:Create(Tab, Tween.fast, {BackgroundTransparency=1}):Play();
+		end
+	end);
+	local function makeSection(name, xPos)
+		local S = Instance.new("ScrollingFrame");
+		S.Name = name;
+		S.AutomaticCanvasSize = Enum.AutomaticSize.XY;
+		S.ScrollBarThickness = 0;
+		S.Size = UDim2.new(0, 243, 0, 420);
+		S.Selectable = false;
+		S.AnchorPoint = Vector2.new(0, 0);
+		S.ScrollBarImageTransparency = 1;
+		S.BackgroundTransparency = 1;
+		S.Position = UDim2.new(xPos, 0, 0, 42);
+		S.BorderColor3 = Color3.fromRGB(0, 0, 0);
+		S.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+		S.BorderSizePixel = 0;
+		S.CanvasSize = UDim2.new(0, 0, 0.5, 0);
+		S.Visible = false;
+		S.Parent = Sections;
+		local L = Instance.new("UIListLayout");
+		L.Padding = UDim.new(0, 10);
+		L.HorizontalAlignment = Enum.HorizontalAlignment.Center;
+		L.SortOrder = Enum.SortOrder.LayoutOrder;
+		L.Parent = S;
+		local P = Instance.new("UIPadding");
+		P.PaddingTop = UDim.new(0, 10);
+		P.Parent = S;
+		return S;
+	end
+	local LeftSection = makeSection("LeftSection", 0.2594326436519623);
+	local RightSection = makeSection("RightSection", 0.6290000081062317);
+	self._tab += 1
+	if first_tab then
+		self:update_tabs(Tab, LeftSection, RightSection);
+		self:update_sections(LeftSection, RightSection);
+	end
+	Tab.MouseButton1Click:Connect(function()
+		self:update_tabs(Tab, LeftSection, RightSection);
+		self:update_sections(LeftSection, RightSection);
+	end);
+	local function switch_to_this_tab()
+		self:update_tabs(Tab, LeftSection, RightSection);
+		self:update_sections(LeftSection, RightSection);
+	end
+	TabManager.create_label = function(self, settings)
+		local targetSection = ((settings.section == "right") and RightSection) or LeftSection;
+		local LabelFrame = Instance.new("Frame");
+		LabelFrame.Name = "IndependentLabel";
+		LabelFrame.BackgroundColor3 = Themes[Library._current_theme].ModuleBackground;
+		LabelFrame.BackgroundTransparency = 0.45;
+		LabelFrame.Size = UDim2.new(0, 241, 0, 0);
+		LabelFrame.AutomaticSize = Enum.AutomaticSize.Y;
+		LabelFrame.BorderSizePixel = 0;
+		LabelFrame.Parent = targetSection;
+		table.insert(lib._themed_elements.Modules, LabelFrame);
+		local LFCorner = Instance.new("UICorner");
+		LFCorner.CornerRadius = UDim.new(0, 7);
+		LFCorner.Parent = LabelFrame;
+		local LFStroke = Instance.new("UIStroke");
+		LFStroke.Color = Themes[Library._current_theme].Stroke;
+		LFStroke.Transparency = 0.4;
+		LFStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border;
+		LFStroke.Parent = LabelFrame;
+		table.insert(lib._themed_elements.Strokes, LFStroke);
+		local LFPad = Instance.new("UIPadding");
+		LFPad.PaddingTop = UDim.new(0, 12);
+		LFPad.PaddingBottom = UDim.new(0, 12);
+		LFPad.PaddingLeft = UDim.new(0, 14);
+		LFPad.PaddingRight = UDim.new(0, 14);
+		LFPad.Parent = LabelFrame;
+		local LFLayout = Instance.new("UIListLayout");
+		LFLayout.Padding = UDim.new(0, 6);
+		LFLayout.SortOrder = Enum.SortOrder.LayoutOrder;
+		LFLayout.Parent = LabelFrame;
+		local TitleLabel = nil;
+		if settings.title then
+			TitleLabel = Instance.new("TextLabel");
+			TitleLabel.Name = "Title";
+			TitleLabel.FontFace = FontBold;
+			TitleLabel.TextColor3 = Themes[Library._current_theme].Text;
+			TitleLabel.TextTransparency = 0.1;
+			TitleLabel.TextSize = 13;
+			TitleLabel.Text = settings.title;
+			TitleLabel.Size = UDim2.new(1, 0, 0, 0);
+			TitleLabel.AutomaticSize = Enum.AutomaticSize.Y;
+			TitleLabel.BackgroundTransparency = 1;
+			TitleLabel.TextXAlignment = Enum.TextXAlignment.Left;
+			TitleLabel.TextWrapped = true;
+			TitleLabel.LayoutOrder = 1;
+			TitleLabel.Parent = LabelFrame;
+			if settings.rich then
+				TitleLabel.RichText = true;
+			end
+		end
+		local BodyLabel = nil;
+		if settings.text then
+			BodyLabel = Instance.new("TextLabel");
+			BodyLabel.Name = "Body";
+			BodyLabel.FontFace = FontRegular;
+			BodyLabel.TextColor3 = Themes[Library._current_theme].TextDark;
+			BodyLabel.TextTransparency = 0.2;
+			BodyLabel.TextSize = 11;
+			BodyLabel.Text = settings.text;
+			BodyLabel.Size = UDim2.new(1, 0, 0, 0);
+			BodyLabel.AutomaticSize = Enum.AutomaticSize.Y;
+			BodyLabel.BackgroundTransparency = 1;
+			BodyLabel.TextXAlignment = Enum.TextXAlignment.Left;
+			BodyLabel.TextWrapped = true;
+			BodyLabel.LayoutOrder = 2;
+			BodyLabel.Parent = LabelFrame;
+			if settings.rich then
+				BodyLabel.RichText = true;
+			end
+		end
+		local LabelManager = {};
+		LabelManager.SetText = function(self, newText)
+			if BodyLabel then
+				BodyLabel.Text = newText;
+			end
+		end;
+		LabelManager.SetTitle = function(self, newTitle)
+			if TitleLabel then
+				TitleLabel.Text = newTitle;
+			end
+		end;
+		LabelManager.Set = function(self, newSettings)
+			if (newSettings.title and TitleLabel) then
+				TitleLabel.Text = newSettings.title;
+				if newSettings.rich then
+					TitleLabel.RichText = true;
+				end
+			end
+			if (newSettings.text and BodyLabel) then
+				BodyLabel.Text = newSettings.text;
+				if newSettings.rich then
+					BodyLabel.RichText = true;
+				end
+			end
+		end;
+		LabelManager.Destroy = function(self)
+			lib:remove_table_value(lib._themed_elements.Modules, LabelFrame);
+			lib:remove_table_value(lib._themed_elements.Strokes, LFStroke);
+			LabelFrame:Destroy();
+		end;
+		lib:register_element({tab_name=title,module_name="(tab-level)",element_type="label",element_title=(settings.title or settings.text or "Label"),get_frame_fn=function()
+			return LabelFrame;
+		end,jump_fn=nil,switch_tab_fn=switch_to_this_tab,open_module_fn=nil});
+		return LabelManager;
+	end;
+	TabManager.create_button = function(self, settings)
+		local targetSection = ((settings.section == "right") and RightSection) or LeftSection;
+		local ButtonFrame = Instance.new("Frame");
+		ButtonFrame.Name = "IndependentButton";
+		ButtonFrame.BackgroundColor3 = Themes[Library._current_theme].ModuleBackground;
+		ButtonFrame.BackgroundTransparency = 0.45;
+		ButtonFrame.Size = UDim2.new(0, 241, 0, 0);
+		ButtonFrame.AutomaticSize = Enum.AutomaticSize.Y;
+		ButtonFrame.BorderSizePixel = 0;
+		ButtonFrame.Parent = targetSection;
+		table.insert(lib._themed_elements.Modules, ButtonFrame);
+		local BFCorner = Instance.new("UICorner");
+		BFCorner.CornerRadius = UDim.new(0, 7);
+		BFCorner.Parent = ButtonFrame;
+		local BFStroke = Instance.new("UIStroke");
+		BFStroke.Color = Themes[Library._current_theme].Stroke;
+		BFStroke.Transparency = 0.4;
+		BFStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border;
+		BFStroke.Parent = ButtonFrame;
+		table.insert(lib._themed_elements.Strokes, BFStroke);
+		local BFPad = Instance.new("UIPadding");
+		BFPad.PaddingTop = UDim.new(0, 12);
+		BFPad.PaddingBottom = UDim.new(0, 12);
+		BFPad.PaddingLeft = UDim.new(0, 14);
+		BFPad.PaddingRight = UDim.new(0, 14);
+		BFPad.Parent = ButtonFrame;
+		local BFLayout = Instance.new("UIListLayout");
+		BFLayout.Padding = UDim.new(0, 8);
+		BFLayout.SortOrder = Enum.SortOrder.LayoutOrder;
+		BFLayout.Parent = ButtonFrame;
+		local TitleLabel = nil;
+		if settings.title then
+			TitleLabel = Instance.new("TextLabel");
+			TitleLabel.Name = "Title";
+			TitleLabel.FontFace = FontBold;
+			TitleLabel.TextColor3 = Themes[Library._current_theme].Text;
+			TitleLabel.TextTransparency = 0.1;
+			TitleLabel.TextSize = 13;
+			TitleLabel.Text = settings.title;
+			TitleLabel.Size = UDim2.new(1, 0, 0, 0);
+			TitleLabel.AutomaticSize = Enum.AutomaticSize.Y;
+			TitleLabel.BackgroundTransparency = 1;
+			TitleLabel.TextXAlignment = Enum.TextXAlignment.Left;
+			TitleLabel.TextWrapped = true;
+			TitleLabel.LayoutOrder = 1;
+			TitleLabel.Parent = ButtonFrame;
+			if settings.rich then
+				TitleLabel.RichText = true;
+			end
+		end
+		local DescLabel = nil;
+		if settings.description then
+			DescLabel = Instance.new("TextLabel");
+			DescLabel.Name = "Description";
+			DescLabel.FontFace = FontRegular;
+			DescLabel.TextColor3 = Themes[Library._current_theme].TextDark;
+			DescLabel.TextTransparency = 0.2;
+			DescLabel.TextSize = 11;
+			DescLabel.Text = settings.description;
+			DescLabel.Size = UDim2.new(1, 0, 0, 0);
+			DescLabel.AutomaticSize = Enum.AutomaticSize.Y;
+			DescLabel.BackgroundTransparency = 1;
+			DescLabel.TextXAlignment = Enum.TextXAlignment.Left;
+			DescLabel.TextWrapped = true;
+			DescLabel.LayoutOrder = 2;
+			DescLabel.Parent = ButtonFrame;
+		end
+		local Button = Instance.new("TextButton");
+		Button.Name = "Button";
+		Button.FontFace = FontBold;
+		Button.TextColor3 = Themes[Library._current_theme].Text;
+		Button.Text = settings.buttonText or SelectedLanguage.ButtonClick or "Click";
+		Button.TextSize = 12;
+		Button.Size = UDim2.new(1, 0, 0, 34);
+		Button.BackgroundColor3 = Themes[Library._current_theme].Accent;
+		Button.BackgroundTransparency = 0.25;
+		Button.BorderSizePixel = 0;
+		Button.AutoButtonColor = false;
+		Button.LayoutOrder = 3;
+		Button.Parent = ButtonFrame;
+		table.insert(lib._themed_elements.AccentButtons, Button);
+		local BtnCorner = Instance.new("UICorner");
+		BtnCorner.CornerRadius = UDim.new(0, 6);
+		BtnCorner.Parent = Button;
+		Button.MouseEnter:Connect(function()
+			TweenService:Create(Button, Tween.fast, {BackgroundTransparency=0.05}):Play();
+		end);
+		Button.MouseLeave:Connect(function()
+			TweenService:Create(Button, Tween.fast, {BackgroundTransparency=0.25}):Play();
+		end);
+		Button.MouseButton1Down:Connect(function()
+			TweenService:Create(Button, Tween.snap_in, {BackgroundTransparency=0.5,Size=UDim2.new(1, -4, 0, 32)}):Play();
+		end);
+		Button.MouseButton1Up:Connect(function()
+			TweenService:Create(Button, Tween.spring, {BackgroundTransparency=0.05,Size=UDim2.new(1, 0, 0, 34)}):Play();
+		end);
+		Button.MouseButton1Click:Connect(function()
+			if settings.callback then
+				settings.callback();
+			end
+		end);
+		local ButtonManager = {};
+		ButtonManager.SetTitle = function(self, t)
+			if TitleLabel then
+				TitleLabel.Text = t;
+			end
+		end;
+		ButtonManager.SetDescription = function(self, d)
+			if DescLabel then
+				DescLabel.Text = d;
+			end
+		end;
+		ButtonManager.SetButtonText = function(self, t)
+			Button.Text = t;
+		end;
+		ButtonManager.SetCallback = function(self, cb)
+			settings.callback = cb;
+		end;
+		ButtonManager.Destroy = function(self)
+			lib:remove_table_value(lib._themed_elements.Modules, ButtonFrame);
+			lib:remove_table_value(lib._themed_elements.Strokes, BFStroke);
+			ButtonFrame:Destroy();
+		end;
+		lib:register_element({tab_name=title,module_name="(tab-level)",element_type="button",element_title=(settings.title or settings.buttonText or "Button"),get_frame_fn=function()
+			return ButtonFrame;
+		end,jump_fn=nil,switch_tab_fn=switch_to_this_tab,open_module_fn=nil});
+		return ButtonManager;
+	end;
+	TabManager.create_module = function(self, settings)
+		local LayoutOrderModule = 0;
+		local ModuleManager = {_state=false,_dropdownSize=0};
+		if (settings.section == "right") then
+			settings.section = RightSection;
+		else
+			settings.section = LeftSection;
+		end
+		local Module = Instance.new("Frame");
+		Module.ClipsDescendants = false;
+		Module.BorderColor3 = Color3.fromRGB(0, 0, 0);
+		Module.BackgroundTransparency = 0.45;
+		Module.Position = UDim2.new(0.00411522621, 0, 0, 0);
+		Module.Name = "Module";
+		Module.Size = UDim2.new(0, 241, 0, 0);
+		Module.AutomaticSize = Enum.AutomaticSize.Y;
+		Module.BorderSizePixel = 0;
+		Module.BackgroundColor3 = Themes[Library._current_theme].ModuleBackground;
+		Module.Parent = settings.section;
+		table.insert(lib._themed_elements.Modules, Module);
+		local MListLayout = Instance.new("UIListLayout");
+		MListLayout.SortOrder = Enum.SortOrder.LayoutOrder;
+		MListLayout.Parent = Module;
+		local MCorner = Instance.new("UICorner");
+		MCorner.CornerRadius = UDim.new(0, 8);
+		MCorner.Parent = Module;
+		local MStroke = Instance.new("UIStroke");
+		MStroke.Color = Themes[Library._current_theme].Stroke;
+		MStroke.Transparency = 0.4;
+		MStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border;
+		MStroke.Parent = Module;
+		table.insert(lib._themed_elements.Strokes, MStroke);
+		local Header = Instance.new("TextButton");
+		Header.FontFace = FontLegacy;
+		Header.TextColor3 = Color3.fromRGB(0, 0, 0);
+		Header.BorderColor3 = Color3.fromRGB(0, 0, 0);
+		Header.Text = "";
+		Header.AutoButtonColor = false;
+		Header.BackgroundTransparency = 1;
+		Header.Name = "Header";
+		Header.Size = UDim2.new(0, 241, 0, 93);
+		Header.BorderSizePixel = 0;
+		Header.TextSize = 14;
+		Header.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+		Header.Parent = Module;
+		Header.MouseEnter:Connect(function()
+			TweenService:Create(Module, Tween.fast, {BackgroundTransparency=0.35}):Play();
+		end);
+		Header.MouseLeave:Connect(function()
+			TweenService:Create(Module, Tween.fast, {BackgroundTransparency=0.45}):Play();
+		end);
+		local ModIcon = Instance.new("ImageLabel");
+		ModIcon.ImageColor3 = Color3.fromRGB(255, 255, 255);
+		ModIcon.ScaleType = Enum.ScaleType.Fit;
+		ModIcon.ImageTransparency = 0.65;
+		ModIcon.BorderColor3 = Color3.fromRGB(0, 0, 0);
+		ModIcon.AnchorPoint = Vector2.new(0, 0.5);
+		ModIcon.Image = "rbxassetid://79095934438045";
+		ModIcon.BackgroundTransparency = 1;
+		ModIcon.Position = UDim2.new(0.071, 0, 0.82, 0);
+		ModIcon.Name = "Icon";
+		ModIcon.Size = UDim2.new(0, 15, 0, 15);
+		ModIcon.BorderSizePixel = 0;
+		ModIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+		ModIcon.Parent = Header;
+		local ModuleName = Instance.new("TextLabel");
+		ModuleName.FontFace = FontBold;
+		ModuleName.TextColor3 = Color3.fromRGB(255, 255, 255);
+		ModuleName.TextTransparency = 0.1;
+		if not settings.rich then
+			ModuleName.Text = settings.title or "Module";
+		else
+			ModuleName.RichText = true;
+			ModuleName.Text = settings.richtext or "<font color='rgb(255,0,0)'>Oshiru</font>";
+		end
+		ModuleName.Name = "ModuleName";
+		ModuleName.Size = UDim2.new(0, 205, 0, 13);
+		ModuleName.AnchorPoint = Vector2.new(0, 0.5);
+		ModuleName.Position = UDim2.new(0.073, 0, 0.24, 0);
+		ModuleName.BackgroundTransparency = 1;
+		ModuleName.TextXAlignment = Enum.TextXAlignment.Left;
+		ModuleName.BorderSizePixel = 0;
+		ModuleName.TextSize = 13;
+		ModuleName.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+		ModuleName.Parent = Header;
+		local Description = Instance.new("TextLabel");
+		Description.FontFace = FontRegular;
+		Description.TextColor3 = Color3.fromRGB(255, 255, 255);
+		Description.TextTransparency = 0.6;
+		Description.Text = settings.description or "";
+		Description.Name = "Description";
+		Description.Size = UDim2.new(0, 205, 0, 13);
+		Description.AnchorPoint = Vector2.new(0, 0.5);
+		Description.Position = UDim2.new(0.073, 0, 0.42, 0);
+		Description.BackgroundTransparency = 1;
+		Description.TextXAlignment = Enum.TextXAlignment.Left;
+		Description.BorderSizePixel = 0;
+		Description.TextSize = 10;
+		Description.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+		Description.Parent = Header;
+		local Toggle = Instance.new("Frame");
+		Toggle.Name = "Toggle";
+		Toggle.BackgroundTransparency = 0.65;
+		Toggle.Position = UDim2.new(0.82, 0, 0.757, 0);
+		Toggle.BorderColor3 = Color3.fromRGB(0, 0, 0);
+		Toggle.Size = UDim2.new(0, 28, 0, 14);
+		Toggle.BorderSizePixel = 0;
+		Toggle.BackgroundColor3 = Color3.fromRGB(0, 0, 0);
+		Toggle.Parent = Header;
+		local TCorner = Instance.new("UICorner");
+		TCorner.CornerRadius = UDim.new(1, 0);
+		TCorner.Parent = Toggle;
+		local Circle = Instance.new("Frame");
+		Circle.BorderColor3 = Color3.fromRGB(0, 0, 0);
+		Circle.AnchorPoint = Vector2.new(0, 0.5);
+		Circle.BackgroundTransparency = 0.1;
+		Circle.Position = UDim2.new(0, 1, 0.5, 0);
+		Circle.Name = "Circle";
+		Circle.Size = UDim2.new(0, 12, 0, 12);
+		Circle.BorderSizePixel = 0;
+		Circle.BackgroundColor3 = Color3.fromRGB(66, 80, 115);
+		Circle.Parent = Toggle;
+		local CCorner = Instance.new("UICorner");
+		CCorner.CornerRadius = UDim.new(1, 0);
+		CCorner.Parent = Circle;
+		local Keybind = Instance.new("Frame");
+		Keybind.Name = "Keybind";
+		Keybind.BackgroundTransparency = 0.65;
+		Keybind.Position = UDim2.new(0.15, 0, 0.735, 0);
+		Keybind.BorderColor3 = Color3.fromRGB(0, 0, 0);
+		Keybind.Size = UDim2.new(0, 33, 0, 15);
+		Keybind.BorderSizePixel = 0;
+		Keybind.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+		Keybind.Parent = Header;
+		local KBCorner = Instance.new("UICorner");
+		KBCorner.CornerRadius = UDim.new(0, 4);
+		KBCorner.Parent = Keybind;
+		local KeybindLabel = Instance.new("TextLabel");
+		KeybindLabel.FontFace = FontSemiBold;
+		KeybindLabel.TextColor3 = Color3.fromRGB(209, 222, 255);
+		KeybindLabel.Text = "None";
+		KeybindLabel.AnchorPoint = Vector2.new(0.5, 0.5);
+		KeybindLabel.Size = UDim2.new(0, 25, 0, 13);
+		KeybindLabel.BackgroundTransparency = 1;
+		KeybindLabel.TextXAlignment = Enum.TextXAlignment.Left;
+		KeybindLabel.Position = UDim2.new(0.5, 0, 0.5, 0);
+		KeybindLabel.TextSize = 10;
+		KeybindLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+		KeybindLabel.Parent = Keybind;
+		local Divider = Instance.new("Frame");
+		Divider.BorderColor3 = Color3.fromRGB(0, 0, 0);
+		Divider.AnchorPoint = Vector2.new(0.5, 0);
+		Divider.BackgroundTransparency = 0.65;
+		Divider.Position = UDim2.new(0.5, 0, 0.62, 0);
+		Divider.Name = "Divider";
+		Divider.Size = UDim2.new(0, 225, 0, 1);
+		Divider.BorderSizePixel = 0;
+		Divider.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+		Divider.Parent = Header;
+		local DividerGrad = Instance.new("UIGradient");
+		DividerGrad.Parent = Divider;
+		lib:_register_divider(Divider, DividerGrad, false);
+		local Divider2 = Instance.new("Frame");
+		Divider2.BorderColor3 = Color3.fromRGB(0, 0, 0);
+		Divider2.AnchorPoint = Vector2.new(0.5, 0);
+		Divider2.BackgroundTransparency = 0.65;
+		Divider2.Position = UDim2.new(0.5, 0, 1, 0);
+		Divider2.Name = "Divider";
+		Divider2.Size = UDim2.new(0, 225, 0, 1);
+		Divider2.BorderSizePixel = 0;
+		Divider2.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+		Divider2.Parent = Header;
+		local Divider2Grad = Instance.new("UIGradient");
+		Divider2Grad.Parent = Divider2;
+		lib:_register_divider(Divider2, Divider2Grad, false);
+		local Options = Instance.new("Frame");
+		Options.Name = "Options";
+		Options.BackgroundTransparency = 1;
+		Options.BorderColor3 = Color3.fromRGB(0, 0, 0);
+		Options.Size = UDim2.new(0, 241, 0, 0);
+		Options.AutomaticSize = Enum.AutomaticSize.Y;
+		Options.BorderSizePixel = 0;
+		Options.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+		Options.Visible = false;
+		Options.Parent = Module;
+		local OptPad = Instance.new("UIPadding");
+		OptPad.PaddingTop = UDim.new(0, 8);
+		OptPad.PaddingBottom = UDim.new(0, 12);
+		OptPad.Parent = Options;
+		local OptLayout = Instance.new("UIListLayout");
+		OptLayout.Padding = UDim.new(0, 6);
+		OptLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center;
+		OptLayout.SortOrder = Enum.SortOrder.LayoutOrder;
+		OptLayout.Parent = Options;
+		ModuleManager.change_state = function(self, state)
+			self._state = state;
+			local toggle_data = {Toggle=Toggle,Circle=Circle};
+			if self._state then
+				Options.Visible = true;
+				TweenService:Create(Toggle, Tween.smooth, {BackgroundColor3=Themes[Library._current_theme].Accent,BackgroundTransparency=0}):Play();
+				TweenService:Create(Circle, Tween.spring, {BackgroundColor3=Themes[Library._current_theme].SecondaryAccent,Position=UDim2.fromScale(0.52, 0.5),Size=UDim2.fromOffset(13, 13)}):Play();
+				table.insert(lib._themed_elements.ActiveToggles, toggle_data);
+			else
+				Options.Visible = false;
+				TweenService:Create(Toggle, Tween.smooth, {BackgroundColor3=Color3.fromRGB(0, 0, 0),BackgroundTransparency=0.65}):Play();
+				TweenService:Create(Circle, Tween.spring, {BackgroundColor3=Color3.fromRGB(66, 80, 115),Position=UDim2.fromScale(0.04, 0.5),Size=UDim2.fromOffset(12, 12)}):Play();
+				for i, v in ipairs(lib._themed_elements.ActiveToggles) do
+					if (v.Toggle == Toggle) then
+						table.remove(lib._themed_elements.ActiveToggles, i);
+						break;
+					end
+				end
+			end
+			Library._config._flags[settings.flag] = self._state;
+			Config:save(game.GameId, Library._config);
+			settings.callback(self._state);
+		end;
+		ModuleManager.connect_keybind = function(self)
+			if not Library._config._keybinds[settings.flag] then
+				return;
+			end
+			Connections[settings.flag .. "_keybind"] = UserInputService.InputBegan:Connect(function(input, process)
+				if process then
+					return;
+				end
+				if (tostring(input.KeyCode) ~= Library._config._keybinds[settings.flag]) then
+					return;
+				end
+				self:change_state(not self._state);
+			end);
+		end;
+		ModuleManager.scale_keybind = function(self, empty)
+			if (Library._config._keybinds[settings.flag] and not empty) then
+				local kb_str = string.gsub(tostring(Library._config._keybinds[settings.flag]), "Enum.KeyCode.", "");
+				local fp = Instance.new("GetTextBoundsParams");
+				fp.Text = kb_str;
+				fp.Font = FontBold;
+				fp.Size = 10;
+				fp.Width = 10000;
+				local fs = TextService:GetTextBoundsAsync(fp);
+				Keybind.Size = UDim2.fromOffset(fs.X + 8, 15);
+				KeybindLabel.Size = UDim2.fromOffset(fs.X, 13);
+			else
+				Keybind.Size = UDim2.fromOffset(31, 15);
+				KeybindLabel.Size = UDim2.fromOffset(25, 13);
+			end
+		end;
+		if Library:flag_type(settings.flag, "boolean") then
+			ModuleManager._state = true;
+			settings.callback(ModuleManager._state);
+			Toggle.BackgroundColor3 = Themes[Library._current_theme].Accent;
+			Toggle.BackgroundTransparency = 0;
+			Circle.BackgroundColor3 = Themes[Library._current_theme].SecondaryAccent;
+			Circle.Position = UDim2.fromScale(0.52, 0.5);
+			Circle.Size = UDim2.fromOffset(13, 13);
+			Options.Visible = true;
+			table.insert(lib._themed_elements.ActiveToggles, {Toggle=Toggle,Circle=Circle});
+		end
+		if Library._config._keybinds[settings.flag] then
+			local kb_str = string.gsub(tostring(Library._config._keybinds[settings.flag]), "Enum.KeyCode.", "");
+			KeybindLabel.Text = kb_str;
+			ModuleManager:connect_keybind();
+			ModuleManager:scale_keybind();
+		end
+		Connections[settings.flag .. "_input_began"] = Header.InputBegan:Connect(function(input)
+			if Library._choosing_keybind then
+				return;
+			end
+			if (input.UserInputType ~= Enum.UserInputType.MouseButton3) then
+				return;
+			end
+			Library._choosing_keybind = true;
+			Connections['keybind_choose_start'] = UserInputService.InputBegan:Connect(function(input, process)
+				if process then
+					return;
+				end
+				if ((input == Enum.UserInputState) or (input == Enum.UserInputType)) then
+					return;
+				end
+				if (input.KeyCode == Enum.KeyCode.Unknown) then
+					return;
+				end
+				if (input.KeyCode == Enum.KeyCode.Backspace) then
+					ModuleManager:scale_keybind(true);
+					Library._config._keybinds[settings.flag] = nil;
+					Config:save(game.GameId, Library._config);
+					KeybindLabel.Text = "None";
+					if Connections[settings.flag .. "_keybind"] then
+						Connections[settings.flag .. "_keybind"]:Disconnect();
+						Connections[settings.flag .. "_keybind"] = nil;
+					end
+					Connections['keybind_choose_start']:Disconnect();
+					Connections['keybind_choose_start'] = nil;
+					Library._choosing_keybind = false;
+					return;
+				end
+				Connections['keybind_choose_start']:Disconnect();
+				Connections['keybind_choose_start'] = nil;
+				Library._config._keybinds[settings.flag] = tostring(input.KeyCode);
+				Config:save(game.GameId, Library._config);
+				if Connections[settings.flag .. "_keybind"] then
+					Connections[settings.flag .. "_keybind"]:Disconnect();
+					Connections[settings.flag .. "_keybind"] = nil;
+				end
+				ModuleManager:connect_keybind();
+				ModuleManager:scale_keybind();
+				Library._choosing_keybind = false;
+				local kb_str = string.gsub(tostring(Library._config._keybinds[settings.flag]), "Enum.KeyCode.", "");
+				KeybindLabel.Text = kb_str;
+			end);
+		end);
+		Header.MouseButton1Click:Connect(function()
+			ModuleManager:change_state(not ModuleManager._state);
+		end);
+		local function open_this_module()
+			if not ModuleManager._state then
+				ModuleManager:change_state(true);
+			end
+		end
+		ModuleManager.create_label = function(self, settings)
+			LayoutOrderModule = LayoutOrderModule + 1;
+			local LabelFrame = Instance.new("Frame");
+			LabelFrame.Name = "ModuleLabel";
+			LabelFrame.BackgroundColor3 = Color3.fromRGB(28, 35, 48);
+			LabelFrame.BackgroundTransparency = 0.05;
+			LabelFrame.Size = UDim2.new(0, 207, 0, 0);
+			LabelFrame.AutomaticSize = Enum.AutomaticSize.Y;
+			LabelFrame.BorderSizePixel = 0;
+			LabelFrame.Parent = Options;
+			LabelFrame.LayoutOrder = LayoutOrderModule;
+			local LCorner = Instance.new("UICorner");
+			LCorner.CornerRadius = UDim.new(0, 5);
+			LCorner.Parent = LabelFrame;
+			local LPad = Instance.new("UIPadding");
+			LPad.PaddingTop = UDim.new(0, 8);
+			LPad.PaddingBottom = UDim.new(0, 8);
+			LPad.PaddingLeft = UDim.new(0, 10);
+			LPad.PaddingRight = UDim.new(0, 10);
+			LPad.Parent = LabelFrame;
+			local LLayout = Instance.new("UIListLayout");
+			LLayout.Padding = UDim.new(0, 4);
+			LLayout.SortOrder = Enum.SortOrder.LayoutOrder;
+			LLayout.Parent = LabelFrame;
+			local TitleLabel = nil;
+			if settings.title then
+				TitleLabel = Instance.new("TextLabel");
+				TitleLabel.Name = "Title";
+				TitleLabel.FontFace = FontBold;
+				TitleLabel.TextColor3 = Color3.fromRGB(215, 215, 215);
+				TitleLabel.TextSize = 12;
+				TitleLabel.Text = settings.title;
+				TitleLabel.Size = UDim2.new(1, 0, 0, 0);
+				TitleLabel.AutomaticSize = Enum.AutomaticSize.Y;
+				TitleLabel.BackgroundTransparency = 1;
+				TitleLabel.TextXAlignment = Enum.TextXAlignment.Left;
+				TitleLabel.TextWrapped = true;
+				TitleLabel.LayoutOrder = 1;
+				TitleLabel.Parent = LabelFrame;
+				if settings.rich then
+					TitleLabel.RichText = true;
+				end
+			end
+			local BodyLabel = nil;
+			if settings.text then
+				BodyLabel = Instance.new("TextLabel");
+				BodyLabel.Name = "Body";
+				BodyLabel.FontFace = FontRegular;
+				BodyLabel.TextColor3 = Color3.fromRGB(255, 255, 255);
+				BodyLabel.TextSize = 11;
+				BodyLabel.Text = settings.text;
+				BodyLabel.Size = UDim2.new(1, 0, 0, 0);
+				BodyLabel.AutomaticSize = Enum.AutomaticSize.Y;
+				BodyLabel.BackgroundTransparency = 1;
+				BodyLabel.TextXAlignment = Enum.TextXAlignment.Left;
+				BodyLabel.TextWrapped = true;
+				BodyLabel.LayoutOrder = 2;
+				BodyLabel.Parent = LabelFrame;
+				if settings.rich then
+					BodyLabel.RichText = true;
+				end
+			end
+			LabelFrame.MouseEnter:Connect(function()
+				TweenService:Create(LabelFrame, Tween.fast, {BackgroundColor3=Color3.fromRGB(38, 46, 62)}):Play();
+			end);
+			LabelFrame.MouseLeave:Connect(function()
+				TweenService:Create(LabelFrame, Tween.fast, {BackgroundColor3=Color3.fromRGB(28, 35, 48)}):Play();
+			end);
+			local LabelManager = {};
+			LabelManager.SetText = function(self, t)
+				if BodyLabel then
+					BodyLabel.Text = t;
+				end
+			end;
+			LabelManager.SetTitle = function(self, t)
+				if TitleLabel then
+					TitleLabel.Text = t;
+				end
+			end;
+			LabelManager.Set = function(self, ns)
+				if (ns.title and TitleLabel) then
+					TitleLabel.Text = ns.title;
+					if ns.rich then
+						TitleLabel.RichText = true;
+					end
+				end
+				if (ns.text and BodyLabel) then
+					BodyLabel.Text = ns.text;
+					if ns.rich then
+						BodyLabel.RichText = true;
+					end
+				end
+			end;
+			lib:register_element({tab_name=title,module_name=(settings_module_title or "Module"),element_type="label",element_title=(settings.title or settings.text or "Label"),get_frame_fn=function()
+				return LabelFrame;
+			end,jump_fn=nil,switch_tab_fn=switch_to_this_tab,open_module_fn=open_this_module});
+			return LabelManager;
+		end;
+		ModuleManager.create_button = function(self, settings)
+			LayoutOrderModule = LayoutOrderModule + 1;
+			local ButtonFrame = Instance.new("Frame");
+			ButtonFrame.Name = "ModuleButton";
+			ButtonFrame.BackgroundColor3 = Color3.fromRGB(28, 35, 48);
+			ButtonFrame.BackgroundTransparency = 0.05;
+			ButtonFrame.Size = UDim2.new(0, 207, 0, 0);
+			ButtonFrame.AutomaticSize = Enum.AutomaticSize.Y;
+			ButtonFrame.BorderSizePixel = 0;
+			ButtonFrame.Parent = Options;
+			ButtonFrame.LayoutOrder = LayoutOrderModule;
+			local BCorner = Instance.new("UICorner");
+			BCorner.CornerRadius = UDim.new(0, 5);
+			BCorner.Parent = ButtonFrame;
+			local BPad = Instance.new("UIPadding");
+			BPad.PaddingTop = UDim.new(0, 8);
+			BPad.PaddingBottom = UDim.new(0, 8);
+			BPad.PaddingLeft = UDim.new(0, 10);
+			BPad.PaddingRight = UDim.new(0, 10);
+			BPad.Parent = ButtonFrame;
+			local BLayout = Instance.new("UIListLayout");
+			BLayout.Padding = UDim.new(0, 6);
+			BLayout.SortOrder = Enum.SortOrder.LayoutOrder;
+			BLayout.Parent = ButtonFrame;
+			local TitleLabel = nil;
+			if settings.title then
+				TitleLabel = Instance.new("TextLabel");
+				TitleLabel.Name = "Title";
+				TitleLabel.FontFace = FontBold;
+				TitleLabel.TextColor3 = Color3.fromRGB(215, 215, 215);
+				TitleLabel.TextSize = 12;
+				TitleLabel.Text = settings.title;
+				TitleLabel.Size = UDim2.new(1, 0, 0, 0);
+				TitleLabel.AutomaticSize = Enum.AutomaticSize.Y;
+				TitleLabel.BackgroundTransparency = 1;
+				TitleLabel.TextXAlignment = Enum.TextXAlignment.Left;
+				TitleLabel.TextWrapped = true;
+				TitleLabel.LayoutOrder = 1;
+				TitleLabel.Parent = ButtonFrame;
+				if settings.rich then
+					TitleLabel.RichText = true;
+				end
+			end
+			local DescLabel = nil;
+			if settings.description then
+				DescLabel = Instance.new("TextLabel");
+				DescLabel.Name = "Description";
+				DescLabel.FontFace = FontRegular;
+				DescLabel.TextColor3 = Color3.fromRGB(175, 175, 175);
+				DescLabel.TextSize = 10;
+				DescLabel.Text = settings.description;
+				DescLabel.Size = UDim2.new(1, 0, 0, 0);
+				DescLabel.AutomaticSize = Enum.AutomaticSize.Y;
+				DescLabel.BackgroundTransparency = 1;
+				DescLabel.TextXAlignment = Enum.TextXAlignment.Left;
+				DescLabel.TextWrapped = true;
+				DescLabel.LayoutOrder = 2;
+				DescLabel.Parent = ButtonFrame;
+			end
+			local Button = Instance.new("TextButton");
+			Button.Name = "Button";
+			Button.FontFace = FontBold;
+			Button.TextColor3 = Color3.fromRGB(255, 255, 255);
+			Button.Text = settings.buttonText or SelectedLanguage.ButtonClick or "Click";
+			Button.TextSize = 11;
+			Button.Size = UDim2.new(1, 0, 0, 30);
+			Button.BackgroundColor3 = Themes[Library._current_theme].Accent;
+			Button.BackgroundTransparency = 0.25;
+			Button.BorderSizePixel = 0;
+			Button.AutoButtonColor = false;
+			Button.LayoutOrder = 3;
+			Button.Parent = ButtonFrame;
+			table.insert(lib._themed_elements.AccentButtons, Button);
+			local BtnCorner = Instance.new("UICorner");
+			BtnCorner.CornerRadius = UDim.new(0, 5);
+			BtnCorner.Parent = Button;
+			Button.MouseEnter:Connect(function()
+				TweenService:Create(ButtonFrame, Tween.fast, {BackgroundColor3=Color3.fromRGB(38, 46, 62)}):Play();
+				TweenService:Create(Button, Tween.fast, {BackgroundTransparency=0.05}):Play();
+			end);
+			Button.MouseLeave:Connect(function()
+				TweenService:Create(ButtonFrame, Tween.fast, {BackgroundColor3=Color3.fromRGB(28, 35, 48)}):Play();
+				TweenService:Create(Button, Tween.fast, {BackgroundTransparency=0.25}):Play();
+			end);
+			Button.MouseButton1Down:Connect(function()
+				TweenService:Create(Button, Tween.snap_in, {BackgroundTransparency=0.5,Size=UDim2.new(1, -2, 0, 28)}):Play();
+			end);
+			Button.MouseButton1Up:Connect(function()
+				TweenService:Create(Button, Tween.spring, {BackgroundTransparency=0.05,Size=UDim2.new(1, 0, 0, 30)}):Play();
+			end);
+			Button.MouseButton1Click:Connect(function()
+				if settings.callback then
+					settings.callback();
+				end
+			end);
+			local BM = {};
+			BM.SetTitle = function(self, t)
+				if TitleLabel then
+					TitleLabel.Text = t;
+				end
+			end;
+			BM.SetDescription = function(self, d)
+				if DescLabel then
+					DescLabel.Text = d;
+				end
+			end;
+			BM.SetButtonText = function(self, t)
+				Button.Text = t;
+			end;
+			BM.SetCallback = function(self, cb)
+				settings.callback = cb;
+			end;
+			lib:register_element({tab_name=title,module_name=(settings.flag or "Module"),element_type="button",element_title=(settings.title or settings.buttonText or "Button"),get_frame_fn=function()
+				return ButtonFrame;
+			end,jump_fn=nil,switch_tab_fn=switch_to_this_tab,open_module_fn=open_this_module});
+			return BM;
+		end;
+		ModuleManager.create_paragraph = function(self, settings)
+			LayoutOrderModule = LayoutOrderModule + 1;
+			local ParagraphManager = {};
+			local Paragraph = Instance.new("Frame");
+			Paragraph.BackgroundColor3 = Color3.fromRGB(28, 35, 48);
+			Paragraph.BackgroundTransparency = 0.05;
+			Paragraph.Size = UDim2.new(0, 207, 0, 0);
+			Paragraph.AutomaticSize = Enum.AutomaticSize.Y;
+			Paragraph.BorderSizePixel = 0;
+			Paragraph.Name = "Paragraph";
+			Paragraph.Parent = Options;
+			Paragraph.LayoutOrder = LayoutOrderModule;
+			local PCorner = Instance.new("UICorner");
+			PCorner.CornerRadius = UDim.new(0, 5);
+			PCorner.Parent = Paragraph;
+			local PPad = Instance.new("UIPadding");
+			PPad.PaddingTop = UDim.new(0, 7);
+			PPad.PaddingBottom = UDim.new(0, 9);
+			PPad.PaddingLeft = UDim.new(0, 8);
+			PPad.PaddingRight = UDim.new(0, 8);
+			PPad.Parent = Paragraph;
+			local PLayout = Instance.new("UIListLayout");
+			PLayout.Padding = UDim.new(0, 4);
+			PLayout.SortOrder = Enum.SortOrder.LayoutOrder;
+			PLayout.Parent = Paragraph;
+			local PTitle = Instance.new("TextLabel");
+			PTitle.FontFace = FontBold;
+			PTitle.TextColor3 = Color3.fromRGB(215, 215, 215);
+			PTitle.Text = settings.title or "Title";
+			PTitle.Size = UDim2.new(1, 0, 0, 0);
+			PTitle.AutomaticSize = Enum.AutomaticSize.Y;
+			PTitle.BackgroundTransparency = 1;
+			PTitle.TextXAlignment = Enum.TextXAlignment.Left;
+			PTitle.TextSize = 12;
+			PTitle.LayoutOrder = 1;
+			PTitle.TextWrapped = true;
+			PTitle.Parent = Paragraph;
+			local PBody = Instance.new("TextLabel");
+			PBody.FontFace = FontRegular;
+			PBody.TextColor3 = Color3.fromRGB(255, 255, 255);
+			if not settings.rich then
+				PBody.Text = settings.text or "Text";
+			else
+				PBody.RichText = true;
+				PBody.Text = settings.richtext or "<font color='rgb(255,0,0)'>Oshiru</font>";
+			end
+			PBody.Size = UDim2.new(1, 0, 0, 0);
+			PBody.AutomaticSize = Enum.AutomaticSize.Y;
+			PBody.BackgroundTransparency = 1;
+			PBody.TextXAlignment = Enum.TextXAlignment.Left;
+			PBody.TextSize = 11;
+			PBody.TextWrapped = true;
+			PBody.LayoutOrder = 2;
+			PBody.Parent = Paragraph;
+			Paragraph.MouseEnter:Connect(function()
+				TweenService:Create(Paragraph, Tween.fast, {BackgroundColor3=Color3.fromRGB(38, 46, 62)}):Play();
+			end);
+			Paragraph.MouseLeave:Connect(function()
+				TweenService:Create(Paragraph, Tween.fast, {BackgroundColor3=Color3.fromRGB(28, 35, 48)}):Play();
+			end);
+			ParagraphManager.SetTitle = function(self, t)
+				PTitle.Text = t;
+			end;
+			ParagraphManager.SetText = function(self, t)
+				PBody.Text = t;
+			end;
+			ParagraphManager.Set = function(self, ns)
+				if ns.title then
+					PTitle.Text = ns.title;
+				end
+				if ns.text then
+					PBody.Text = ns.text;
+				end
+				if ns.rich then
+					PBody.RichText = true;
+				end
+			end;
+			return ParagraphManager;
+		end;
+		ModuleManager.create_text = function(self, settings)
+			LayoutOrderModule = LayoutOrderModule + 1;
+			local TextManager = {};
+			local TextFrame = Instance.new("Frame");
+			TextFrame.BackgroundColor3 = Color3.fromRGB(28, 35, 48);
+			TextFrame.BackgroundTransparency = 0.05;
+			TextFrame.Size = UDim2.new(0, 207, 0, 0);
+			TextFrame.AutomaticSize = Enum.AutomaticSize.Y;
+			TextFrame.BorderSizePixel = 0;
+			TextFrame.Name = "Text";
+			TextFrame.Parent = Options;
+			TextFrame.LayoutOrder = LayoutOrderModule;
+			local TFCorner = Instance.new("UICorner");
+			TFCorner.CornerRadius = UDim.new(0, 5);
+			TFCorner.Parent = TextFrame;
+			local TFPad = Instance.new("UIPadding");
+			TFPad.PaddingTop = UDim.new(0, 5);
+			TFPad.PaddingBottom = UDim.new(0, 5);
+			TFPad.PaddingLeft = UDim.new(0, 6);
+			TFPad.PaddingRight = UDim.new(0, 6);
+			TFPad.Parent = TextFrame;
+			local Body = Instance.new("TextLabel");
+			Body.FontFace = FontRegular;
+			Body.TextColor3 = Color3.fromRGB(255, 255, 255);
+			if not settings.rich then
+				Body.Text = settings.text or "";
+			else
+				Body.RichText = true;
+				Body.Text = settings.richtext or "";
+			end
+			Body.Size = UDim2.new(1, 0, 0, 0);
+			Body.AutomaticSize = Enum.AutomaticSize.Y;
+			Body.BackgroundTransparency = 1;
+			Body.TextXAlignment = Enum.TextXAlignment.Left;
+			Body.TextSize = 10;
+			Body.TextWrapped = true;
+			Body.Parent = TextFrame;
+			TextManager.Set = function(self, ns)
+				if not ns.rich then
+					Body.Text = ns.text or "";
+				else
+					Body.RichText = true;
+					Body.Text = ns.richtext or "";
+				end
+			end;
+			return TextManager;
+		end;
+		ModuleManager.create_textbox = function(self, settings)
+			LayoutOrderModule = LayoutOrderModule + 1;
+			local TextboxManager = {_text=""};
+			local Label = Instance.new("TextLabel");
+			Label.FontFace = FontSemiBold;
+			Label.TextColor3 = Color3.fromRGB(255, 255, 255);
+			Label.TextTransparency = 0.2;
+			Label.Text = settings.title or "Enter text";
+			Label.Size = UDim2.new(0, 207, 0, 13);
+			Label.BackgroundTransparency = 1;
+			Label.TextXAlignment = Enum.TextXAlignment.Left;
+			Label.BorderSizePixel = 0;
+			Label.TextSize = 10;
+			Label.LayoutOrder = LayoutOrderModule;
+			Label.Parent = Options;
+			LayoutOrderModule = LayoutOrderModule + 1;
+			local Textbox = Instance.new("TextBox");
+			Textbox.FontFace = FontRegular;
+			Textbox.TextColor3 = Color3.fromRGB(255, 255, 255);
+			Textbox.BorderColor3 = Color3.fromRGB(0, 0, 0);
+			Textbox.PlaceholderText = settings.placeholder or "Enter text...";
+			Textbox.Text = Library._config._flags[settings.flag] or "";
+			Textbox.Name = "Textbox";
+			Textbox.Size = UDim2.new(0, 207, 0, 17);
+			Textbox.BorderSizePixel = 0;
+			Textbox.TextSize = 10;
+			Textbox.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+			Textbox.BackgroundTransparency = 0.88;
+			Textbox.ClearTextOnFocus = false;
+			Textbox.LayoutOrder = LayoutOrderModule;
+			Textbox.Parent = Options;
+			local TBCorner = Instance.new("UICorner");
+			TBCorner.CornerRadius = UDim.new(0, 5);
+			TBCorner.Parent = Textbox;
+			Textbox.Focused:Connect(function()
+				TweenService:Create(Textbox, Tween.fast, {BackgroundTransparency=0.75}):Play();
+			end);
+			Textbox.FocusLost:Connect(function()
+				TweenService:Create(Textbox, Tween.fast, {BackgroundTransparency=0.88}):Play();
+				TextboxManager._text = Textbox.Text;
+				Library._config._flags[settings.flag] = TextboxManager._text;
+				Config:save(game.GameId, Library._config);
+				settings.callback(TextboxManager._text);
+			end);
+			if Library:flag_type(settings.flag, "string") then
+				TextboxManager._text = Library._config._flags[settings.flag];
+				settings.callback(TextboxManager._text);
+			end
+			TextboxManager.SetText = function(self, t)
+				Textbox.Text = t;
+				self._text = t;
+			end;
+			TextboxManager.GetText = function(self)
+				return Textbox.Text;
+			end;
+			lib:register_element({tab_name=title,module_name=(settings.flag or "Module"),element_type="textbox",element_title=(settings.title or "Textbox"),get_frame_fn=function()
+				return Textbox;
+			end,jump_fn=nil,switch_tab_fn=switch_to_this_tab,open_module_fn=open_this_module});
+			return TextboxManager;
+		end;
+		ModuleManager.create_divider = function(self, settings)
+			LayoutOrderModule = LayoutOrderModule + 1;
+			local OuterFrame = Instance.new("Frame");
+			OuterFrame.Size = UDim2.new(0, 207, 0, 18);
+			OuterFrame.BackgroundTransparency = 1;
+			OuterFrame.Name = "OuterFrame";
+			OuterFrame.LayoutOrder = LayoutOrderModule;
+			OuterFrame.Parent = Options;
+			if (settings and settings.showtopic) then
+				local TLabel = Instance.new("TextLabel");
+				TLabel.FontFace = FontSemiBold;
+				TLabel.TextColor3 = Color3.fromRGB(255, 255, 255);
+				TLabel.TextTransparency = 0;
+				TLabel.Text = settings.title;
+				TLabel.Size = UDim2.new(0, 153, 0, 13);
+				TLabel.Position = UDim2.new(0.5, 0, 0.5, 0);
+				TLabel.BackgroundTransparency = 1;
+				TLabel.TextXAlignment = Enum.TextXAlignment.Center;
+				TLabel.AnchorPoint = Vector2.new(0.5, 0.5);
+				TLabel.TextSize = 11;
+				TLabel.ZIndex = 3;
+				TLabel.TextStrokeTransparency = 0;
+				TLabel.Parent = OuterFrame;
+			end
+			if (not settings or (settings and not settings.disableline)) then
+				local DivLine = Instance.new("Frame");
+				DivLine.Size = UDim2.new(1, 0, 0, 1);
+				DivLine.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+				DivLine.BorderSizePixel = 0;
+				DivLine.Name = "Divider";
+				DivLine.ZIndex = 2;
+				DivLine.Position = UDim2.new(0, 0, 0.5, 0);
+				DivLine.Parent = OuterFrame;
+				local DGrad = Instance.new("UIGradient");
+				DGrad.Parent = DivLine;
+				DGrad.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 1),NumberSequenceKeypoint.new(0.5, 0.3),NumberSequenceKeypoint.new(1, 1)});
+				lib:_register_divider(DivLine, DGrad, false);
+				local DCorner = Instance.new("UICorner");
+				DCorner.CornerRadius = UDim.new(0, 2);
+				DCorner.Parent = DivLine;
+			end
+			return true;
+		end;
+		ModuleManager.create_checkbox = function(self, settings)
+			LayoutOrderModule = LayoutOrderModule + 1;
+			local CheckboxManager = {_state=false};
+			local Checkbox = Instance.new("TextButton");
+			Checkbox.FontFace = FontLegacy;
+			Checkbox.TextColor3 = Color3.fromRGB(0, 0, 0);
+			Checkbox.BorderColor3 = Color3.fromRGB(0, 0, 0);
+			Checkbox.Text = "";
+			Checkbox.AutoButtonColor = false;
+			Checkbox.BackgroundTransparency = 1;
+			Checkbox.Name = "Checkbox";
+			Checkbox.Size = UDim2.new(0, 207, 0, 16);
+			Checkbox.BorderSizePixel = 0;
+			Checkbox.TextSize = 14;
+			Checkbox.BackgroundColor3 = Color3.fromRGB(0, 0, 0);
+			Checkbox.LayoutOrder = LayoutOrderModule;
+			Checkbox.Parent = Options;
+			local CBTitle = Instance.new("TextLabel");
+			CBTitle.Name = "TitleLabel";
+			CBTitle.FontFace = FontSemiBold;
+			CBTitle.TextSize = 11;
+			CBTitle.TextColor3 = Color3.fromRGB(255, 255, 255);
+			CBTitle.TextTransparency = 0.15;
+			CBTitle.Text = settings.title or "Option";
+			CBTitle.Size = UDim2.new(0, 142, 0, 13);
+			CBTitle.AnchorPoint = Vector2.new(0, 0.5);
+			CBTitle.Position = UDim2.new(0, 0, 0.5, 0);
+			CBTitle.BackgroundTransparency = 1;
+			CBTitle.TextXAlignment = Enum.TextXAlignment.Left;
+			CBTitle.Parent = Checkbox;
+			local Box = Instance.new("Frame");
+			Box.BorderColor3 = Color3.fromRGB(0, 0, 0);
+			Box.AnchorPoint = Vector2.new(1, 0.5);
+			Box.BackgroundTransparency = 0.88;
+			Box.Position = UDim2.new(1, 0, 0.5, 0);
+			Box.Name = "Box";
+			Box.Size = UDim2.new(0, 15, 0, 15);
+			Box.BorderSizePixel = 0;
+			Box.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+			Box.Parent = Checkbox;
+			local BoxCorner = Instance.new("UICorner");
+			BoxCorner.CornerRadius = UDim.new(0, 4);
+			BoxCorner.Parent = Box;
+			local Fill = Instance.new("Frame");
+			Fill.AnchorPoint = Vector2.new(0.5, 0.5);
+			Fill.BackgroundTransparency = 0.1;
+			Fill.Position = UDim2.new(0.5, 0, 0.5, 0);
+			Fill.BorderColor3 = Color3.fromRGB(0, 0, 0);
+			Fill.Name = "Fill";
+			Fill.Size = UDim2.fromOffset(0, 0);
+			Fill.BorderSizePixel = 0;
+			Fill.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+			Fill.Parent = Box;
+			local FillCorner = Instance.new("UICorner");
+			FillCorner.CornerRadius = UDim.new(0, 3);
+			FillCorner.Parent = Fill;
+			CheckboxManager.change_state = function(self, state)
+				self._state = state;
+				if self._state then
+					TweenService:Create(Box, Tween.smooth, {BackgroundTransparency=0.65}):Play();
+					TweenService:Create(Fill, Tween.spring, {Size=UDim2.fromOffset(10, 10)}):Play();
+				else
+					TweenService:Create(Box, Tween.smooth, {BackgroundTransparency=0.88}):Play();
+					TweenService:Create(Fill, Tween.spring, {Size=UDim2.fromOffset(0, 0)}):Play();
+				end
+				Library._config._flags[settings.flag] = self._state;
+				Config:save(game.GameId, Library._config);
+				settings.callback(self._state);
+			end;
+			if Library:flag_type(settings.flag, "boolean") then
+				CheckboxManager:change_state(Library._config._flags[settings.flag]);
+			end
+			Checkbox.MouseButton1Click:Connect(function()
+				CheckboxManager:change_state(not CheckboxManager._state);
+			end);
+			CheckboxManager.SetTitle = function(self, t)
+				CBTitle.Text = t;
+			end;
+			lib:register_element({tab_name=title,module_name=(settings.flag or "Module"),element_type="checkbox",element_title=(settings.title or "Checkbox"),get_frame_fn=function()
+				return Checkbox;
+			end,jump_fn=nil,switch_tab_fn=switch_to_this_tab,open_module_fn=open_this_module});
+			return CheckboxManager;
+		end;
+		ModuleManager.create_slider = function(self, settings)
+			LayoutOrderModule = LayoutOrderModule + 1;
+			local SliderManager = {};
+			local Slider = Instance.new("TextButton");
+			Slider.FontFace = FontLegacy;
+			Slider.TextSize = 14;
+			Slider.TextColor3 = Color3.fromRGB(0, 0, 0);
+			Slider.BorderColor3 = Color3.fromRGB(0, 0, 0);
+			Slider.Text = "";
+			Slider.AutoButtonColor = false;
+			Slider.BackgroundTransparency = 1;
+			Slider.Name = "Slider";
+			Slider.Size = UDim2.new(0, 207, 0, 24);
+			Slider.BorderSizePixel = 0;
+			Slider.BackgroundColor3 = Color3.fromRGB(0, 0, 0);
+			Slider.LayoutOrder = LayoutOrderModule;
+			Slider.Parent = Options;
+			local STitle = Instance.new("TextLabel");
+			STitle.FontFace = FontSemiBold;
+			STitle.TextSize = 11;
+			STitle.TextColor3 = Color3.fromRGB(255, 255, 255);
+			STitle.TextTransparency = 0.15;
+			STitle.Text = settings.title;
+			STitle.Size = UDim2.new(0, 153, 0, 13);
+			STitle.Position = UDim2.new(0, 0, 0, 0);
+			STitle.BackgroundTransparency = 1;
+			STitle.TextXAlignment = Enum.TextXAlignment.Left;
+			STitle.Parent = Slider;
+			local Value = Instance.new("TextLabel");
+			Value.FontFace = FontBold;
+			Value.TextColor3 = Color3.fromRGB(255, 255, 255);
+			Value.TextTransparency = 0.15;
+			Value.Text = "0";
+			Value.Name = "Value";
+			Value.Size = UDim2.new(0, 42, 0, 13);
+			Value.AnchorPoint = Vector2.new(1, 0);
+			Value.Position = UDim2.new(1, 0, 0, 0);
+			Value.BackgroundTransparency = 1;
+			Value.TextXAlignment = Enum.TextXAlignment.Right;
+			Value.TextSize = 10;
+			Value.Parent = Slider;
+			Value:SetAttribute("OshiruNoTranslate", true);
+			local ValueBox = Instance.new("TextBox");
+			ValueBox.FontFace = FontBold;
+			ValueBox.TextColor3 = Color3.fromRGB(255, 255, 255);
+			ValueBox.Text = "0";
+			ValueBox.Name = "ValueBox";
+			ValueBox.Size = UDim2.new(0, 42, 0, 13);
+			ValueBox.AnchorPoint = Vector2.new(1, 0);
+			ValueBox.Position = UDim2.new(1, 0, 0, 0);
+			ValueBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+			ValueBox.BackgroundTransparency = 0.85;
+			ValueBox.ClearTextOnFocus = false;
+			ValueBox.TextXAlignment = Enum.TextXAlignment.Right;
+			ValueBox.TextSize = 10;
+			ValueBox.Visible = false;
+			ValueBox.ZIndex = 3;
+			ValueBox.Parent = Slider;
+			ValueBox:SetAttribute("OshiruNoTranslate", true);
+			local VBCorner = Instance.new("UICorner");
+			VBCorner.CornerRadius = UDim.new(0, 4);
+			VBCorner.Parent = ValueBox;
+			local ValueButton = Instance.new("TextButton");
+			ValueButton.Text = "";
+			ValueButton.AutoButtonColor = false;
+			ValueButton.Name = "ValueButton";
+			ValueButton.Size = UDim2.new(0, 42, 0, 13);
+			ValueButton.AnchorPoint = Vector2.new(1, 0);
+			ValueButton.Position = UDim2.new(1, 0, 0, 0);
+			ValueButton.BackgroundTransparency = 1;
+			ValueButton.ZIndex = 2;
+			ValueButton.Parent = Slider;
+			local Track = Instance.new("Frame");
+			Track.Name = "Track";
+			Track.AnchorPoint = Vector2.new(0, 1);
+			Track.BackgroundTransparency = 0.85;
+			Track.Position = UDim2.new(0, 0, 1, 0);
+			Track.Size = UDim2.new(0, 207, 0, 4);
+			Track.BorderSizePixel = 0;
+			Track.ClipsDescendants = true;
+			Track.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+			Track.Parent = Slider;
+			local TrCorner = Instance.new("UICorner");
+			TrCorner.CornerRadius = UDim.new(1, 0);
+			TrCorner.Parent = Track;
+			local Drag = Instance.new("Frame");
+			Drag.BorderColor3 = Color3.fromRGB(0, 0, 0);
+			Drag.AnchorPoint = Vector2.new(0, 0.5);
+			Drag.BackgroundTransparency = 0;
+			Drag.Position = UDim2.new(0, 0, 0.5, 0);
+			Drag.Name = "Drag";
+			Drag.Size = UDim2.new(0.5, 0, 1, 0);
+			Drag.BorderSizePixel = 0;
+			Drag.BackgroundColor3 = Themes[Library._current_theme].Accent;
+			Drag.Parent = Track;
+			table.insert(lib._themed_elements.SliderDrags, Drag);
+			local DCorner = Instance.new("UICorner");
+			DCorner.CornerRadius = UDim.new(1, 0);
+			DCorner.Parent = Drag;
+			local Knobs = Instance.new("Frame");
+			Knobs.Name = "Knobs";
+			Knobs.AnchorPoint = Vector2.new(1, 0.5);
+			Knobs.Position = UDim2.new(1, 0, 0.5, 0);
+			Knobs.Size = UDim2.fromOffset(10, 10);
+			Knobs.BorderSizePixel = 0;
+			Knobs.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+			Knobs.Parent = Drag;
+			local KCorner = Instance.new("UICorner");
+			KCorner.CornerRadius = UDim.new(1, 0);
+			KCorner.Parent = Knobs;
+			SliderManager.set_percentage = function(self, percentage)
+				local rounded_number;
+				if settings.round_number then
+					rounded_number = math.floor(percentage + 0.5);
+				else
+					rounded_number = math.floor(percentage * 10) / 10;
+				end
+				local pct = (percentage - settings.minimum_value) / (settings.maximum_value - settings.minimum_value);
+				local slider_w = math.clamp(pct, 0.045, 1);
+				local clamped = math.clamp(rounded_number, settings.minimum_value, settings.maximum_value);
+				Library._config._flags[settings.flag] = clamped;
+				Value.Text = clamped;
+				TweenService:Create(Drag, Tween.fast, {Size=UDim2.new(slider_w, 0, 1, 0)}):Play();
+				settings.callback(clamped);
+			end;
+			SliderManager.update = function(self)
+				local mouse_position = (mouse.X - Track.AbsolutePosition.X) / Track.Size.X.Offset;
+				local percentage = settings.minimum_value + ((settings.maximum_value - settings.minimum_value) * mouse_position);
+				self:set_percentage(percentage);
+			end;
+			SliderManager.input = function(self)
+				TweenService:Create(Knobs, Tween.fast, {Size=UDim2.fromOffset(13, 13)}):Play();
+				SliderManager:update();
+				Connections["slider_drag_" .. settings.flag] = mouse.Move:Connect(function()
+					SliderManager:update();
+				end);
+				Connections["slider_input_" .. settings.flag] = UserInputService.InputEnded:Connect(function(input, process)
+					if ((input.UserInputType ~= Enum.UserInputType.MouseButton1) and (input.UserInputType ~= Enum.UserInputType.Touch)) then
+						return;
+					end
+					TweenService:Create(Knobs, Tween.spring, {Size=UDim2.fromOffset(10, 10)}):Play();
+					Connections:disconnect("slider_drag_" .. settings.flag);
+					Connections:disconnect("slider_input_" .. settings.flag);
+					if not settings.ignoresaved then
+						Config:save(game.GameId, Library._config);
+					end
+				end);
+			end;
+			if Library:flag_type(settings.flag, "number") then
+				if not settings.ignoresaved then
+					SliderManager:set_percentage(Library._config._flags[settings.flag]);
+				else
+					SliderManager:set_percentage(settings.value);
+				end
+			else
+				SliderManager:set_percentage(settings.value);
+			end
+			Slider.MouseButton1Down:Connect(function()
+				SliderManager:input();
+			end);
+			local lastValueClick = 0;
+			ValueButton.MouseButton1Click:Connect(function()
+				local now = os.clock();
+				if ((now - lastValueClick) < 0.4) then
+					lastValueClick = 0;
+					ValueBox.Text = tostring(Library._config._flags[settings.flag] or Value.Text);
+					Value.Visible = false;
+					ValueButton.Visible = false;
+					ValueBox.Visible = true;
+					ValueBox:CaptureFocus();
+				else
+					lastValueClick = now;
+				end
+			end);
+			ValueBox.FocusLost:Connect(function()
+				local parsed = tonumber(ValueBox.Text);
+				if parsed then
+					SliderManager:set_percentage(parsed);
+					if not settings.ignoresaved then
+						Config:save(game.GameId, Library._config);
+					end
+				end
+				ValueBox.Visible = false;
+				Value.Visible = true;
+				ValueButton.Visible = true;
+			end);
+			SliderManager.SetTitle = function(self, t)
+				STitle.Text = t;
+			end;
+			lib:register_element({tab_name=title,module_name=(settings.flag or "Module"),element_type="slider",element_title=(settings.title or "Slider"),get_frame_fn=function()
+				return Slider;
+			end,jump_fn=nil,switch_tab_fn=switch_to_this_tab,open_module_fn=open_this_module});
+			return SliderManager;
+		end;
+		ModuleManager.create_dropdown = function(self, settings)
+			if not settings.Order then
+				LayoutOrderModule = LayoutOrderModule + 1;
+			end
+			local DropdownManager = {_state=false,_size=0};
+			local Dropdown = Instance.new("TextButton");
+			Dropdown.FontFace = FontLegacy;
+			Dropdown.TextColor3 = Color3.fromRGB(0, 0, 0);
+			Dropdown.BorderColor3 = Color3.fromRGB(0, 0, 0);
+			Dropdown.Text = "";
+			Dropdown.AutoButtonColor = false;
+			Dropdown.BackgroundTransparency = 1;
+			Dropdown.Name = "Dropdown";
+			Dropdown.Size = UDim2.new(0, 207, 0, 39);
+			Dropdown.BorderSizePixel = 0;
+			Dropdown.TextSize = 14;
+			Dropdown.BackgroundColor3 = Color3.fromRGB(0, 0, 0);
+			Dropdown.Parent = Options;
+			if not settings.Order then
+				Dropdown.LayoutOrder = LayoutOrderModule;
+			else
+				Dropdown.LayoutOrder = settings.OrderValue;
+			end
+			if not Library._config._flags[settings.flag] then
+				Library._config._flags[settings.flag] = {};
+			end
+			local DDTitle = Instance.new("TextLabel");
+			DDTitle.FontFace = FontSemiBold;
+			DDTitle.TextSize = 11;
+			DDTitle.TextColor3 = Color3.fromRGB(255, 255, 255);
+			DDTitle.TextTransparency = 0.15;
+			DDTitle.Text = settings.title;
+			DDTitle.Size = UDim2.new(0, 207, 0, 13);
+			DDTitle.BackgroundTransparency = 1;
+			DDTitle.TextXAlignment = Enum.TextXAlignment.Left;
+			DDTitle.Parent = Dropdown;
+			local Box = Instance.new("Frame");
+			Box.ClipsDescendants = true;
+			Box.BorderColor3 = Color3.fromRGB(0, 0, 0);
+			Box.AnchorPoint = Vector2.new(0.5, 0);
+			Box.BackgroundTransparency = 0.88;
+			Box.Position = UDim2.new(0.5, 0, 1.2, 0);
+			Box.Name = "Box";
+			Box.Size = UDim2.new(0, 207, 0, 22);
+			Box.BorderSizePixel = 0;
+			Box.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+			Box.Parent = DDTitle;
+			local BoxCorner = Instance.new("UICorner");
+			BoxCorner.CornerRadius = UDim.new(0, 5);
+			BoxCorner.Parent = Box;
+			local Header2 = Instance.new("Frame");
+			Header2.BorderColor3 = Color3.fromRGB(0, 0, 0);
+			Header2.AnchorPoint = Vector2.new(0.5, 0);
+			Header2.BackgroundTransparency = 1;
+			Header2.Position = UDim2.new(0.5, 0, 0, 0);
+			Header2.Name = "Header";
+			Header2.Size = UDim2.new(0, 207, 0, 22);
+			Header2.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+			Header2.Parent = Box;
+			local CurrentOption = Instance.new("TextLabel");
+			CurrentOption.FontFace = FontSemiBold;
+			CurrentOption.TextColor3 = Color3.fromRGB(255, 255, 255);
+			CurrentOption.TextTransparency = 0.15;
+			CurrentOption.Name = "CurrentOption";
+			CurrentOption.Size = UDim2.new(0, 161, 0, 13);
+			CurrentOption.AnchorPoint = Vector2.new(0, 0.5);
+			CurrentOption.Position = UDim2.new(0.05, 0, 0.5, 0);
+			CurrentOption.BackgroundTransparency = 1;
+			CurrentOption.TextXAlignment = Enum.TextXAlignment.Left;
+			CurrentOption.TextSize = 10;
+			CurrentOption.Parent = Header2;
+			CurrentOption:SetAttribute("OshiruNoTranslate", true);
+			local COGrad = Instance.new("UIGradient");
+			COGrad.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(0.7, 0),NumberSequenceKeypoint.new(0.88, 0.35),NumberSequenceKeypoint.new(1, 1)});
+			COGrad.Parent = CurrentOption;
+			local Arrow = Instance.new("ImageLabel");
+			Arrow.BorderColor3 = Color3.fromRGB(0, 0, 0);
+			Arrow.AnchorPoint = Vector2.new(0, 0.5);
+			Arrow.Image = "rbxassetid://84232453189324";
+			Arrow.BackgroundTransparency = 1;
+			Arrow.Position = UDim2.new(0.91, 0, 0.5, 0);
+			Arrow.Name = "Arrow";
+			Arrow.Size = UDim2.new(0, 8, 0, 8);
+			Arrow.Parent = Header2;
+			local DropOptions = Instance.new("ScrollingFrame");
+			DropOptions.ScrollBarImageTransparency = 1;
+			DropOptions.Active = true;
+			DropOptions.AutomaticCanvasSize = Enum.AutomaticSize.XY;
+			DropOptions.ScrollBarThickness = 0;
+			DropOptions.Name = "Options";
+			DropOptions.Size = UDim2.new(0, 207, 0, 0);
+			DropOptions.BackgroundTransparency = 1;
+			DropOptions.Position = UDim2.new(0, 0, 1, 0);
+			DropOptions.CanvasSize = UDim2.new(0, 0, 0.5, 0);
+			DropOptions.Parent = Box;
+			local DOptLayout = Instance.new("UIListLayout");
+			DOptLayout.SortOrder = Enum.SortOrder.LayoutOrder;
+			DOptLayout.Parent = DropOptions;
+			local DOptPad = Instance.new("UIPadding");
+			DOptPad.PaddingTop = UDim.new(0, -1);
+			DOptPad.PaddingLeft = UDim.new(0, 10);
+			DOptPad.Parent = DropOptions;
+			local BoxLayout = Instance.new("UIListLayout");
+			BoxLayout.SortOrder = Enum.SortOrder.LayoutOrder;
+			BoxLayout.Parent = Box;
+			DropdownManager.update = function(self, option)
+				local function applyHighlight(object, isSelected)
+					local sh = object:FindFirstChild("SelectHighlight");
+					local sd = object:FindFirstChild("SelectDot");
+					local accent = (Themes[Library._current_theme] or Themes['Midnight']).Accent;
+					if isSelected then
+						object.TextTransparency = 0;
+						pcall(function()
+							object.FontFace = FontBold;
+						end);
+						if sh then
+							sh.BackgroundColor3 = accent;
+							TweenService:Create(sh, Tween.fast, {BackgroundTransparency=0.75}):Play();
+						end
+						if sd then
+							sd.BackgroundColor3 = accent;
+							TweenService:Create(sd, Tween.spring, {BackgroundTransparency=0}):Play();
+						end
+					else
+						object.TextTransparency = 0.6;
+						pcall(function()
+							object.FontFace = FontSemiBold;
+						end);
+						if sh then
+							TweenService:Create(sh, Tween.fast, {BackgroundTransparency=1}):Play();
+						end
+						if sd then
+							TweenService:Create(sd, Tween.fast, {BackgroundTransparency=1}):Play();
+						end
+					end
+				end
+				if settings.multi_dropdown then
+					if not Library._config._flags[settings.flag] then
+						Library._config._flags[settings.flag] = {};
+					end
+					local CurrentTargetValue = nil;
+					if (#Library._config._flags[settings.flag] > 0) then
+						CurrentTargetValue = convertTableToString(Library._config._flags[settings.flag]);
+					end
+					local selected = {};
+					if CurrentTargetValue then
+						for value in string.gmatch(CurrentTargetValue, "([^,]+)") do
+							local trimmed = value:match("^%s*(.-)%s*$");
+							if (trimmed ~= "Label") then
+								table.insert(selected, trimmed);
+							end
+						end
+					else
+						for value in string.gmatch(CurrentOption.Text, "([^,]+)") do
+							local trimmed = value:match("^%s*(.-)%s*$");
+							if (trimmed ~= "Label") then
+								table.insert(selected, trimmed);
+							end
+						end
+					end
+					local CurrentTextGet = convertStringToTable(CurrentOption.Text);
+					local optionSkibidi = ((typeof(option) ~= "string") and option.Name) or option;
+					for i, v in pairs(CurrentTextGet) do
+						if (v == optionSkibidi) then
+							table.remove(CurrentTextGet, i);
+							break;
+						end
+					end
+					CurrentOption.Text = table.concat(selected, ", ");
+					local OptionsChild = {};
+					for _, object in DropOptions:GetChildren() do
+						if (object.Name == "Option") then
+							table.insert(OptionsChild, object.Text);
+							applyHighlight(object, table.find(selected, object.Text) ~= nil);
+						end
+					end
+					local CurrentTargetValue2 = convertStringToTable(CurrentOption.Text);
+					for _, v in CurrentTargetValue2 do
+						if (not table.find(OptionsChild, v) and table.find(selected, v)) then
+							table.remove(selected, _);
+						end
+					end
+					CurrentOption.Text = table.concat(selected, ", ");
+					Library._config._flags[settings.flag] = convertStringToTable(CurrentOption.Text);
+				else
+					if (option == nil) then
+						return;
+					end
+					CurrentOption.Text = ((typeof(option) == "string") and option) or (option and option.Name) or "";
+					for _, object in DropOptions:GetChildren() do
+						if (object.Name == "Option") then
+							applyHighlight(object, object.Text == CurrentOption.Text);
+						end
+					end
+					Library._config._flags[settings.flag] = option;
+				end
+				Config:save(game.GameId, Library._config);
+				settings.callback(option);
+			end;
+			DropdownManager.unfold_settings = function(self)
+				self._state = not self._state;
+				if self._state then
+					TweenService:Create(Dropdown, Tween.smooth, {Size=UDim2.fromOffset(207, 39 + self._size)}):Play();
+					TweenService:Create(Box, Tween.smooth, {Size=UDim2.fromOffset(207, 22 + self._size)}):Play();
+					TweenService:Create(Arrow, Tween.smooth, {Rotation=180}):Play();
+				else
+					TweenService:Create(Dropdown, Tween.smooth, {Size=UDim2.fromOffset(207, 39)}):Play();
+					TweenService:Create(Box, Tween.smooth, {Size=UDim2.fromOffset(207, 22)}):Play();
+					TweenService:Create(Arrow, Tween.smooth, {Rotation=0}):Play();
+				end
+			end;
+			if (#settings.options > 0) then
+				DropdownManager._size = 3;
+				for index, value in settings.options do
+					local Option = Instance.new("TextButton");
+					Option.FontFace = FontSemiBold;
+					Option.Active = false;
+					Option.TextTransparency = 0.6;
+					Option.AnchorPoint = Vector2.new(0, 0.5);
+					Option.TextSize = 10;
+					Option.Size = UDim2.new(0, 186, 0, 18);
+					Option.TextColor3 = Color3.fromRGB(255, 255, 255);
+					Option.BorderColor3 = Color3.fromRGB(0, 0, 0);
+					Option.Text = ((typeof(value) == "string") and value) or value.Name;
+					Option.AutoButtonColor = false;
+					Option.Name = "Option";
+					Option.BackgroundTransparency = 1;
+					Option.TextXAlignment = Enum.TextXAlignment.Left;
+					Option.Selectable = false;
+					Option.Parent = DropOptions;
+					Option:SetAttribute("OshiruNoTranslate", true);
+					local SH = Instance.new("Frame");
+					SH.Name = "SelectHighlight";
+					SH.Size = UDim2.new(1, 4, 1, 0);
+					SH.Position = UDim2.new(0, -4, 0, 0);
+					SH.BackgroundColor3 = Themes[Library._current_theme].Accent;
+					SH.BackgroundTransparency = 1;
+					SH.BorderSizePixel = 0;
+					SH.ZIndex = Option.ZIndex - 1;
+					SH.Parent = Option;
+					local SHCorner = Instance.new("UICorner");
+					SHCorner.CornerRadius = UDim.new(0, 4);
+					SHCorner.Parent = SH;
+					local SD = Instance.new("Frame");
+					SD.Name = "SelectDot";
+					SD.Size = UDim2.fromOffset(4, 4);
+					SD.AnchorPoint = Vector2.new(1, 0.5);
+					SD.Position = UDim2.new(0, -6, 0.5, 0);
+					SD.BackgroundColor3 = Themes[Library._current_theme].Accent;
+					SD.BackgroundTransparency = 1;
+					SD.BorderSizePixel = 0;
+					SD.ZIndex = Option.ZIndex + 1;
+					SD.Parent = Option;
+					local SDCorner = Instance.new("UICorner");
+					SDCorner.CornerRadius = UDim.new(1, 0);
+					SDCorner.Parent = SD;
+					table.insert(lib._themed_elements.DropdownHighlights, {Highlight=SH,Dot=SD});
+					local OGrad = Instance.new("UIGradient");
+					OGrad.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(0.7, 0),NumberSequenceKeypoint.new(0.88, 0.35),NumberSequenceKeypoint.new(1, 1)});
+					OGrad.Parent = Option;
+					Option.MouseEnter:Connect(function()
+						if (Option.TextTransparency ~= 0) then
+							TweenService:Create(Option, Tween.snap, {TextTransparency=0.3}):Play();
+							TweenService:Create(SH, Tween.snap, {BackgroundTransparency=0.92}):Play();
+						end
+					end);
+					Option.MouseLeave:Connect(function()
+						if (Option.TextTransparency ~= 0) then
+							TweenService:Create(Option, Tween.snap, {TextTransparency=0.6}):Play();
+							TweenService:Create(SH, Tween.snap, {BackgroundTransparency=1}):Play();
+						end
+					end);
+					Option.MouseButton1Click:Connect(function()
+						if not Library._config._flags[settings.flag] then
+							Library._config._flags[settings.flag] = {};
+						end
+						if settings.multi_dropdown then
+							if table.find(Library._config._flags[settings.flag], value) then
+								Library:remove_table_value(Library._config._flags[settings.flag], value);
+							else
+								table.insert(Library._config._flags[settings.flag], value);
+							end
+						end
+						DropdownManager:update(value);
+					end);
+					if (index > settings.maximum_options) then
+						continue;
+					end
+					DropdownManager._size += 18
+					DropOptions.Size = UDim2.fromOffset(207, DropdownManager._size);
+				end
+			end
+			DropdownManager.New = function(self, value)
+				value.OrderValue = Dropdown.LayoutOrder;
+				Dropdown:Destroy();
+				return ModuleManager:create_dropdown(value);
+			end;
+			if Library:flag_type(settings.flag, "string") then
+				DropdownManager:update(Library._config._flags[settings.flag]);
+			elseif (settings.options and settings.options[1]) then
+				DropdownManager:update(settings.options[1]);
+			end
+			Dropdown.MouseButton1Click:Connect(function()
+				DropdownManager:unfold_settings();
+			end);
+			lib:register_element({tab_name=title,module_name=(settings.flag or "Module"),element_type="dropdown",element_title=(settings.title or "Dropdown"),get_frame_fn=function()
+				return Dropdown;
+			end,jump_fn=nil,switch_tab_fn=switch_to_this_tab,open_module_fn=open_this_module});
+			return DropdownManager;
+		end;
+		if Library._inject_v2_elements then
+			Library._inject_v2_elements(ModuleManager, Options, lib, title, switch_to_this_tab, open_this_module);
+		end
+		return ModuleManager;
+	end;
+	return TabManager;
+end;
+local function rgbToHsv(r, g, b)
+	local max, min = math.max(r, g, b), math.min(r, g, b);
+	local h, s, v = 0, 0, max;
+	local d = max - min;
+	s = ((max == 0) and 0) or (d / max);
+	if (max ~= min) then
+		if (max == r) then
+			h = ((g - b) / d) + (((g < b) and 6) or 0);
+		elseif (max == g) then
+			h = ((b - r) / d) + 2;
+		else
+			h = ((r - g) / d) + 4;
+		end
+		h = h / 6;
+	end
+	return h, s, v;
+end
+local function hsvToRgb(h, s, v)
+	local i = math.floor(h * 6);
+	local f = (h * 6) - i;
+	local p = v * (1 - s);
+	local q = v * (1 - (f * s));
+	local t = v * (1 - ((1 - f) * s));
+	i = i % 6;
+	local lut = {
+	    [0] = {
+	        v,
+	        t,
+	        p
+	    },
+	    [1] = {
+	        q,
+	        v,
+	        p
+	    },
+	    [2] = {
+	        p,
+	        v,
+	        t
+	    },
+	    [3] = {
+	        p,
+	        q,
+	        v
+	    },
+	    [4] = {
+	        t,
+	        p,
+	        v
+	    },
+	    [5] = {
+	        v,
+	        p,
+	        q
+	    }
+	};
+	local c = lut[i];
+	return c[1], c[2], c[3];
+end
+local function color3ToHex(c)
+	return string.format("%02X%02X%02X", math.clamp(math.floor((c.R * 255) + 0.5), 0, 255), math.clamp(math.floor((c.G * 255) + 0.5), 0, 255), math.clamp(math.floor((c.B * 255) + 0.5), 0, 255));
+end
+local function hexToColor3(hex)
+	hex = hex:gsub("#", "");
+	if (#hex ~= 6) then
+		return nil;
+	end
+	local r = tonumber(hex:sub(1, 2), 16);
+	local g = tonumber(hex:sub(3, 4), 16);
+	local b = tonumber(hex:sub(5, 6), 16);
+	if not (r and g and b) then
+		return nil;
+	end
+	return Color3.fromRGB(r, g, b);
+end
+Library._rgbToHsv = rgbToHsv;
+Library._hsvToRgb = hsvToRgb;
+Library._color3ToHex = color3ToHex;
+Library._hexToColor3 = hexToColor3;
+local function nextLayoutOrder(Options)
+	local max = 0;
+	for _, child in Options:GetChildren() do
+		if (child:IsA("GuiObject") and (child.LayoutOrder > max)) then
+			max = child.LayoutOrder;
+		end
+	end
+	return max + 1;
+end
+local StatusColors = {Enabled=Color3.fromRGB(60, 210, 120),Disabled=Color3.fromRGB(110, 115, 145),Warning=Color3.fromRGB(255, 185, 45),Error=Color3.fromRGB(230, 65, 75),Loading=nil};
+Library._inject_v2_elements = function(ModuleManager, Options, lib, tab_title, switch_to_this_tab, open_this_module)
+	ModuleManager.create_colorpicker = function(self, settings)
+		local lo = nextLayoutOrder(Options);
+		local CPM = {_color=(settings.default or Color3.fromRGB(130, 100, 255))};
+		local curH, curS, curV = rgbToHsv(CPM._color.R, CPM._color.G, CPM._color.B);
+		local curA = 1;
+		local Row = Instance.new("Frame");
+		Row.Name = "ColorpickerRow";
+		Row.BackgroundTransparency = 1;
+		Row.Size = UDim2.new(0, 207, 0, 20);
+		Row.BorderSizePixel = 0;
+		Row.LayoutOrder = lo;
+		Row.Parent = Options;
+		local RowTitle = Instance.new("TextLabel");
+		RowTitle.FontFace = FontSemiBold;
+		RowTitle.TextColor3 = Color3.fromRGB(255, 255, 255);
+		RowTitle.TextTransparency = 0.15;
+		RowTitle.Text = settings.title or "Color";
+		RowTitle.Size = UDim2.new(1, -32, 1, 0);
+		RowTitle.BackgroundTransparency = 1;
+		RowTitle.TextXAlignment = Enum.TextXAlignment.Left;
+		RowTitle.TextSize = 11;
+		RowTitle.Parent = Row;
+		local Swatch = Instance.new("TextButton");
+		Swatch.Name = "Swatch";
+		Swatch.Size = UDim2.new(0, 24, 0, 16);
+		Swatch.AnchorPoint = Vector2.new(1, 0.5);
+		Swatch.Position = UDim2.new(1, 0, 0.5, 0);
+		Swatch.BackgroundColor3 = CPM._color;
+		Swatch.BorderSizePixel = 0;
+		Swatch.AutoButtonColor = false;
+		Swatch.Text = "";
+		Swatch.ZIndex = 2;
+		Swatch.Parent = Row;
+		local SwCorner = Instance.new("UICorner");
+		SwCorner.CornerRadius = UDim.new(0, 4);
+		SwCorner.Parent = Swatch;
+		local SwStroke = Instance.new("UIStroke");
+		SwStroke.Color = Color3.fromRGB(255, 255, 255);
+		SwStroke.Transparency = 0.7;
+		SwStroke.Thickness = 1;
+		SwStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border;
+		SwStroke.Parent = Swatch;
+		local Popup = Instance.new("Frame");
+		Popup.Name = "CPPopup";
+		Popup.Size = UDim2.new(0, 207, 0, 0);
+		Popup.AutomaticSize = Enum.AutomaticSize.Y;
+		Popup.BackgroundColor3 = Color3.fromRGB(22, 27, 38);
+		Popup.BackgroundTransparency = 0.05;
+		Popup.BorderSizePixel = 0;
+		Popup.Visible = false;
+		Popup.ZIndex = 10;
+		Popup.LayoutOrder = lo + 0.5;
+		Popup.Parent = Options;
+		local PopCorner = Instance.new("UICorner");
+		PopCorner.CornerRadius = UDim.new(0, 6);
+		PopCorner.Parent = Popup;
+		local PopPad = Instance.new("UIPadding");
+		PopPad.PaddingTop = UDim.new(0, 8);
+		PopPad.PaddingBottom = UDim.new(0, 8);
+		PopPad.PaddingLeft = UDim.new(0, 8);
+		PopPad.PaddingRight = UDim.new(0, 8);
+		PopPad.Parent = Popup;
+		local PopLayout = Instance.new("UIListLayout");
+		PopLayout.Padding = UDim.new(0, 6);
+		PopLayout.SortOrder = Enum.SortOrder.LayoutOrder;
+		PopLayout.Parent = Popup;
+		local SVPicker = Instance.new("ImageButton");
+		SVPicker.Name = "SVPicker";
+		SVPicker.Size = UDim2.new(1, 0, 0, 120);
+		SVPicker.BackgroundColor3 = Color3.fromHSV(curH, 1, 1);
+		SVPicker.BorderSizePixel = 0;
+		SVPicker.AutoButtonColor = false;
+		SVPicker.ClipsDescendants = true;
+		SVPicker.LayoutOrder = 1;
+		SVPicker.ZIndex = 11;
+		SVPicker.Parent = Popup;
+		local SVCorner = Instance.new("UICorner");
+		SVCorner.CornerRadius = UDim.new(0, 5);
+		SVCorner.Parent = SVPicker;
+		local WhiteGrad = Instance.new("Frame");
+		WhiteGrad.Size = UDim2.new(1, 0, 1, 0);
+		WhiteGrad.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+		WhiteGrad.BorderSizePixel = 0;
+		WhiteGrad.ZIndex = 12;
+		WhiteGrad.Parent = SVPicker;
+		local WG = Instance.new("UIGradient");
+		WG.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0),NumberSequenceKeypoint.new(1, 1)});
+		WG.Parent = WhiteGrad;
+		local BlackGrad = Instance.new("Frame");
+		BlackGrad.Size = UDim2.new(1, 0, 1, 0);
+		BlackGrad.BackgroundColor3 = Color3.fromRGB(0, 0, 0);
+		BlackGrad.BorderSizePixel = 0;
+		BlackGrad.ZIndex = 13;
+		BlackGrad.Parent = SVPicker;
+		local BG2 = Instance.new("UIGradient");
+		BG2.Rotation = 90;
+		BG2.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 1),NumberSequenceKeypoint.new(1, 0)});
+		BG2.Parent = BlackGrad;
+		local SVCursor = Instance.new("Frame");
+		SVCursor.Name = "SVCursor";
+		SVCursor.Size = UDim2.fromOffset(10, 10);
+		SVCursor.AnchorPoint = Vector2.new(0.5, 0.5);
+		SVCursor.Position = UDim2.new(curS, 0, 1 - curV, 0);
+		SVCursor.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+		SVCursor.BorderSizePixel = 0;
+		SVCursor.ZIndex = 14;
+		SVCursor.Parent = SVPicker;
+		local SVCCorner = Instance.new("UICorner");
+		SVCCorner.CornerRadius = UDim.new(1, 0);
+		SVCCorner.Parent = SVCursor;
+		local SVCStroke = Instance.new("UIStroke");
+		SVCStroke.Color = Color3.fromRGB(0, 0, 0);
+		SVCStroke.Transparency = 0.35;
+		SVCStroke.Thickness = 1;
+		SVCStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border;
+		SVCStroke.Parent = SVCursor;
+		local HueBar = Instance.new("Frame");
+		HueBar.Name = "HueBar";
+		HueBar.Size = UDim2.new(1, 0, 0, 12);
+		HueBar.BorderSizePixel = 0;
+		HueBar.ClipsDescendants = true;
+		HueBar.LayoutOrder = 2;
+		HueBar.ZIndex = 11;
+		HueBar.Parent = Popup;
+		local HBCorner = Instance.new("UICorner");
+		HBCorner.CornerRadius = UDim.new(0, 6);
+		HBCorner.Parent = HueBar;
+		local HueGrad = Instance.new("UIGradient");
+		HueGrad.Color = ColorSequence.new({ColorSequenceKeypoint.new(0 / 6, Color3.fromRGB(255, 0, 0)),ColorSequenceKeypoint.new(1 / 6, Color3.fromRGB(255, 255, 0)),ColorSequenceKeypoint.new(2 / 6, Color3.fromRGB(0, 255, 0)),ColorSequenceKeypoint.new(3 / 6, Color3.fromRGB(0, 255, 255)),ColorSequenceKeypoint.new(4 / 6, Color3.fromRGB(0, 0, 255)),ColorSequenceKeypoint.new(5 / 6, Color3.fromRGB(255, 0, 255)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 0, 0))});
+		HueGrad.Parent = HueBar;
+		local HueCsr = Instance.new("Frame");
+		HueCsr.Name = "HueCsr";
+		HueCsr.Size = UDim2.fromOffset(8, 14);
+		HueCsr.AnchorPoint = Vector2.new(0.5, 0.5);
+		HueCsr.Position = UDim2.new(curH, 0, 0.5, 0);
+		HueCsr.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+		HueCsr.BorderSizePixel = 0;
+		HueCsr.ZIndex = 12;
+		HueCsr.Parent = HueBar;
+		local HCCorner = Instance.new("UICorner");
+		HCCorner.CornerRadius = UDim.new(0, 3);
+		HCCorner.Parent = HueCsr;
+		local HCStroke = Instance.new("UIStroke");
+		HCStroke.Color = Color3.fromRGB(0, 0, 0);
+		HCStroke.Transparency = 0.4;
+		HCStroke.Thickness = 1;
+		HCStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border;
+		HCStroke.Parent = HueCsr;
+		local AlphaBar = Instance.new("Frame");
+		AlphaBar.Name = "AlphaBar";
+		AlphaBar.Size = UDim2.new(1, 0, 0, 12);
+		AlphaBar.BorderSizePixel = 0;
+		AlphaBar.ClipsDescendants = true;
+		AlphaBar.LayoutOrder = 3;
+		AlphaBar.ZIndex = 11;
+		AlphaBar.Parent = Popup;
+		local ABCorner2 = Instance.new("UICorner");
+		ABCorner2.CornerRadius = UDim.new(0, 6);
+		ABCorner2.Parent = AlphaBar;
+		local AlphaGrad = Instance.new("UIGradient");
+		AlphaGrad.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.fromRGB(20, 20, 20)),ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))});
+		AlphaGrad.Parent = AlphaBar;
+		local AlphaCsr = Instance.new("Frame");
+		AlphaCsr.Name = "AlphaCsr";
+		AlphaCsr.Size = UDim2.fromOffset(8, 14);
+		AlphaCsr.AnchorPoint = Vector2.new(0.5, 0.5);
+		AlphaCsr.Position = UDim2.new(curA, 0, 0.5, 0);
+		AlphaCsr.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+		AlphaCsr.BorderSizePixel = 0;
+		AlphaCsr.ZIndex = 12;
+		AlphaCsr.Parent = AlphaBar;
+		local ACCorner2 = Instance.new("UICorner");
+		ACCorner2.CornerRadius = UDim.new(0, 3);
+		ACCorner2.Parent = AlphaCsr;
+		local BRow = Instance.new("Frame");
+		BRow.Size = UDim2.new(1, 0, 0, 20);
+		BRow.BackgroundTransparency = 1;
+		BRow.LayoutOrder = 4;
+		BRow.Parent = Popup;
+		local HexLabel = Instance.new("TextLabel");
+		HexLabel.Text = "#";
+		HexLabel.TextColor3 = Color3.fromRGB(160, 165, 190);
+		HexLabel.TextSize = 10;
+		HexLabel.FontFace = FontRegular;
+		HexLabel.Size = UDim2.new(0, 10, 1, 0);
+		HexLabel.BackgroundTransparency = 1;
+		HexLabel.Parent = BRow;
+		local HexBox = Instance.new("TextBox");
+		HexBox.Text = color3ToHex(CPM._color);
+		HexBox.PlaceholderText = "FF0000";
+		HexBox.TextColor3 = Color3.fromRGB(240, 242, 255);
+		HexBox.TextSize = 10;
+		HexBox.FontFace = FontRegular;
+		HexBox.Size = UDim2.new(0, 62, 1, 0);
+		HexBox.Position = UDim2.new(0, 14, 0, 0);
+		HexBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+		HexBox.BackgroundTransparency = 0.88;
+		HexBox.BorderSizePixel = 0;
+		HexBox.ClearTextOnFocus = false;
+		HexBox.ZIndex = 11;
+		HexBox.Parent = BRow;
+		local HBBox = Instance.new("UICorner");
+		HBBox.CornerRadius = UDim.new(0, 4);
+		HBBox.Parent = HexBox;
+		local CopyBtn = Instance.new("TextButton");
+		CopyBtn.Text = "Copy";
+		CopyBtn.TextSize = 10;
+		CopyBtn.FontFace = FontBold;
+		CopyBtn.TextColor3 = Color3.fromRGB(200, 205, 225);
+		CopyBtn.Size = UDim2.new(0, 36, 1, 0);
+		CopyBtn.Position = UDim2.new(0, 80, 0, 0);
+		CopyBtn.BackgroundColor3 = Themes[Library._current_theme].Accent;
+		CopyBtn.BackgroundTransparency = 0.4;
+		CopyBtn.BorderSizePixel = 0;
+		CopyBtn.AutoButtonColor = false;
+		CopyBtn.ZIndex = 11;
+		CopyBtn.Parent = BRow;
+		local CBCorner2 = Instance.new("UICorner");
+		CBCorner2.CornerRadius = UDim.new(0, 4);
+		CBCorner2.Parent = CopyBtn;
+		local Preview = Instance.new("Frame");
+		Preview.Size = UDim2.new(0, 40, 1, 0);
+		Preview.AnchorPoint = Vector2.new(1, 0);
+		Preview.Position = UDim2.new(1, 0, 0, 0);
+		Preview.BackgroundColor3 = CPM._color;
+		Preview.BorderSizePixel = 0;
+		Preview.Parent = BRow;
+		local PCorner2 = Instance.new("UICorner");
+		PCorner2.CornerRadius = UDim.new(0, 4);
+		PCorner2.Parent = Preview;
+		local function applyColor()
+			local r, g, b = hsvToRgb(curH, curS, curV);
+			local c = Color3.new(r, g, b);
+			CPM._color = c;
+			Swatch.BackgroundColor3 = c;
+			Preview.BackgroundColor3 = c;
+			SVPicker.BackgroundColor3 = Color3.fromHSV(curH, 1, 1);
+			SVCursor.Position = UDim2.new(curS, 0, 1 - curV, 0);
+			HueCsr.Position = UDim2.new(curH, 0, 0.5, 0);
+			AlphaCsr.Position = UDim2.new(curA, 0, 0.5, 0);
+			HexBox.Text = color3ToHex(c);
+			Library._config._flags[settings.flag] = {c.R,c.G,c.B,curA};
+			Config:save(game.GameId, Library._config);
+			if settings.callback then
+				settings.callback(c);
+			end
+		end
+		local _cp_conns = {};
+		local function makeDrag(track, onDelta)
+			local dragging = false;
+			table.insert(_cp_conns, track.InputBegan:Connect(function(inp)
+				if ((inp.UserInputType == Enum.UserInputType.MouseButton1) or (inp.UserInputType == Enum.UserInputType.Touch)) then
+					dragging = true;
+					onDelta(inp.Position);
+				end
+			end));
+			table.insert(_cp_conns, UserInputService.InputEnded:Connect(function(inp)
+				if ((inp.UserInputType == Enum.UserInputType.MouseButton1) or (inp.UserInputType == Enum.UserInputType.Touch)) then
+					dragging = false;
+				end
+			end));
+			table.insert(_cp_conns, UserInputService.InputChanged:Connect(function(inp)
+				if not dragging then
+					return;
+				end
+				if ((inp.UserInputType == Enum.UserInputType.MouseMovement) or (inp.UserInputType == Enum.UserInputType.Touch)) then
+					onDelta(inp.Position);
+				end
+			end));
+		end
+		makeDrag(SVPicker, function(pos)
+			local abs = SVPicker.AbsolutePosition;
+			local sz = SVPicker.AbsoluteSize;
+			curS = math.clamp((pos.X - abs.X) / sz.X, 0, 1);
+			curV = 1 - math.clamp((pos.Y - abs.Y) / sz.Y, 0, 1);
+			applyColor();
+		end);
+		makeDrag(HueBar, function(pos)
+			curH = math.clamp((pos.X - HueBar.AbsolutePosition.X) / HueBar.AbsoluteSize.X, 0, 1);
+			applyColor();
+		end);
+		makeDrag(AlphaBar, function(pos)
+			curA = math.clamp((pos.X - AlphaBar.AbsolutePosition.X) / AlphaBar.AbsoluteSize.X, 0, 1);
+			applyColor();
+		end);
+		HexBox.FocusLost:Connect(function()
+			local c = hexToColor3(HexBox.Text);
+			if c then
+				curH, curS, curV = rgbToHsv(c.R, c.G, c.B);
+				applyColor();
+			else
+				HexBox.Text = color3ToHex(CPM._color);
+			end
+		end);
+		CopyBtn.MouseButton1Click:Connect(function()
+			local hex = "#" .. color3ToHex(CPM._color);
+			pcall(function()
+				if setclipboard then
+					setclipboard(hex);
+				end
+			end);
+			Library.SendNotification({title="Copied",text=hex,duration=1.5});
+		end);
+		Swatch.MouseButton1Click:Connect(function()
+			Popup.Visible = not Popup.Visible;
+		end);
+		local sv = Library._config._flags[settings.flag];
+		if ((type(sv) == "table") and (#sv >= 3)) then
+			local c = Color3.new(sv[1], sv[2], sv[3]);
+			if sv[4] then
+				curA = sv[4];
+			end
+			curH, curS, curV = rgbToHsv(c.R, c.G, c.B);
+			CPM._color = c;
+			applyColor();
+		else
+			applyColor();
+		end
+		CPM.Destroy = function()
+			for _, c in ipairs(_cp_conns) do
+				pcall(function()
+					c:Disconnect();
+				end);
+			end
+			Row:Destroy();
+			if Popup.Parent then
+				Popup:Destroy();
+			end
+		end;
+		CPM.SetColor = function(_, color)
+			curH, curS, curV = rgbToHsv(color.R, color.G, color.B);
+			CPM._color = color;
+			applyColor();
+		end;
+		CPM.GetColor = function()
+			return CPM._color;
+		end;
+		CPM.SetAlpha = function(_, a)
+			curA = math.clamp(a, 0, 1);
+			applyColor();
+		end;
+		lib:register_element({tab_name=tab_title,module_name=(settings.flag or "?"),element_type="colorpicker",element_title=(settings.title or "Color"),get_frame_fn=function()
+			return Row;
+		end,switch_tab_fn=switch_to_this_tab,open_module_fn=open_this_module});
+		return CPM;
+	end;
+	ModuleManager.create_keybind = function(self, settings)
+		local lo = nextLayoutOrder(Options);
+		local KBM = {_key=(settings.default or Enum.KeyCode.Unknown),_mode=(settings.mode or "Toggle"),_active=false};
+		local KBRow = Instance.new("Frame");
+		KBRow.Name = "KeybindRow";
+		KBRow.BackgroundTransparency = 1;
+		KBRow.Size = UDim2.new(0, 207, 0, 28);
+		KBRow.BorderSizePixel = 0;
+		KBRow.LayoutOrder = lo;
+		KBRow.Parent = Options;
+		local KBTitle = Instance.new("TextLabel");
+		KBTitle.FontFace = FontSemiBold;
+		KBTitle.TextColor3 = Color3.fromRGB(255, 255, 255);
+		KBTitle.TextTransparency = 0.15;
+		KBTitle.Text = settings.title or "Keybind";
+		KBTitle.Size = UDim2.new(1, -100, 0, 14);
+		KBTitle.Position = UDim2.new(0, 0, 0, 0);
+		KBTitle.BackgroundTransparency = 1;
+		KBTitle.TextXAlignment = Enum.TextXAlignment.Left;
+		KBTitle.TextSize = 11;
+		KBTitle.Parent = KBRow;
+		local Pill = Instance.new("TextButton");
+		Pill.Name = "KeybindPill";
+		Pill.Size = UDim2.new(0, 64, 0, 16);
+		Pill.AnchorPoint = Vector2.new(1, 0);
+		Pill.Position = UDim2.new(1, 0, 0, 0);
+		Pill.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+		Pill.BackgroundTransparency = 0.84;
+		Pill.BorderSizePixel = 0;
+		Pill.AutoButtonColor = false;
+		Pill.Text = "";
+		Pill.ZIndex = 2;
+		Pill.Parent = KBRow;
+		local PCorner3 = Instance.new("UICorner");
+		PCorner3.CornerRadius = UDim.new(0, 4);
+		PCorner3.Parent = Pill;
+		local PillLabel = Instance.new("TextLabel");
+		PillLabel.FontFace = FontBold;
+		PillLabel.TextColor3 = Color3.fromRGB(200, 210, 255);
+		PillLabel.TextSize = 9;
+		PillLabel.Size = UDim2.new(1, -4, 1, 0);
+		PillLabel.Position = UDim2.new(0, 2, 0, 0);
+		PillLabel.BackgroundTransparency = 1;
+		PillLabel.TextXAlignment = Enum.TextXAlignment.Center;
+		PillLabel.ZIndex = 3;
+		PillLabel.Parent = Pill;
+		PillLabel:SetAttribute("OshiruNoTranslate", true);
+		local ModeTag = Instance.new("TextLabel");
+		ModeTag.FontFace = FontRegular;
+		ModeTag.TextColor3 = Color3.fromRGB(110, 115, 145);
+		ModeTag.TextSize = 9;
+		ModeTag.Text = KBM._mode;
+		ModeTag.Size = UDim2.new(1, -100, 0, 12);
+		ModeTag.Position = UDim2.new(0, 0, 0, 16);
+		ModeTag.BackgroundTransparency = 1;
+		ModeTag.TextXAlignment = Enum.TextXAlignment.Left;
+		ModeTag.Parent = KBRow;
+		ModeTag:SetAttribute("OshiruNoTranslate", true);
+		local function pillText()
+			if (KBM._key == Enum.KeyCode.Unknown) then
+				return "None";
+			end
+			return string.gsub(tostring(KBM._key), "Enum%.KeyCode%.", "");
+		end
+		PillLabel.Text = pillText();
+		local listening = false;
+		Pill.MouseButton1Click:Connect(function()
+			if listening then
+				return;
+			end
+			listening = true;
+			PillLabel.Text = "...";
+			TweenService:Create(Pill, Tween.fast, {BackgroundTransparency=0.55}):Play();
+			local c;
+			c = UserInputService.InputBegan:Connect(function(inp, gp)
+				if gp then
+					return;
+				end
+				if (inp.KeyCode == Enum.KeyCode.Unknown) then
+					return;
+				end
+				c:Disconnect();
+				listening = false;
+				KBM._key = ((inp.KeyCode == Enum.KeyCode.Backspace) and Enum.KeyCode.Unknown) or inp.KeyCode;
+				Library._config._flags[settings.flag .. "_kbv2"] = tostring(KBM._key);
+				Config:save(game.GameId, Library._config);
+				TweenService:Create(Pill, Tween.fast, {BackgroundTransparency=0.84}):Play();
+				PillLabel.Text = pillText();
+			end);
+		end);
+		local modes = {"Toggle","Hold","Always"};
+		Pill.InputBegan:Connect(function(inp)
+			if (inp.UserInputType ~= Enum.UserInputType.MouseButton2) then
+				return;
+			end
+			local idx = table.find(modes, KBM._mode) or 1;
+			KBM._mode = modes[(idx % #modes) + 1];
+			ModeTag.Text = KBM._mode;
+			Library._config._flags[settings.flag .. "_mode"] = KBM._mode;
+			Config:save(game.GameId, Library._config);
+		end);
+		local kbConn = UserInputService.InputBegan:Connect(function(inp, gp)
+			if gp then
+				return;
+			end
+			if (inp.KeyCode ~= KBM._key) then
+				return;
+			end
+			if (KBM._mode == "Toggle") then
+				KBM._active = not KBM._active;
+				if settings.callback then
+					settings.callback(KBM._active);
+				end
+			elseif (KBM._mode == "Hold") then
+				KBM._active = true;
+				if settings.callback then
+					settings.callback(true);
+				end
+			end
+		end);
+		local kbEndConn = UserInputService.InputEnded:Connect(function(inp)
+			if (inp.KeyCode ~= KBM._key) then
+				return;
+			end
+			if ((KBM._mode == "Hold") and KBM._active) then
+				KBM._active = false;
+				if settings.callback then
+					settings.callback(false);
+				end
+			end
+		end);
+		local sv = Library._config._flags[settings.flag .. "_kbv2"];
+		if sv then
+			local kn = sv:gsub("Enum%.KeyCode%.", "");
+			local ok, kc = pcall(function()
+				return Enum.KeyCode[kn];
+			end);
+			if (ok and kc) then
+				KBM._key = kc;
+				PillLabel.Text = pillText();
+			end
+		end
+		if Library._config._flags[settings.flag .. "_mode"] then
+			KBM._mode = Library._config._flags[settings.flag .. "_mode"];
+			ModeTag.Text = KBM._mode;
+		end
+		KBM.SetKeybind = function(_, kc)
+			KBM._key = kc;
+			PillLabel.Text = pillText();
+		end;
+		KBM.GetKeybind = function()
+			return KBM._key;
+		end;
+		KBM.SetMode = function(_, m)
+			KBM._mode = m;
+			ModeTag.Text = m;
+		end;
+		KBM.Destroy = function()
+			if kbConn then
+				pcall(function()
+					kbConn:Disconnect();
+				end);
+			end
+			if kbEndConn then
+				pcall(function()
+					kbEndConn:Disconnect();
+				end);
+			end
+			KBRow:Destroy();
+		end;
+		lib:register_element({tab_name=tab_title,module_name=(settings.flag or "?"),element_type="keybind",element_title=(settings.title or "Keybind"),get_frame_fn=function()
+			return KBRow;
+		end,switch_tab_fn=switch_to_this_tab,open_module_fn=open_this_module});
+		return KBM;
+	end;
+	ModuleManager.create_multidropdown = function(self, settings)
+		local lo = nextLayoutOrder(Options);
+		local MDM = {_selected=((settings.default and table.clone(settings.default)) or {})};
+		local MDFrame = Instance.new("Frame");
+		MDFrame.Name = "MultiDD";
+		MDFrame.BackgroundTransparency = 1;
+		MDFrame.Size = UDim2.new(0, 207, 0, 0);
+		MDFrame.AutomaticSize = Enum.AutomaticSize.Y;
+		MDFrame.BorderSizePixel = 0;
+		MDFrame.LayoutOrder = lo;
+		MDFrame.ClipsDescendants = false;
+		MDFrame.Parent = Options;
+		local MDF_L = Instance.new("UIListLayout");
+		MDF_L.Padding = UDim.new(0, 4);
+		MDF_L.SortOrder = Enum.SortOrder.LayoutOrder;
+		MDF_L.Parent = MDFrame;
+		local TitleLbl = Instance.new("TextLabel");
+		TitleLbl.FontFace = FontSemiBold;
+		TitleLbl.TextColor3 = Color3.fromRGB(255, 255, 255);
+		TitleLbl.TextTransparency = 0.15;
+		TitleLbl.Text = settings.title or "Select";
+		TitleLbl.Size = UDim2.new(1, 0, 0, 13);
+		TitleLbl.BackgroundTransparency = 1;
+		TitleLbl.TextXAlignment = Enum.TextXAlignment.Left;
+		TitleLbl.TextSize = 11;
+		TitleLbl.LayoutOrder = 1;
+		TitleLbl.Parent = MDFrame;
+		local Header = Instance.new("TextButton");
+		Header.Size = UDim2.new(1, 0, 0, 22);
+		Header.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+		Header.BackgroundTransparency = 0.88;
+		Header.BorderSizePixel = 0;
+		Header.AutoButtonColor = false;
+		Header.Text = "";
+		Header.LayoutOrder = 2;
+		Header.ZIndex = 2;
+		Header.Parent = MDFrame;
+		local HCorner2 = Instance.new("UICorner");
+		HCorner2.CornerRadius = UDim.new(0, 5);
+		HCorner2.Parent = Header;
+		local CurText = Instance.new("TextLabel");
+		CurText.Size = UDim2.new(1, -24, 1, 0);
+		CurText.Position = UDim2.new(0, 8, 0, 0);
+		CurText.BackgroundTransparency = 1;
+		CurText.TextColor3 = Color3.fromRGB(255, 255, 255);
+		CurText.TextTransparency = 0.15;
+		CurText.TextSize = 10;
+		CurText.FontFace = FontSemiBold;
+		CurText.TextXAlignment = Enum.TextXAlignment.Left;
+		CurText.Text = ((#MDM._selected > 0) and table.concat(MDM._selected, ", ")) or "None";
+		CurText.ZIndex = 3;
+		CurText.Parent = Header;
+		CurText:SetAttribute("OshiruNoTranslate", true);
+		local Arrow2 = Instance.new("ImageLabel");
+		Arrow2.Image = "rbxassetid://84232453189324";
+		Arrow2.Size = UDim2.fromOffset(8, 8);
+		Arrow2.AnchorPoint = Vector2.new(1, 0.5);
+		Arrow2.Position = UDim2.new(1, -8, 0.5, 0);
+		Arrow2.BackgroundTransparency = 1;
+		Arrow2.ZIndex = 3;
+		Arrow2.Parent = Header;
+		local SearchRow = Instance.new("TextBox");
+		SearchRow.PlaceholderText = "Search...";
+		SearchRow.Text = "";
+		SearchRow.TextColor3 = Color3.fromRGB(255, 255, 255);
+		SearchRow.TextSize = 10;
+		SearchRow.FontFace = FontRegular;
+		SearchRow.Size = UDim2.new(1, 0, 0, 18);
+		SearchRow.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+		SearchRow.BackgroundTransparency = 0.9;
+		SearchRow.BorderSizePixel = 0;
+		SearchRow.Visible = false;
+		SearchRow.LayoutOrder = 3;
+		SearchRow.ZIndex = 3;
+		SearchRow.ClearTextOnFocus = false;
+		SearchRow.Parent = MDFrame;
+		local SRC = Instance.new("UICorner");
+		SRC.CornerRadius = UDim.new(0, 4);
+		SRC.Parent = SearchRow;
+		local OptsScroll = Instance.new("ScrollingFrame");
+		OptsScroll.Size = UDim2.new(1, 0, 0, 0);
+		OptsScroll.AutomaticCanvasSize = Enum.AutomaticSize.Y;
+		OptsScroll.ScrollBarThickness = 2;
+		OptsScroll.ScrollBarImageTransparency = 0.6;
+		OptsScroll.BackgroundTransparency = 1;
+		OptsScroll.Visible = false;
+		OptsScroll.LayoutOrder = 4;
+		OptsScroll.CanvasSize = UDim2.new(0, 0, 0, 0);
+		OptsScroll.BorderSizePixel = 0;
+		OptsScroll.Parent = MDFrame;
+		local OL2 = Instance.new("UIListLayout");
+		OL2.SortOrder = Enum.SortOrder.LayoutOrder;
+		OL2.Padding = UDim.new(0, 2);
+		OL2.Parent = OptsScroll;
+		local SARow2 = Instance.new("Frame");
+		SARow2.BackgroundTransparency = 1;
+		SARow2.Size = UDim2.new(1, 0, 0, 16);
+		SARow2.Visible = false;
+		SARow2.LayoutOrder = 5;
+		SARow2.Parent = MDFrame;
+		local SAL2 = Instance.new("UIListLayout");
+		SAL2.FillDirection = Enum.FillDirection.Horizontal;
+		SAL2.Padding = UDim.new(0, 4);
+		SAL2.Parent = SARow2;
+		local function mkSmallBtn(txt, parent)
+			local b = Instance.new("TextButton");
+			b.Text = txt;
+			b.TextSize = 9;
+			b.FontFace = FontBold;
+			b.TextColor3 = Color3.fromRGB(200, 205, 225);
+			b.Size = UDim2.new(0, 58, 0, 14);
+			b.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+			b.BackgroundTransparency = 0.88;
+			b.BorderSizePixel = 0;
+			b.AutoButtonColor = false;
+			b.Parent = parent;
+			local bc = Instance.new("UICorner");
+			bc.CornerRadius = UDim.new(0, 3);
+			bc.Parent = b;
+			return b;
+		end
+		local SelAll = mkSmallBtn("Select All", SARow2);
+		local DeselAll = mkSmallBtn("Deselect All", SARow2);
+		local function refreshText()
+			CurText.Text = ((#MDM._selected > 0) and table.concat(MDM._selected, ", ")) or "None";
+			Library._config._flags[settings.flag] = table.clone(MDM._selected);
+			Config:save(game.GameId, Library._config);
+			if settings.callback then
+				settings.callback(table.clone(MDM._selected));
+			end
+		end
+		local function buildOpts(filter)
+			for _, c in OptsScroll:GetChildren() do
+				if c:IsA("TextButton") then
+					c:Destroy();
+				end
+			end
+			local totalH = 0;
+			for _, opt in ipairs(settings.options) do
+				if ((filter ~= "") and not opt:lower():find(filter:lower(), 1, true)) then
+					continue;
+				end
+				local isSel = table.find(MDM._selected, opt) ~= nil;
+				local Opt = Instance.new("TextButton");
+				Opt.Size = UDim2.new(1, 0, 0, 16);
+				Opt.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+				Opt.BackgroundTransparency = (isSel and 0.7) or 0.93;
+				Opt.BorderSizePixel = 0;
+				Opt.AutoButtonColor = false;
+				Opt.Text = "";
+				Opt.Parent = OptsScroll;
+				local OC = Instance.new("UICorner");
+				OC.CornerRadius = UDim.new(0, 3);
+				OC.Parent = Opt;
+				local OL3 = Instance.new("TextLabel");
+				OL3.Text = opt;
+				OL3.TextSize = 10;
+				OL3.TextColor3 = Color3.fromRGB(255, 255, 255);
+				OL3.TextTransparency = (isSel and 0) or 0.5;
+				OL3.FontFace = FontSemiBold;
+				OL3.Size = UDim2.new(1, -20, 1, 0);
+				OL3.Position = UDim2.new(0, 8, 0, 0);
+				OL3.BackgroundTransparency = 1;
+				OL3.TextXAlignment = Enum.TextXAlignment.Left;
+				OL3.Parent = Opt;
+				OL3:SetAttribute("OshiruNoTranslate", true);
+				local Dot = Instance.new("Frame");
+				Dot.Size = UDim2.fromOffset(5, 5);
+				Dot.AnchorPoint = Vector2.new(1, 0.5);
+				Dot.Position = UDim2.new(1, -6, 0.5, 0);
+				Dot.BackgroundColor3 = Themes[Library._current_theme].Accent;
+				Dot.BackgroundTransparency = (isSel and 0) or 1;
+				Dot.BorderSizePixel = 0;
+				Dot.Parent = Opt;
+				local DC = Instance.new("UICorner");
+				DC.CornerRadius = UDim.new(1, 0);
+				DC.Parent = Dot;
+				Opt.MouseButton1Click:Connect(function()
+					local idx2 = table.find(MDM._selected, opt);
+					if idx2 then
+						table.remove(MDM._selected, idx2);
+						TweenService:Create(Opt, Tween.fast, {BackgroundTransparency=0.93}):Play();
+						TweenService:Create(OL3, Tween.fast, {TextTransparency=0.5}):Play();
+						TweenService:Create(Dot, Tween.fast, {BackgroundTransparency=1}):Play();
+					else
+						table.insert(MDM._selected, opt);
+						TweenService:Create(Opt, Tween.fast, {BackgroundTransparency=0.7}):Play();
+						TweenService:Create(OL3, Tween.fast, {TextTransparency=0}):Play();
+						TweenService:Create(Dot, Tween.fast, {BackgroundTransparency=0}):Play();
+					end
+					refreshText();
+				end);
+				totalH = totalH + 18;
+			end
+			OptsScroll.Size = UDim2.new(1, 0, 0, math.min(totalH, 90));
+		end
+		SelAll.MouseButton1Click:Connect(function()
+			MDM._selected = table.clone(settings.options);
+			buildOpts(SearchRow.Text);
+			refreshText();
+		end);
+		DeselAll.MouseButton1Click:Connect(function()
+			MDM._selected = {};
+			buildOpts(SearchRow.Text);
+			refreshText();
+		end);
+		local mdOpen2 = false;
+		Header.MouseButton1Click:Connect(function()
+			mdOpen2 = not mdOpen2;
+			OptsScroll.Visible = mdOpen2;
+			SearchRow.Visible = mdOpen2;
+			SARow2.Visible = mdOpen2;
+			TweenService:Create(Arrow2, Tween.smooth, {Rotation=((mdOpen2 and 180) or 0)}):Play();
+			if mdOpen2 then
+				buildOpts("");
+			end
+		end);
+		SearchRow:GetPropertyChangedSignal("Text"):Connect(function()
+			buildOpts(SearchRow.Text);
+		end);
+		local sv2 = Library._config._flags[settings.flag];
+		if (type(sv2) == "table") then
+			MDM._selected = table.clone(sv2);
+			CurText.Text = ((#sv2 > 0) and table.concat(sv2, ", ")) or "None";
+		end
+		MDM.SetSelected = function(_, sel)
+			MDM._selected = sel;
+			buildOpts("");
+			refreshText();
+		end;
+		MDM.GetSelected = function()
+			return table.clone(MDM._selected);
+		end;
+		MDM.SetOptions = function(_, opts)
+			settings.options = opts;
+			if mdOpen2 then
+				buildOpts("");
+			end
+		end;
+		lib:register_element({tab_name=tab_title,module_name=(settings.flag or "?"),element_type="multidropdown",element_title=(settings.title or "Multi-Select"),get_frame_fn=function()
+			return MDFrame;
+		end,switch_tab_fn=switch_to_this_tab,open_module_fn=open_this_module});
+		return MDM;
+	end;
+	ModuleManager.create_progressbar = function(self, settings)
+		local lo = nextLayoutOrder(Options);
+		local PBM = {_value=math.clamp(settings.value or 0, 0, 100)};
+		local PBFrame = Instance.new("Frame");
+		PBFrame.BackgroundTransparency = 1;
+		PBFrame.Size = UDim2.new(0, 207, 0, 30);
+		PBFrame.BorderSizePixel = 0;
+		PBFrame.LayoutOrder = lo;
+		PBFrame.Parent = Options;
+		local PBTitle = Instance.new("TextLabel");
+		PBTitle.FontFace = FontSemiBold;
+		PBTitle.TextColor3 = Color3.fromRGB(255, 255, 255);
+		PBTitle.TextTransparency = 0.15;
+		PBTitle.Text = settings.title or "Progress";
+		PBTitle.Size = UDim2.new(1, -40, 0, 13);
+		PBTitle.BackgroundTransparency = 1;
+		PBTitle.TextXAlignment = Enum.TextXAlignment.Left;
+		PBTitle.TextSize = 11;
+		PBTitle.Parent = PBFrame;
+		local PctLbl = Instance.new("TextLabel");
+		PctLbl.FontFace = FontBold;
+		PctLbl.TextColor3 = Themes[Library._current_theme].Accent;
+		PctLbl.TextSize = 10;
+		PctLbl.Text = PBM._value .. "%";
+		PctLbl.Size = UDim2.new(0, 38, 0, 13);
+		PctLbl.AnchorPoint = Vector2.new(1, 0);
+		PctLbl.Position = UDim2.new(1, 0, 0, 0);
+		PctLbl.BackgroundTransparency = 1;
+		PctLbl.TextXAlignment = Enum.TextXAlignment.Right;
+		PctLbl.Parent = PBFrame;
+		PctLbl:SetAttribute("OshiruNoTranslate", true);
+		local TrackBG = Instance.new("Frame");
+		TrackBG.Size = UDim2.new(1, 0, 0, 6);
+		TrackBG.Position = UDim2.new(0, 0, 0, 18);
+		TrackBG.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+		TrackBG.BackgroundTransparency = 0.87;
+		TrackBG.BorderSizePixel = 0;
+		TrackBG.ClipsDescendants = true;
+		TrackBG.Parent = PBFrame;
+		local TBCorner2 = Instance.new("UICorner");
+		TBCorner2.CornerRadius = UDim.new(1, 0);
+		TBCorner2.Parent = TrackBG;
+		local Fill = Instance.new("Frame");
+		Fill.Size = UDim2.new(PBM._value / 100, 0, 1, 0);
+		Fill.BackgroundColor3 = Themes[Library._current_theme].Accent;
+		Fill.BorderSizePixel = 0;
+		Fill.Parent = TrackBG;
+		table.insert(lib._themed_elements.ProgressFills, Fill);
+		local FCorner2 = Instance.new("UICorner");
+		FCorner2.CornerRadius = UDim.new(1, 0);
+		FCorner2.Parent = Fill;
+		PBM.SetValue = function(_, val)
+			val = math.clamp(val, 0, 100);
+			PBM._value = val;
+			TweenService:Create(Fill, Tween.smooth, {Size=UDim2.new(val / 100, 0, 1, 0)}):Play();
+			PctLbl.Text = val .. "%";
+			if settings.callback then
+				settings.callback(val);
+			end
+		end;
+		PBM.GetValue = function()
+			return PBM._value;
+		end;
+		lib:register_element({tab_name=tab_title,module_name=(settings.flag or "?"),element_type="progressbar",element_title=(settings.title or "Progress"),get_frame_fn=function()
+			return PBFrame;
+		end,switch_tab_fn=switch_to_this_tab,open_module_fn=open_this_module});
+		return PBM;
+	end;
+	ModuleManager.create_status = function(self, settings)
+		local lo = nextLayoutOrder(Options);
+		local SM = {_status=(settings.status or "Enabled")};
+		local SFrame = Instance.new("Frame");
+		SFrame.BackgroundColor3 = Color3.fromRGB(28, 35, 48);
+		SFrame.BackgroundTransparency = 0.05;
+		SFrame.Size = UDim2.new(0, 207, 0, 22);
+		SFrame.BorderSizePixel = 0;
+		SFrame.LayoutOrder = lo;
+		SFrame.Parent = Options;
+		local SCorner2 = Instance.new("UICorner");
+		SCorner2.CornerRadius = UDim.new(0, 5);
+		SCorner2.Parent = SFrame;
+		local SDot = Instance.new("Frame");
+		SDot.Name = "SDot";
+		SDot.Size = UDim2.fromOffset(7, 7);
+		SDot.AnchorPoint = Vector2.new(0, 0.5);
+		SDot.Position = UDim2.new(0, 10, 0.5, 0);
+		SDot.BackgroundColor3 = StatusColors[SM._status] or Themes[Library._current_theme].Accent;
+		SDot.BorderSizePixel = 0;
+		SDot.Parent = SFrame;
+		local SDotCorner = Instance.new("UICorner");
+		SDotCorner.CornerRadius = UDim.new(1, 0);
+		SDotCorner.Parent = SDot;
+		local STitleLbl = Instance.new("TextLabel");
+		STitleLbl.FontFace = FontSemiBold;
+		STitleLbl.TextColor3 = Color3.fromRGB(255, 255, 255);
+		STitleLbl.TextTransparency = 0.15;
+		STitleLbl.Text = settings.title or "Status";
+		STitleLbl.Size = UDim2.new(0, 90, 1, 0);
+		STitleLbl.Position = UDim2.new(0, 23, 0, 0);
+		STitleLbl.BackgroundTransparency = 1;
+		STitleLbl.TextXAlignment = Enum.TextXAlignment.Left;
+		STitleLbl.TextSize = 11;
+		STitleLbl.Parent = SFrame;
+		local STextLbl = Instance.new("TextLabel");
+		STextLbl.FontFace = FontRegular;
+		STextLbl.TextColor3 = StatusColors[SM._status] or Themes[Library._current_theme].Accent;
+		STextLbl.TextTransparency = 0.1;
+		STextLbl.Text = settings.status or "Enabled";
+		STextLbl.Size = UDim2.new(1, -120, 1, 0);
+		STextLbl.AnchorPoint = Vector2.new(1, 0.5);
+		STextLbl.Position = UDim2.new(1, -10, 0.5, 0);
+		STextLbl.BackgroundTransparency = 1;
+		STextLbl.TextXAlignment = Enum.TextXAlignment.Right;
+		STextLbl.TextSize = 10;
+		STextLbl.Parent = SFrame;
+		local loadConn2 = nil;
+		SM.SetStatus = function(_, status, text)
+			SM._status = status;
+			if loadConn2 then
+				loadConn2:Disconnect();
+				loadConn2 = nil;
+			end
+			SDot.BackgroundTransparency = 0;
+			local col = StatusColors[status] or Themes[Library._current_theme].Accent;
+			TweenService:Create(SDot, Tween.smooth, {BackgroundColor3=col}):Play();
+			TweenService:Create(STextLbl, Tween.smooth, {TextColor3=col}):Play();
+			STextLbl.Text = text or status;
+			if (status == "Loading") then
+				local t2 = 0;
+				loadConn2 = RunService.Heartbeat:Connect(function(dt)
+					t2 = t2 + dt;
+					SDot.BackgroundTransparency = math.abs(math.sin(t2 * 2.5));
+				end);
+			end
+		end;
+		if (settings.status == "Loading") then
+			SM:SetStatus("Loading", settings.text or "Loading...");
+		end
+		lib:register_element({tab_name=tab_title,module_name=(settings.flag or settings.title or "?"),element_type="status",element_title=(settings.title or "Status"),get_frame_fn=function()
+			return SFrame;
+		end,switch_tab_fn=switch_to_this_tab,open_module_fn=open_this_module});
+		return SM;
+	end;
+	ModuleManager.create_buttongroup = function(self, settings)
+		local lo = nextLayoutOrder(Options);
+		local BGM = {_buttons={}};
+		local Outer = Instance.new("Frame");
+		Outer.BackgroundTransparency = 1;
+		Outer.Size = UDim2.new(0, 207, 0, 0);
+		Outer.AutomaticSize = Enum.AutomaticSize.Y;
+		Outer.BorderSizePixel = 0;
+		Outer.LayoutOrder = lo;
+		Outer.Parent = Options;
+		local OL4 = Instance.new("UIListLayout");
+		OL4.Padding = UDim.new(0, 4);
+		OL4.SortOrder = Enum.SortOrder.LayoutOrder;
+		OL4.Parent = Outer;
+		if settings.title then
+			local TL2 = Instance.new("TextLabel");
+			TL2.FontFace = FontSemiBold;
+			TL2.TextColor3 = Color3.fromRGB(255, 255, 255);
+			TL2.TextTransparency = 0.15;
+			TL2.Text = settings.title;
+			TL2.TextSize = 11;
+			TL2.Size = UDim2.new(1, 0, 0, 13);
+			TL2.BackgroundTransparency = 1;
+			TL2.TextXAlignment = Enum.TextXAlignment.Left;
+			TL2.LayoutOrder = 1;
+			TL2.Parent = Outer;
+		end
+		local btnDefs = settings.buttons or {};
+		local count = math.max(1, #btnDefs);
+		local btnW = math.floor((207 - (4 * (count - 1))) / count);
+		local BtnRow2 = Instance.new("Frame");
+		BtnRow2.BackgroundTransparency = 1;
+		BtnRow2.Size = UDim2.new(1, 0, 0, 26);
+		BtnRow2.LayoutOrder = 2;
+		BtnRow2.Parent = Outer;
+		local BRL2 = Instance.new("UIListLayout");
+		BRL2.FillDirection = Enum.FillDirection.Horizontal;
+		BRL2.Padding = UDim.new(0, 4);
+		BRL2.SortOrder = Enum.SortOrder.LayoutOrder;
+		BRL2.Parent = BtnRow2;
+		for idx, def in ipairs(btnDefs) do
+			local Btn2 = Instance.new("TextButton");
+			Btn2.Text = def.text or ("Btn " .. idx);
+			Btn2.TextSize = 10;
+			Btn2.FontFace = FontBold;
+			Btn2.TextColor3 = Color3.fromRGB(255, 255, 255);
+			Btn2.Size = UDim2.new(0, btnW, 1, 0);
+			Btn2.BackgroundColor3 = Themes[Library._current_theme].Accent;
+			Btn2.BackgroundTransparency = 0.35;
+			Btn2.BorderSizePixel = 0;
+			Btn2.AutoButtonColor = false;
+			Btn2.LayoutOrder = idx;
+			Btn2.Parent = BtnRow2;
+			table.insert(lib._themed_elements.AccentButtons, Btn2);
+			local BC2 = Instance.new("UICorner");
+			BC2.CornerRadius = UDim.new(0, 5);
+			BC2.Parent = Btn2;
+			Btn2.MouseEnter:Connect(function()
+				TweenService:Create(Btn2, Tween.fast, {BackgroundTransparency=0.1}):Play();
+			end);
+			Btn2.MouseLeave:Connect(function()
+				TweenService:Create(Btn2, Tween.fast, {BackgroundTransparency=0.35}):Play();
+			end);
+			Btn2.MouseButton1Down:Connect(function()
+				TweenService:Create(Btn2, Tween.snap_in, {BackgroundTransparency=0.6,Size=UDim2.new(0, btnW - 2, 1, 0)}):Play();
+			end);
+			Btn2.MouseButton1Up:Connect(function()
+				TweenService:Create(Btn2, Tween.spring, {BackgroundTransparency=0.1,Size=UDim2.new(0, btnW, 1, 0)}):Play();
+			end);
+			Btn2.MouseButton1Click:Connect(function()
+				if def.callback then
+					def.callback();
+				end
+			end);
+			BGM._buttons[idx] = Btn2;
+		end
+		BGM.SetButtonText = function(_, i, t)
+			if BGM._buttons[i] then
+				BGM._buttons[i].Text = t;
+			end
+		end;
+		BGM.SetButtonColor = function(_, i, color)
+			if BGM._buttons[i] then
+				TweenService:Create(BGM._buttons[i], Tween.fast, {BackgroundColor3=color}):Play();
+			end
+		end;
+		BGM.SetButtonCallback = function(_, i, cb)
+			if btnDefs[i] then
+				btnDefs[i].callback = cb;
+			end
+		end;
+		lib:register_element({tab_name=tab_title,module_name=(settings.title or "?"),element_type="buttongroup",element_title=(settings.title or "Button Group"),get_frame_fn=function()
+			return Outer;
+		end,switch_tab_fn=switch_to_this_tab,open_module_fn=open_this_module});
+		return BGM;
+	end;
+	ModuleManager.create_image = function(self, settings)
+		local lo = nextLayoutOrder(Options);
+		local IM = {};
+		local Wrap = Instance.new("Frame");
+		Wrap.BackgroundTransparency = 1;
+		Wrap.Size = UDim2.new(0, 207, 0, 0);
+		Wrap.AutomaticSize = Enum.AutomaticSize.Y;
+		Wrap.BorderSizePixel = 0;
+		Wrap.LayoutOrder = lo;
+		Wrap.Parent = Options;
+		local WL = Instance.new("UIListLayout");
+		WL.Padding = UDim.new(0, 4);
+		WL.SortOrder = Enum.SortOrder.LayoutOrder;
+		WL.HorizontalAlignment = Enum.HorizontalAlignment.Center;
+		WL.Parent = Wrap;
+		if settings.title then
+			local TL3 = Instance.new("TextLabel");
+			TL3.FontFace = FontSemiBold;
+			TL3.TextColor3 = Color3.fromRGB(255, 255, 255);
+			TL3.TextTransparency = 0.15;
+			TL3.Text = settings.title;
+			TL3.TextSize = 11;
+			TL3.Size = UDim2.new(1, 0, 0, 13);
+			TL3.BackgroundTransparency = 1;
+			TL3.TextXAlignment = Enum.TextXAlignment.Left;
+			TL3.LayoutOrder = 1;
+			TL3.Parent = Wrap;
+		end
+		local Img = Instance.new("ImageLabel");
+		Img.Name = "Image";
+		Img.Image = settings.image or "";
+		Img.ScaleType = Enum.ScaleType.Fit;
+		Img.BackgroundColor3 = Color3.fromRGB(18, 22, 32);
+		Img.BackgroundTransparency = 0.2;
+		Img.BorderSizePixel = 0;
+		Img.Size = settings.size or UDim2.new(1, 0, 0, 100);
+		Img.LayoutOrder = 2;
+		Img.Parent = Wrap;
+		local ImgC = Instance.new("UICorner");
+		ImgC.CornerRadius = UDim.new(0, settings.cornerRadius or 6);
+		ImgC.Parent = Img;
+		IM.SetImage = function(_, id)
+			Img.Image = id;
+		end;
+		IM.SetSize = function(_, s)
+			Img.Size = s;
+		end;
+		lib:register_element({tab_name=tab_title,module_name=(settings.title or "?"),element_type="image",element_title=(settings.title or "Image"),get_frame_fn=function()
+			return Wrap;
+		end,switch_tab_fn=switch_to_this_tab,open_module_fn=open_this_module});
+		return IM;
+	end;
+	ModuleManager.create_keybinddisplay = function(self, settings)
+		local lo = nextLayoutOrder(Options);
+		local KDM = {_flags=(settings.binds or {})};
+		local KDFrame = Instance.new("Frame");
+		KDFrame.BackgroundColor3 = Color3.fromRGB(28, 35, 48);
+		KDFrame.BackgroundTransparency = 0.05;
+		KDFrame.Size = UDim2.new(0, 207, 0, 0);
+		KDFrame.AutomaticSize = Enum.AutomaticSize.Y;
+		KDFrame.BorderSizePixel = 0;
+		KDFrame.LayoutOrder = lo;
+		KDFrame.Parent = Options;
+		local KDCorner = Instance.new("UICorner");
+		KDCorner.CornerRadius = UDim.new(0, 5);
+		KDCorner.Parent = KDFrame;
+		local KDPad = Instance.new("UIPadding");
+		KDPad.PaddingTop = UDim.new(0, 6);
+		KDPad.PaddingBottom = UDim.new(0, 6);
+		KDPad.PaddingLeft = UDim.new(0, 10);
+		KDPad.PaddingRight = UDim.new(0, 10);
+		KDPad.Parent = KDFrame;
+		local KDLayout = Instance.new("UIListLayout");
+		KDLayout.Padding = UDim.new(0, 4);
+		KDLayout.SortOrder = Enum.SortOrder.LayoutOrder;
+		KDLayout.Parent = KDFrame;
+		local KDTitleLbl = Instance.new("TextLabel");
+		KDTitleLbl.FontFace = FontBold;
+		KDTitleLbl.TextColor3 = Color3.fromRGB(215, 215, 215);
+		KDTitleLbl.TextSize = 11;
+		KDTitleLbl.Text = settings.title or "Active Binds";
+		KDTitleLbl.Size = UDim2.new(1, 0, 0, 13);
+		KDTitleLbl.BackgroundTransparency = 1;
+		KDTitleLbl.TextXAlignment = Enum.TextXAlignment.Left;
+		KDTitleLbl.LayoutOrder = 1;
+		KDTitleLbl.Parent = KDFrame;
+		local rowCache2 = {};
+		local function rebuildKD()
+			for _, r in rowCache2 do
+				if r.Parent then
+					r:Destroy();
+				end
+			end
+			rowCache2 = {};
+			local lo2 = 2;
+			for _, flag in ipairs(KDM._flags) do
+				local kb = Library._config._keybinds[flag];
+				local kbStr = (kb and string.gsub(tostring(kb), "Enum%.KeyCode%.", "")) or "None";
+				local Row2 = Instance.new("Frame");
+				Row2.BackgroundTransparency = 1;
+				Row2.Size = UDim2.new(1, 0, 0, 13);
+				Row2.LayoutOrder = lo2;
+				lo2 = lo2 + 1;
+				Row2.Parent = KDFrame;
+				table.insert(rowCache2, Row2);
+				local FL = Instance.new("TextLabel");
+				FL.Text = flag;
+				FL.TextSize = 10;
+				FL.TextColor3 = Color3.fromRGB(175, 175, 195);
+				FL.FontFace = FontRegular;
+				FL.Size = UDim2.new(1, -50, 1, 0);
+				FL.BackgroundTransparency = 1;
+				FL.TextXAlignment = Enum.TextXAlignment.Left;
+				FL.Parent = Row2;
+				local KL = Instance.new("TextLabel");
+				KL.Text = kbStr;
+				KL.TextSize = 10;
+				KL.TextColor3 = Themes[Library._current_theme].Accent;
+				KL.FontFace = FontBold;
+				KL.Size = UDim2.new(0, 48, 1, 0);
+				KL.AnchorPoint = Vector2.new(1, 0);
+				KL.Position = UDim2.new(1, 0, 0, 0);
+				KL.BackgroundTransparency = 1;
+				KL.TextXAlignment = Enum.TextXAlignment.Right;
+				KL.Parent = Row2;
+			end
+		end
+		rebuildKD();
+		local hbAccum = 0;
+		local _kdConn = RunService.Heartbeat:Connect(function(dt)
+			hbAccum = hbAccum + dt;
+			if (hbAccum >= 2) then
+				hbAccum = 0;
+				rebuildKD();
+			end
+		end);
+		KDM.SetBinds = function(_, flags)
+			KDM._flags = flags;
+			rebuildKD();
+		end;
+		KDM.Refresh = function()
+			rebuildKD();
+		end;
+		KDM.Destroy = function()
+			if _kdConn then
+				_kdConn:Disconnect();
+				_kdConn = nil;
+			end
+			KDFrame:Destroy();
+		end;
+		lib:register_element({tab_name=tab_title,module_name=(settings.title or "?"),element_type="keybinddisplay",element_title=(settings.title or "Keybind Display"),get_frame_fn=function()
+			return KDFrame;
+		end,switch_tab_fn=switch_to_this_tab,open_module_fn=open_this_module});
+		return KDM;
+	end;
+end;
+Library.create_watermark = function(self, settings)
+	settings = settings or {};
+	local theme = Themes[(Library._active_instance and Library._active_instance._current_theme) or Library._current_theme] or Themes.Midnight;
+	local WMGui = Instance.new("ScreenGui");
+	WMGui.Name = "OshiruWatermark";
+	WMGui.ResetOnSpawn = false;
+	WMGui.Parent = CoreGui;
+	local WMFrame = Instance.new("Frame");
+	WMFrame.Name = "Watermark";
+	WMFrame.Size = UDim2.new(0, 0, 0, 26);
+	WMFrame.AutomaticSize = Enum.AutomaticSize.X;
+	WMFrame.Position = UDim2.new(0, 12, 0, 12);
+	WMFrame.BackgroundColor3 = theme.Background;
+	WMFrame.BackgroundTransparency = 0.08;
+	WMFrame.BorderSizePixel = 0;
+	WMFrame.Parent = WMGui;
+	local WMCorner = Instance.new("UICorner");
+	WMCorner.CornerRadius = UDim.new(0, 7);
+	WMCorner.Parent = WMFrame;
+	local WMStroke = Instance.new("UIStroke");
+	WMStroke.Color = theme.Stroke;
+	WMStroke.Transparency = 0.35;
+	WMStroke.Thickness = 1;
+	WMStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border;
+	WMStroke.Parent = WMFrame;
+	local WMPad = Instance.new("UIPadding");
+	WMPad.PaddingLeft = UDim.new(0, 10);
+	WMPad.PaddingRight = UDim.new(0, 10);
+	WMPad.Parent = WMFrame;
+	local WMLayout = Instance.new("UIListLayout");
+	WMLayout.FillDirection = Enum.FillDirection.Horizontal;
+	WMLayout.VerticalAlignment = Enum.VerticalAlignment.Center;
+	WMLayout.Padding = UDim.new(0, 8);
+	WMLayout.SortOrder = Enum.SortOrder.LayoutOrder;
+	WMLayout.Parent = WMFrame;
+	local WMDot = Instance.new("Frame");
+	WMDot.Size = UDim2.fromOffset(6, 6);
+	WMDot.BackgroundColor3 = theme.Accent;
+	WMDot.BorderSizePixel = 0;
+	WMDot.LayoutOrder = 1;
+	WMDot.Parent = WMFrame;
+	local WMDotCorner = Instance.new("UICorner");
+	WMDotCorner.CornerRadius = UDim.new(1, 0);
+	WMDotCorner.Parent = WMDot;
+	local WMText = Instance.new("TextLabel");
+	WMText.FontFace = FontSemiBold;
+	WMText.TextColor3 = theme.Text;
+	WMText.TextTransparency = 0.05;
+	WMText.TextSize = 11;
+	WMText.Text = settings.title or "Oshiru";
+	WMText.Size = UDim2.new(0, 0, 1, 0);
+	WMText.AutomaticSize = Enum.AutomaticSize.X;
+	WMText.BackgroundTransparency = 1;
+	WMText.TextXAlignment = Enum.TextXAlignment.Left;
+	WMText.LayoutOrder = 2;
+	WMText.Parent = WMFrame;
+	local showFps = (settings.fps ~= false);
+	local showPing = (settings.ping ~= false);
+	local WMStats = Instance.new("TextLabel");
+	WMStats.FontFace = FontRegular;
+	WMStats.TextColor3 = theme.TextDark;
+	WMStats.TextTransparency = 0.2;
+	WMStats.TextSize = 10;
+	WMStats.Text = "";
+	WMStats.Size = UDim2.new(0, 0, 1, 0);
+	WMStats.AutomaticSize = Enum.AutomaticSize.X;
+	WMStats.BackgroundTransparency = 1;
+	WMStats.TextXAlignment = Enum.TextXAlignment.Left;
+	WMStats.LayoutOrder = 3;
+	WMStats.Visible = false;
+	WMStats.Parent = WMFrame;
+	WMStats:SetAttribute("OshiruNoTranslate", true);
+	local entry = {Frame=WMFrame,Stroke=WMStroke,Dot=WMDot,Text=WMText};
+	table.insert(Library._themed_elements.Watermarks, entry);
+	if Library._active_instance then
+		table.insert(Library._active_instance._themed_elements.Watermarks, entry);
+	end
+	local running = true;
+	local frames = 0;
+	local fps = 0;
+	local ping = 0;
+	local elapsed = 0;
+	local customOrder = {};
+	local customStats = {};
+	local function rebuildStats()
+		local parts = {};
+		if showFps then
+			table.insert(parts, fps .. " fps");
+		end
+		if showPing then
+			table.insert(parts, ping .. " ms");
+		end
+		for _, key in ipairs(customOrder) do
+			if customStats[key] then
+				table.insert(parts, customStats[key]);
+			end
+		end
+		WMStats.Text = table.concat(parts, "  ·  ");
+		WMStats.Visible = (#parts > 0);
+	end
+	local wmHeartbeatConn = RunService.Heartbeat:Connect(function(dt)
+		if not running then
+			return;
+		end
+		frames = frames + 1;
+		elapsed = elapsed + dt;
+		if (elapsed >= 0.5) then
+			fps = math.floor(frames / elapsed);
+			frames = 0;
+			elapsed = 0;
+			ping = math.floor((Players.LocalPlayer:GetNetworkPing() or 0) * 1000);
+			rebuildStats();
+		end
+	end);
+	Library._apply_font_style(WMFrame);
+	Library._apply_translation(WMFrame);
+	local WM = {Gui=WMGui,Frame=WMFrame};
+	WM.SetTitle = function(_, t)
+		WMText.Text = t;
+	end;
+	WM.SetText = function(_, key, text)
+		if not customStats[key] then
+			table.insert(customOrder, key);
+		end
+		customStats[key] = text;
+		rebuildStats();
+	end;
+	WM.ClearText = function(_, key)
+		if not customStats[key] then
+			return;
+		end
+		customStats[key] = nil;
+		Library:remove_table_value(customOrder, key);
+		rebuildStats();
+	end;
+	WM.Destroy = function()
+		running = false;
+		if wmHeartbeatConn then
+			wmHeartbeatConn:Disconnect();
+			wmHeartbeatConn = nil;
+		end
+		Library:remove_table_value(Library._themed_elements.Watermarks, entry);
+		if Library._active_instance then
+			Library:remove_table_value(Library._active_instance._themed_elements.Watermarks, entry);
+		end
+		WMGui:Destroy();
+	end;
+	return WM;
+end;
+Library.create_stats_display = function(self, settings)
+	settings = settings or {};
+	local theme = Themes[(Library._active_instance and Library._active_instance._current_theme) or Library._current_theme] or Themes.Midnight;
+	local SDGui = Instance.new("ScreenGui");
+	SDGui.Name = "OshiruStatsDisplay";
+	SDGui.ResetOnSpawn = false;
+	SDGui.Parent = CoreGui;
+	local SDFrame = Instance.new("Frame");
+	SDFrame.Name = "StatsDisplay";
+	SDFrame.Size = UDim2.new(0, 170, 0, 0);
+	SDFrame.AutomaticSize = Enum.AutomaticSize.Y;
+	SDFrame.AnchorPoint = (settings.anchor_point or Vector2.new(1, 0));
+	SDFrame.Position = (settings.position or UDim2.new(1, -12, 0, 12));
+	SDFrame.BackgroundColor3 = theme.Background;
+	SDFrame.BackgroundTransparency = 0.08;
+	SDFrame.BorderSizePixel = 0;
+	SDFrame.Parent = SDGui;
+	local SDCorner = Instance.new("UICorner");
+	SDCorner.CornerRadius = UDim.new(0, 7);
+	SDCorner.Parent = SDFrame;
+	local SDStroke = Instance.new("UIStroke");
+	SDStroke.Color = theme.Stroke;
+	SDStroke.Transparency = 0.35;
+	SDStroke.Thickness = 1;
+	SDStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border;
+	SDStroke.Parent = SDFrame;
+	local SDPad = Instance.new("UIPadding");
+	SDPad.PaddingTop = UDim.new(0, 8);
+	SDPad.PaddingBottom = UDim.new(0, 8);
+	SDPad.PaddingLeft = UDim.new(0, 10);
+	SDPad.PaddingRight = UDim.new(0, 10);
+	SDPad.Parent = SDFrame;
+	local SDLayout = Instance.new("UIListLayout");
+	SDLayout.Padding = UDim.new(0, 4);
+	SDLayout.SortOrder = Enum.SortOrder.LayoutOrder;
+	SDLayout.Parent = SDFrame;
+	local SDHeader = Instance.new("Frame");
+	SDHeader.Name = "Header";
+	SDHeader.Size = UDim2.new(1, 0, 0, 14);
+	SDHeader.BackgroundTransparency = 1;
+	SDHeader.LayoutOrder = 0;
+	SDHeader.Parent = SDFrame;
+	local SDHeaderLayout = Instance.new("UIListLayout");
+	SDHeaderLayout.FillDirection = Enum.FillDirection.Horizontal;
+	SDHeaderLayout.VerticalAlignment = Enum.VerticalAlignment.Center;
+	SDHeaderLayout.Padding = UDim.new(0, 8);
+	SDHeaderLayout.SortOrder = Enum.SortOrder.LayoutOrder;
+	SDHeaderLayout.Parent = SDHeader;
+	local SDDot = Instance.new("Frame");
+	SDDot.Size = UDim2.fromOffset(6, 6);
+	SDDot.BackgroundColor3 = theme.Accent;
+	SDDot.BorderSizePixel = 0;
+	SDDot.LayoutOrder = 1;
+	SDDot.Parent = SDHeader;
+	local SDDotCorner = Instance.new("UICorner");
+	SDDotCorner.CornerRadius = UDim.new(1, 0);
+	SDDotCorner.Parent = SDDot;
+	local SDTitle = Instance.new("TextLabel");
+	SDTitle.FontFace = FontSemiBold;
+	SDTitle.TextColor3 = theme.Text;
+	SDTitle.TextTransparency = 0.05;
+	SDTitle.TextSize = 11;
+	SDTitle.Text = settings.title or "Stats";
+	SDTitle.Size = UDim2.new(0, 0, 1, 0);
+	SDTitle.AutomaticSize = Enum.AutomaticSize.X;
+	SDTitle.BackgroundTransparency = 1;
+	SDTitle.TextXAlignment = Enum.TextXAlignment.Left;
+	SDTitle.LayoutOrder = 2;
+	SDTitle.Parent = SDHeader;
+	local entry = {Frame=SDFrame,Stroke=SDStroke,Dot=SDDot,Text=SDTitle};
+	table.insert(Library._themed_elements.Watermarks, entry);
+	if Library._active_instance then
+		table.insert(Library._active_instance._themed_elements.Watermarks, entry);
+	end
+	local lines = {};
+	local lineOrder = {};
+	local nextOrder = 1;
+	local SD = {Gui=SDGui,Frame=SDFrame};
+	SD.SetTitle = function(_, t)
+		SDTitle.Text = t;
+	end;
+	SD.SetLine = function(_, key, text)
+		local label = lines[key];
+		if not label then
+			label = Instance.new("TextLabel");
+			label.Name = "Line";
+			label.FontFace = FontRegular;
+			label.TextColor3 = theme.TextDark;
+			label.TextTransparency = 0.15;
+			label.TextSize = 10;
+			label.Size = UDim2.new(1, 0, 0, 13);
+			label.BackgroundTransparency = 1;
+			label.TextXAlignment = Enum.TextXAlignment.Left;
+			label.LayoutOrder = nextOrder;
+			label:SetAttribute("OshiruNoTranslate", true);
+			label.Parent = SDFrame;
+			nextOrder = nextOrder + 1;
+			lines[key] = label;
+			table.insert(lineOrder, key);
+		end
+		label.Text = text;
+	end;
+	SD.RemoveLine = function(_, key)
+		local label = lines[key];
+		if not label then
+			return;
+		end
+		label:Destroy();
+		lines[key] = nil;
+		Library:remove_table_value(lineOrder, key);
+	end;
+	SD.Destroy = function()
+		Library:remove_table_value(Library._themed_elements.Watermarks, entry);
+		if Library._active_instance then
+			Library:remove_table_value(Library._active_instance._themed_elements.Watermarks, entry);
+		end
+		SDGui:Destroy();
+	end;
+	Library._apply_font_style(SDFrame);
+	Library._apply_translation(SDFrame);
+	return SD;
+end;
+Library.create_settings_tab = function(self)
+	local lib = self;
+	local SettingsTab = self:create_tab("Settings", "rbxassetid://79095934438045");
+	local ThemeMod = SettingsTab:create_module({title="Themes",description="Presets, editor, save & load",flag="_stg_theme",section="left",callback=function()
+	end});
+	local presetNames = {};
+	for name in pairs(Themes) do
+		table.insert(presetNames, name);
+	end
+	table.sort(presetNames);
+	ThemeMod:create_dropdown({title="Theme Preset",flag="SelectedTheme",options=presetNames,multi_dropdown=false,maximum_options=#presetNames,callback=function(name)
+		lib:apply_theme(name);
+		local meta = ThemeMeta[name];
+		Library.SendNotification({title=("Theme · " .. name),text=((meta and meta.desc) or name),duration=2,type="info"});
+	end});
+	ThemeMod:create_divider({showtopic=true,title="Typography"});
+	local fontNames = {};
+	for _, item in ipairs(Enum.Font:GetEnumItems()) do
+		if (item.Name ~= "Unknown") then
+			table.insert(fontNames, item.Name);
+		end
+	end
+	table.sort(fontNames);
+	ThemeMod:create_dropdown({title="UI Font",flag="UIFont",options=fontNames,multi_dropdown=false,maximum_options=#fontNames,callback=function(name)
+		local ok, fontEnum = pcall(function()
+			return Enum.Font[name];
+		end);
+		if (ok and fontEnum) then
+			lib:set_ui_font(fontEnum);
+			Library.SendNotification({title=("Font · " .. name),text="UI font updated.",duration=2,type="info"});
+		end
+	end});
+	ThemeMod:create_divider({showtopic=true,title="Live Editor"});
+	local themeSlots = {{key="Background",label="Background"},{key="ModuleBackground",label="Module BG"},{key="Accent",label="Accent"},{key="SecondaryAccent",label="Secondary Accent"},{key="Text",label="Text"},{key="TextDark",label="Dim Text"},{key="Stroke",label="Stroke / Border"}};
+	local themeEditorCPs = {};
+	for _, slot in ipairs(themeSlots) do
+		local cp = ThemeMod:create_colorpicker({title=slot.label,flag=("_themeEdit_" .. slot.key),default=Themes[Library._current_theme][slot.key],callback=function(color)
+			if Themes[Library._current_theme] then
+				Themes[Library._current_theme][slot.key] = color;
+				lib:apply_theme(Library._current_theme);
+			end
+		end});
+		themeEditorCPs[slot.key] = cp;
+	end
+	ThemeMod:create_divider({showtopic=true,title="Save / Manage"});
+	ThemeMod:create_textbox({title="Theme Name",flag="_newThemeName",placeholder="My Theme",callback=function()
+	end});
+	local ThemeButtons = ThemeMod:create_buttongroup({buttons={{text="Save",callback=function()
+		local name = Library._config._flags['_newThemeName'] or "";
+		if (name == "") then
+			Library.SendNotification({title="Name Required",text="Enter a name for the theme.",duration=2.5,type="warning"});
+			return;
+		end
+		local clone = {};
+		for k, v in pairs(Themes[Library._current_theme]) do
+			clone[k] = v;
+		end
+		Themes[name] = clone;
+		ThemeMeta[name] = {category="Custom",desc="User theme"};
+		Config:save_theme(name, clone);
+		Library.SendNotification({title="Theme Saved",text=name,duration=2.5,type="success"});
+	end},{text="Delete",callback=function()
+	end},{text="Dupe",callback=function()
+		local src = Library._current_theme;
+		local dest = Library._config._flags['_newThemeName'] or "";
+		if (dest == "") then
+			Library.SendNotification({title="Name Required",text="Enter a name for the copy.",duration=2.5,type="warning"});
+			return;
+		end
+		local clone = {};
+		for k, v in pairs(Themes[src]) do
+			clone[k] = v;
+		end
+		Themes[dest] = clone;
+		ThemeMeta[dest] = {category="Custom",desc=("Copy of " .. src)};
+		Config:save_theme(dest, clone);
+		Library.SendNotification({title="Duplicated",text=(src .. " → " .. dest),duration=2.5,type="success"});
+	end}}});
+	lib:arm_confirm_button(ThemeButtons, 2, function()
+		local name = Library._config._flags['_newThemeName'] or "";
+		if not Themes[name] then
+			Library.SendNotification({title="Not Found",text=('"' .. name .. '" doesn\'t exist.'),duration=2.5,type="error"});
+			return;
+		end
+		if (ThemeMeta[name] and (ThemeMeta[name].category ~= "Custom")) then
+			Library.SendNotification({title="Protected",text="Built-in themes can't be deleted.",duration=2.5,type="warning"});
+			return;
+		end
+		Themes[name] = nil;
+		ThemeMeta[name] = nil;
+		Config:delete_theme(name);
+		Library.SendNotification({title="Deleted",text=name,duration=2.5,type="warning"});
+	end);
+	for _, savedName in ipairs(Config:list_themes()) do
+		if not Themes[savedName] then
+			local td = Config:load_theme(savedName);
+			if td then
+				Themes[savedName] = td;
+				ThemeMeta[savedName] = {category="Custom",desc="User theme"};
+			end
+		end
+	end
+	local IfaceMod = SettingsTab:create_module({title="Interface",description="Animations, blur, opacity",flag="_stg_iface",section="left",callback=function()
+	end});
+	IfaceMod:create_checkbox({title="Acrylic Blur",flag="_blur_on",callback=function(state)
+		Library._blur_enabled = state;
+		if lib._blur_instance then
+			lib._blur_instance:change_visiblity(state);
+		end
+	end});
+	if (Library._config._flags['_blur_on'] == nil) then
+		Library._config._flags['_blur_on'] = true;
+	end
+	IfaceMod:create_slider({title="Background Opacity",flag="_bg_opacity",minimum_value=0,maximum_value=100,value=4,round_number=true,callback=function(val)
+		if lib._themed_elements.Container then
+			lib._themed_elements.Container.BackgroundTransparency = val / 100;
+		end
+	end});
+	IfaceMod:create_dropdown({title="Animation Speed",flag="_anim_speed",options={"Slow","Normal","Fast","Instant"},multi_dropdown=false,maximum_options=4,callback=function(speed)
+		Library._animation_speed = speed;
+		if (speed == "Slow") then
+			Tween.smooth = TweenInfo.new(0.75, Enum.EasingStyle.Quint, Enum.EasingDirection.Out);
+		elseif (speed == "Normal") then
+			Tween.smooth = TweenInfo.new(0.45, Enum.EasingStyle.Quint, Enum.EasingDirection.Out);
+		elseif (speed == "Fast") then
+			Tween.smooth = TweenInfo.new(0.18, Enum.EasingStyle.Quint, Enum.EasingDirection.Out);
+		elseif (speed == "Instant") then
+			Tween.smooth = TweenInfo.new(0.04, Enum.EasingStyle.Linear, Enum.EasingDirection.Out);
+		end
+	end});
+	IfaceMod:create_checkbox({title="Divider Gradient",flag="DividerGradient",callback=function(state)
+		lib:set_divider_gradient(state);
+	end});
+	IfaceMod:create_checkbox({title="Loading Screen",flag="LoadingScreenEnabled",callback=function(state)
+		lib:set_loading_enabled(state);
+	end});
+	if (Library._config._flags['LoadingScreenEnabled'] == nil) then
+		Library._config._flags['LoadingScreenEnabled'] = true;
+	end
+	local WatermarkMod = SettingsTab:create_module({title="Watermark",description="Floating FPS / ping display",flag="_stg_wm",section="left",callback=function()
+	end});
+	local activeWatermark = nil;
+	WatermarkMod:create_checkbox({title="Show Watermark",flag="_wm_on",callback=function(state)
+		if (state and not activeWatermark) then
+			activeWatermark = lib:create_watermark({title=lib._title});
+		elseif (not state and activeWatermark) then
+			activeWatermark:Destroy();
+			activeWatermark = nil;
+		end
+	end});
+	local CfgMod = SettingsTab:create_module({title="Config",description="Save, load, manage configs",flag="_stg_cfg",section="right",callback=function()
+	end});
+	CfgMod:create_textbox({title="Config Name",flag="_cfgName",placeholder=tostring(game.PlaceId),callback=function()
+	end});
+	local function getConfigList()
+		local list = Config:list_named();
+		return ((#list > 0) and list) or {"(none)"};
+	end
+	local cfgDropdown = CfgMod:create_dropdown({title="Saved Configs",flag="_selCfg",options=getConfigList(),multi_dropdown=false,maximum_options=30,callback=function()
+	end});
+	local function refreshCfgDropdown()
+		cfgDropdown = cfgDropdown:New({title="Saved Configs",flag="_selCfg",options=getConfigList(),multi_dropdown=false,maximum_options=30,callback=function()
+		end});
+	end
+	local CfgButtons = CfgMod:create_buttongroup({buttons={{text="Save",callback=function()
+		local name = Library._config._flags['_cfgName'] or "";
+		if (name == "") then
+			name = tostring(game.PlaceId);
+		end
+		local snap = {_flags=Library._config._flags,_keybinds=Library._config._keybinds,_theme=Library._current_theme,_window_x=((lib._themed_elements.Container and lib._themed_elements.Container.Position.X.Offset) or 0),_window_y=((lib._themed_elements.Container and lib._themed_elements.Container.Position.Y.Offset) or 0)};
+		Config:save_named(name, snap);
+		Library.SendNotification({title="Saved",text=name,duration=2.5,type="success"});
+		refreshCfgDropdown();
+	end},{text="Load",callback=function()
+		local name = Library._config._flags['_selCfg'] or "";
+		if ((name == "") or (name == "(none)")) then
+			Library.SendNotification({title="No Config",text="Select a config first.",duration=2.5,type="warning"});
+			return;
+		end
+		local data = Config:load_named(name);
+		if not data then
+			Library.SendNotification({title="Load Failed",text=name,duration=2.5,type="error"});
+			return;
+		end
+		if data._flags then
+			Library._config._flags = data._flags;
+		end
+		if data._keybinds then
+			Library._config._keybinds = data._keybinds;
+		end
+		if data._theme then
+			lib:apply_theme(data._theme);
+		end
+		if (data._flags and data._flags['UIFont']) then
+			local ok, fontEnum = pcall(function()
+				return Enum.Font[data._flags['UIFont']];
+			end);
+			if (ok and fontEnum) then
+				lib:set_ui_font(fontEnum);
+			end
+		end
+		Config:save(game.GameId, Library._config);
+		Library.SendNotification({title="Loaded",text=name,duration=2.5,type="success"});
+	end},{text="Delete",callback=function()
+	end}}});
+	lib:arm_confirm_button(CfgButtons, 3, function()
+		local name = Library._config._flags['_selCfg'] or "";
+		if ((name == "") or (name == "(none)")) then
+			return;
+		end
+		Config:delete_named(name);
+		Library.SendNotification({title="Deleted",text=name,duration=2.5,type="warning"});
+		refreshCfgDropdown();
+	end);
+	CfgMod:create_divider({showtopic=true,title="Duplicate"});
+	CfgMod:create_button({buttonText="Duplicate Selected",callback=function()
+		local src = Library._config._flags['_selCfg'] or "";
+		local dest = Library._config._flags['_cfgName'] or "";
+		if ((src == "") or (src == "(none)")) then
+			Library.SendNotification({title="No Source",text="Select a config to copy.",duration=2.5,type="warning"});
+			return;
+		end
+		if (dest == "") then
+			Library.SendNotification({title="No Name",text="Enter a name for the copy.",duration=2.5,type="warning"});
+			return;
+		end
+		local data = Config:load_named(src);
+		if not data then
+			return;
+		end
+		Config:save_named(dest, data);
+		Library.SendNotification({title="Duplicated",text=(src .. " → " .. dest),duration=2.5,type="success"});
+		refreshCfgDropdown();
+	end});
+	CfgMod:create_divider({showtopic=true,title="Import / Export"});
+	local codeBox = CfgMod:create_textbox({title="Config Code",flag="_cfgCode",placeholder="Paste a config code here...",callback=function()
+	end});
+	CfgMod:create_buttongroup({buttons={{text="Export",callback=function()
+		local snap = {_flags=Library._config._flags,_keybinds=Library._config._keybinds,_theme=Library._current_theme};
+		local ok, encoded = pcall(function()
+			return HttpService:JSONEncode(snap);
+		end);
+		if not ok then
+			Library.SendNotification({title="Export Failed",text="Could not encode the current settings.",duration=3,type="error"});
+			return;
+		end
+		codeBox:SetText(encoded);
+		local copied = false;
+		if setclipboard then
+			copied = pcall(setclipboard, encoded);
+		end
+		Library.SendNotification({title="Exported",text=((copied and "Copied to clipboard.") or "Copy the code from the box above."),duration=3,type="success"});
+	end},{text="Import",callback=function()
+		local raw = codeBox:GetText();
+		if ((raw == nil) or (raw == "")) then
+			Library.SendNotification({title="No Code",text="Paste a config code first.",duration=2.5,type="warning"});
+			return;
+		end
+		local ok, data = pcall(function()
+			return HttpService:JSONDecode(raw);
+		end);
+		if (not ok or (typeof(data) ~= "table")) then
+			Library.SendNotification({title="Import Failed",text="That doesn't look like a valid config code.",duration=3,type="error"});
+			return;
+		end
+		if data._flags then
+			Library._config._flags = data._flags;
+		end
+		if data._keybinds then
+			Library._config._keybinds = data._keybinds;
+		end
+		if data._theme then
+			lib:apply_theme(data._theme);
+		end
+		if (data._flags and data._flags['UIFont']) then
+			local fok, fontEnum = pcall(function()
+				return Enum.Font[data._flags['UIFont']];
+			end);
+			if (fok and fontEnum) then
+				lib:set_ui_font(fontEnum);
+			end
+		end
+		Config:save(game.GameId, Library._config);
+		Library.SendNotification({title="Imported",text="Settings applied.",duration=3,type="success"});
+	end}}});
+	local ServerMod = SettingsTab:create_module({title="Servers",description="Create or join a shareable server code",flag="_stg_servers",section="right",callback=function()
+	end});
+	local ServerCodeBox = ServerMod:create_textbox({title="Server Code",flag="_server_code_input",placeholder="OSHIRU-XXXXXX",callback=function()
+	end});
+	ServerMod:create_buttongroup({buttons={{text="Join",callback=function()
+		lib:join_server_code(ServerCodeBox:GetText());
+	end},{text="Create",callback=function()
+		lib:create_server_code(function(code)
+			if code then
+				ServerCodeBox:SetText(code);
+			end
+		end);
+	end}}});
+	ServerMod:create_label({title="Note",text="Codes run through a public backend and are best-effort — they can fail if the server has since emptied or the code has expired."});
+	local NotifMod2 = SettingsTab:create_module({title="Notifications",description="Configure alert behavior",flag="_stg_notif",section="right",callback=function()
+	end});
+	NotifMod2:create_checkbox({title="Enable Notifications",flag="_notif_on",callback=function(state)
+		Library._notification_settings.enabled = state;
+	end});
+	if (Library._config._flags['_notif_on'] == nil) then
+		Library._config._flags['_notif_on'] = true;
+		Library._notification_settings.enabled = true;
+	end
+	NotifMod2:create_slider({title="Duration (seconds)",flag="_notif_dur",minimum_value=1,maximum_value=15,value=5,round_number=true,callback=function(val)
+		Library._notification_settings.duration = val;
+	end});
+	NotifMod2:create_dropdown({title="Position",flag="NotifyPosition",options=NotifPositionOrder,multi_dropdown=false,maximum_options=#NotifPositionOrder,callback=function(name)
+		lib:set_notification_position(name);
+	end});
+	NotifMod2:create_dropdown({title="Sound",flag="NotifySound",options=NotifSoundOrder,multi_dropdown=false,maximum_options=#NotifSoundOrder,callback=function(name)
+		lib:set_notification_sound(name);
+	end});
+	NotifMod2:create_progressbar({title="Last Notification",value=0});
+	NotifMod2:create_buttongroup({buttons={{text="Test ✓",callback=function()
+		Library.SendNotification({title="Test Success",text="Notifications working.",duration=3,type="success"});
+	end},{text="Test X",callback=function()
+		Library.SendNotification({title="Test Error",text="This is an error notification.",duration=3,type="error"});
+	end},{text="Test !",callback=function()
+		Library.SendNotification({title="Test Warning",text="This is a warning notification.",duration=3,type="warning"});
+	end}}});
+	local LanguageMod = SettingsTab:create_module({title="Language",description="Translate the interface",flag="_stg_lang",section="left",callback=function()
+	end});
+	LanguageMod:create_dropdown({title="UI Language",flag="TranslateLanguage",options=LanguageOrder,multi_dropdown=false,maximum_options=#LanguageOrder,callback=function(name)
+		lib:set_translation(name);
+		if (name ~= "English") then
+			Library.SendNotification({title=("Language · " .. name),text="Translating interface, this can take a moment.",duration=3,type="info"});
+		end
+	end});
+	LanguageMod:create_label({title="Note",text="Translations are fetched live and cached per phrase, so the first pass after switching is the slowest."});
+	local SearchInfoMod = SettingsTab:create_module({title="Search",description="Global search system guide",flag="_stg_search",section="right",callback=function()
+	end});
+	SearchInfoMod:create_status({title="Search Engine",status="Enabled",text="Active"});
+	SearchInfoMod:create_label({title="Keyboard Shortcuts",text="Ctrl + F  —  Open / close\nEscape     —  Close\nClick result  —  Jump to element"});
+	SearchInfoMod:create_label({title="What It Searches",text="Tabs · Modules · Labels · Buttons · Checkboxes · Sliders · Dropdowns · Color pickers · Keybinds · Multi-dropdowns · Progress bars · Status indicators · Button groups · Images"});
+	SearchInfoMod:create_button({buttonText="Open Search (Ctrl+F)",callback=function()
+		if lib.expand_search then
+			lib:expand_search();
+		end
+	end});
+	local AdvancedMod = SettingsTab:create_module({title="Advanced",description="Reset and troubleshooting",flag="_stg_advanced",section="right",callback=function()
+	end});
+	AdvancedMod:create_label({title="Reset All Settings",text="Clears every saved setting and keybind, and restores the default theme. A script reload is needed for it to fully apply."});
+	AdvancedMod:create_button({buttonText="Reset All Settings",callback=function()
+		Library.ShowDialog({title="Reset All Settings?",text="This clears every saved setting and keybind for this game. This can't be undone.",confirm_text="Reset",cancel_text="Cancel",callback=function(confirmed)
+			if not confirmed then
+				return;
+			end
+			Library._config._flags = {};
+			Library._config._keybinds = {};
+			Library._config._theme = "Midnight";
+			Config:save(game.GameId, Library._config);
+			lib:apply_theme("Midnight");
+			Library.SendNotification({title="Settings Reset",text="Reload the script for all defaults to take effect.",duration=5,type="warning"});
+		end});
+	end});
+end;
+local Oshiru = {};
+Oshiru.CreateWindow = function(self, settings)
+	settings = settings or {};
+	local title = settings.Title or settings.title or "Oshiru";
+	local theme = settings.Theme or settings.theme;
+	if (theme and Themes[theme]) then
+		Library._current_theme = theme;
+	end
+	if (settings.LoadingTitle or settings.LoadingSubtitle) then
+		Library._loading_overrides = {title=settings.LoadingTitle,subtitle=settings.LoadingSubtitle};
+	else
+		Library._loading_overrides = nil;
+	end
+	Library._loading_config = {mode=(settings.LoadingMode or "modules"),duration=(settings.LoadingDuration or 2),tasks=(settings.LoadingTasks or {})};
+	if settings.NotificationPosition then
+		Library._config._flags['NotifyPosition'] = settings.NotificationPosition;
+	end
+	if settings.NotificationSound then
+		Library._config._flags['NotifySound'] = settings.NotificationSound;
+	end
+	if settings.Language then
+		Library._config._flags['TranslateLanguage'] = settings.Language;
+	end
+	if (settings.LoadingEnabled ~= nil) then
+		Library._config._flags['LoadingScreenEnabled'] = settings.LoadingEnabled;
+	end
+	local window = Library.new(title);
+	if (theme and Themes[theme]) then
+		Library._config._theme = theme;
+	end
+	return window;
+end;
+Oshiru.SendNotification = function(self, settings)
+	Library.SendNotification(settings);
+end;
+Oshiru.ShowDialog = function(self, settings)
+	return Library.ShowDialog(settings);
+end;
+Oshiru.CreateWatermark = function(self, settings)
+	return Library:create_watermark(settings);
+end;
+Oshiru.CreateStatsDisplay = function(self, settings)
+	return Library:create_stats_display(settings);
+end;
+Oshiru._Library = Library;
+Oshiru._Themes = Themes;
+return Oshiru;
